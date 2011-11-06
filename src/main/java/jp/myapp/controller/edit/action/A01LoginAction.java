@@ -1,0 +1,51 @@
+package jp.myapp.controller.edit.action;
+
+import jp.myapp.controller.edit.form.A01Form;
+import jp.myapp.controller.edit.form.A02Form;
+import jp.myapp.controller.edit.model.A01LoginModel;
+import jp.myapp.controller.edit.model.A01LoginModelImpl;
+import jp.myapp.controller.edit.validation.A01Validation;
+import jp.myapp.dao.mapper.UsersMapper;
+import jp.myapp.service.LoginService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
+
+@Controller
+public class A01LoginAction extends ActionSupport implements ModelDriven<A01LoginModel>, A01Validation {
+
+    private static final long serialVersionUID = 1L;
+
+    private A01LoginModel model = new A01LoginModelImpl();
+
+    @Autowired
+    private LoginService loginService;
+
+    @Autowired
+    private UsersMapper usersMapper;
+
+    @Override
+    public A01LoginModel getModel() {
+        return this.model;
+    }
+
+    @Override
+    public String execute() throws Exception {
+
+        A01Form inForm = this.model.getA01Form();
+
+        // ログインチェック
+        this.loginService.loginUser(inForm.getUserId(), inForm.getPassword());
+
+        // 出力情報の設定
+        A02Form outForm = this.model.getA02Form();
+
+        outForm.setUserId(inForm.getUserId());
+        outForm.setUserInfoList(this.usersMapper.selectAll());
+
+        return SUCCESS;
+    }
+}

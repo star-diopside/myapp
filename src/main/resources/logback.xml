@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Error Interceptor Log Appender -->
+    <appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>E:/log/error.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS},%mdc{sessionId},%mdc{remoteAddr},%level,%thread,%message%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>E:/log/error_%d{yyyy-MM-dd}.log.%i</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+    </appender>
+
+    <!-- Trace Interceptor Log Appender -->
+    <appender name="trace" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>E:/log/trace.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS},%mdc{sessionId},%mdc{remoteAddr},%level,%thread,%message%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>E:/log/trace_%d{yyyy-MM-dd}.log.%i</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <!-- Logger Setting -->
+    <logger name="jp.myapp" level="TRACE">
+        <appender-ref ref="trace" />
+    </logger>
+
+    <logger name="java.sql" level="TRACE">
+        <appender-ref ref="trace" />
+    </logger>
+
+    <logger name="org.apache.ibatis" level="TRACE">
+        <appender-ref ref="trace" />
+    </logger>
+
+    <!-- Root Logger Setting -->
+    <root level="ERROR">
+        <appender-ref ref="error" />
+    </root>
+
+</configuration>

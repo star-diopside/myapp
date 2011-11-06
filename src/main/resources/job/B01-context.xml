@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/batch
+        http://www.springframework.org/schema/batch/spring-batch.xsd
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <job id="b01" incrementer="jobParametersIncrementer" xmlns="http://www.springframework.org/schema/batch">
+        <step id="step1" parent="simpleStep">
+            <tasklet>
+                <chunk reader="reader" processor="processor" writer="writer" />
+            </tasklet>
+        </step>
+    </job>
+
+    <bean id="reader" class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
+        <property name="resource" value="#{jobParameters['infile']}" />
+        <property name="lineMapper">
+            <bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+                <property name="lineTokenizer">
+                    <bean class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+                        <property name="names" value="userId,username,password,enabled,provisionalRegistration,lastLogin,registerDatetime,registerUserId,updatedDatetime,updatedUserId,version" />
+                    </bean>
+                </property>
+                <property name="fieldSetMapper">
+                    <bean class="jp.myapp.batch.mapping.UsersFieldSetMapper" />
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="processor" class="jp.myapp.batch.processor.B01Processor" scope="step" />
+
+    <bean id="writer" class="org.springframework.batch.item.file.FlatFileItemWriter" scope="step">
+        <property name="resource" value="#{jobParameters['outfile']}" />
+        <property name="lineAggregator">
+            <bean class="org.springframework.batch.item.file.transform.DelimitedLineAggregator">
+                <property name="fieldExtractor">
+                    <bean class="org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor">
+                        <property name="names" value="userId,username,password,enabled,provisionalRegistration,lastLogin,registerDatetime,registerUserId,updatedDatetime,updatedUserId,version" />
+                    </bean>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+</beans>

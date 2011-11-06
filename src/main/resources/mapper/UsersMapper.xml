@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.myapp.dao.mapper.UsersMapper">
+
+    <resultMap type="jp.myapp.dao.entity.UsersImpl" id="users">
+        <id column="USER_ID" property="userId" />
+        <result column="USERNAME" property="username" />
+        <result column="PASSWORD" property="password" />
+        <result column="ENABLED" property="enabled" />
+        <result column="PROVISIONAL_REGISTRATION" property="provisionalRegistration" />
+        <result column="LAST_LOGIN" property="lastLogin" />
+        <result column="REGISTER_DATETIME" property="registerDatetime" />
+        <result column="REGISTER_USER_ID" property="registerUserId" />
+        <result column="UPDATED_DATETIME" property="updatedDatetime" />
+        <result column="UPDATED_USER_ID" property="updatedUserId" />
+        <result column="VERSION" property="version" />
+    </resultMap>
+
+    <select id="select" parameterType="string" resultMap="users">
+        <![CDATA[
+            select * from USERS where USER_ID = #{userId}
+        ]]>
+    </select>
+
+    <select id="selectForUpdate" parameterType="string" resultMap="users">
+        <![CDATA[
+            select * from USERS where USER_ID = #{userId} for update
+        ]]>
+    </select>
+
+    <insert id="insert" parameterType="jp.myapp.dao.entity.Users">
+        <![CDATA[
+            insert into USERS
+            ( USER_ID, USERNAME, PASSWORD, ENABLED, PROVISIONAL_REGISTRATION, LAST_LOGIN, REGISTER_DATETIME, REGISTER_USER_ID, UPDATED_DATETIME, UPDATED_USER_ID, VERSION )
+            values
+            ( #{userId}, #{username}, #{password}, #{enabled}, #{provisionalRegistration}, #{lastLogin,jdbcType=TIMESTAMP}, #{registerDatetime}, #{registerUserId}, #{updatedDatetime}, #{updatedUserId}, #{version} )
+        ]]>
+    </insert>
+
+    <update id="update" parameterType="jp.myapp.dao.entity.Users">
+        <![CDATA[update USERS]]>
+        <trim prefix="set" suffixOverrides=",">
+            <if test="updatedUsername == true"><![CDATA[USERNAME = #{username},]]></if>
+            <if test="updatedPassword == true"><![CDATA[PASSWORD = #{password},]]></if>
+            <if test="updatedEnabled == true"><![CDATA[ENABLED = #{enabled},]]></if>
+            <if test="updatedProvisionalRegistration == true"><![CDATA[PROVISIONAL_REGISTRATION = #{provisionalRegistration},]]></if>
+            <if test="updatedLastLogin == true"><![CDATA[LAST_LOGIN = #{lastLogin},]]></if>
+            <if test="updatedRegisterDatetime == true"><![CDATA[REGISTER_DATETIME = #{registerDatetime},]]></if>
+            <if test="updatedRegisterUserId == true"><![CDATA[REGISTER_USER_ID = #{registerUserId},]]></if>
+            <if test="updatedUpdatedDatetime == true"><![CDATA[UPDATED_DATETIME = #{updatedDatetime},]]></if>
+            <if test="updatedUpdatedUserId == true"><![CDATA[UPDATED_USER_ID = #{updatedUserId},]]></if>
+            <if test="updatedVersion == true"><![CDATA[VERSION = #{version},]]></if>
+        </trim>
+        <![CDATA[where USER_ID = #{userId}]]>
+    </update>
+
+    <delete id="delete" parameterType="string">
+        <![CDATA[
+            delete from USERS where USER_ID = #{userId}
+        ]]>
+    </delete>
+
+    <select id="selectAll" resultMap="users">
+        <![CDATA[
+            select * from USERS
+        ]]>
+    </select>
+
+</mapper>

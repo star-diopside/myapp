@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+
+    <USERS USER_ID="InvalidUser01"
+           USERNAME="無効ユーザ０１"
+           PASSWORD="94c0fd43649a8c6590ecf2f2f1689eae819dd7dfa2b799f6e236c399110c52f6"
+           ENABLED="true"
+           PROVISIONAL_REGISTRATION="true"
+           LAST_LOGIN="[NOW_DATETIME]"
+           REGISTER_DATETIME="1970-01-01 00:00:00.0"
+           REGISTER_USER_ID="TEST-DATA"
+           UPDATED_DATETIME="1970-01-01 00:00:00.0"
+           UPDATED_USER_ID="TEST-DATA"
+           VERSION="0" />
+
+    <AUTHORITIES USER_ID="InvalidUser01"
+                 AUTHORITY="ROLE_USER"
+                 REGISTER_DATETIME="1970-01-01 00:00:00.0"
+                 REGISTER_USER_ID="TEST-DATA"
+                 UPDATED_DATETIME="1970-01-01 00:00:00.0"
+                 UPDATED_USER_ID="TEST-DATA"
+                 VERSION="0" />
+
+    <USERS USER_ID="ValidUser01"
+           USERNAME="有効ユーザ０１"
+           PASSWORD="531044d26abc5853a48aba2b608f1b635143947b08f8d09e0af3379b129cef55"
+           ENABLED="true"
+           PROVISIONAL_REGISTRATION="true"
+           LAST_LOGIN="[NOW_DATETIME]"
+           REGISTER_DATETIME="[NOW_DATETIME]"
+           REGISTER_USER_ID="TEST-DATA"
+           UPDATED_DATETIME="1970-01-01 00:00:00.0"
+           UPDATED_USER_ID="TEST-DATA"
+           VERSION="0" />
+
+    <AUTHORITIES USER_ID="ValidUser01"
+                 AUTHORITY="ROLE_USER"
+                 REGISTER_DATETIME="[NOW_DATETIME]"
+                 REGISTER_USER_ID="TEST-DATA"
+                 UPDATED_DATETIME="1970-01-01 00:00:00.0"
+                 UPDATED_USER_ID="TEST-DATA"
+                 VERSION="0" />
+
+</dataset>

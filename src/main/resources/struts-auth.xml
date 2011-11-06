@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <package name="auth" namespace="/auth" extends="struts-default">
+
+        <interceptors>
+            <interceptor name="applicationException" class="applicationExceptionInterceptor" />
+            <interceptor-stack name="myAppStack">
+                <interceptor-ref name="defaultStack" />
+                <interceptor-ref name="applicationException" />
+            </interceptor-stack>
+        </interceptors>
+
+        <default-interceptor-ref name="myAppStack" />
+
+        <action name="AA01S010Action" class="AA01S010Action">
+            <result>/WEB-INF/jsp/auth/AA01S010_Login.jsp</result>
+        </action>
+
+        <action name="AA01S010LoginAction" class="AA01S010LoginAction">
+            <result>/j_spring_security_check</result>
+            <result name="input">/WEB-INF/jsp/auth/AA01S010_Login.jsp</result>
+        </action>
+
+        <action name="AA02S010Action">
+            <result>/WEB-INF/jsp/auth/AA02S010_Register.jsp</result>
+        </action>
+
+        <action name="AA02S010RegisterAction" class="AA02S010RegisterAction">
+            <result type="redirectAction">AA01S010Action</result>
+            <result name="input">/WEB-INF/jsp/auth/AA02S010_Register.jsp</result>
+        </action>
+
+    </package>
+
+</struts>

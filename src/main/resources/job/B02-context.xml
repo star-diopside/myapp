@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/batch
+        http://www.springframework.org/schema/batch/spring-batch.xsd
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <job id="b02" incrementer="jobParametersIncrementer" xmlns="http://www.springframework.org/schema/batch">
+        <step id="step1" parent="simpleStep">
+            <tasklet ref="taskletAdapter" />
+        </step>
+    </job>
+
+    <bean id="taskletAdapter" class="org.springframework.batch.core.step.tasklet.MethodInvokingTaskletAdapter" scope="step">
+        <property name="targetObject">
+            <bean class="jp.myapp.batch.B02" scope="step" />
+        </property>
+        <property name="targetMethod" value="exec" />
+        <property name="arguments">
+            <list>
+                <value>#{jobParameters['key']}</value>
+                <value>#{jobParameters['value']}</value>
+            </list>
+        </property>
+    </bean>
+
+</beans>
