@@ -32,17 +32,25 @@
         </action>
 
         <action name="A01LoginAction" class="a01LoginAction">
-            <result>/WEB-INF/jsp/edit/A02_UserMenu.jsp</result>
+            <result type="redirectAction">A02OpenAction</result>
             <result name="input">/WEB-INF/jsp/edit/A01_UserLogin.jsp</result>
         </action>
 
         <action name="A01RegisterAction" class="a01RegisterAction">
-            <result>/WEB-INF/jsp/edit/A03_UserRegister.jsp</result>
+            <result type="redirectAction">A03OpenAction</result>
             <result name="input">/WEB-INF/jsp/edit/A01_UserLogin.jsp</result>
         </action>
 
-        <action name="A02RedrawAction" class="a02RedrawAction">
+        <action name="A02OpenAction" class="a02OpenAction">
             <result>/WEB-INF/jsp/edit/A02_UserMenu.jsp</result>
+        </action>
+
+        <action name="A02RedrawAction" class="a02RedrawAction">
+            <result type="redirectAction">A02OpenAction</result>
+        </action>
+
+        <action name="A03OpenAction">
+            <result>/WEB-INF/jsp/edit/A03_UserRegister.jsp</result>
         </action>
 
         <action name="A03BackAction" class="a03BackAction">
@@ -50,7 +58,7 @@
         </action>
 
         <action name="A03RegisterAction" class="a03RegisterAction">
-            <result>/WEB-INF/jsp/edit/A02_UserMenu.jsp</result>
+            <result type="redirectAction">A02OpenAction</result>
             <result name="input">/WEB-INF/jsp/edit/A03_UserRegister.jsp</result>
         </action>
 

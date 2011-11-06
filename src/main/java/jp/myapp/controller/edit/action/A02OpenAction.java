@@ -2,26 +2,27 @@ package jp.myapp.controller.edit.action;
 
 import java.util.Map;
 
-import jp.myapp.controller.edit.model.A02RedrawModel;
-import jp.myapp.controller.edit.model.A02RedrawModelImpl;
-import jp.myapp.controller.util.SessionUtils;
-
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.stereotype.Controller;
+
+import jp.myapp.controller.edit.form.A02Form;
+import jp.myapp.controller.edit.model.A02OpenModel;
+import jp.myapp.controller.edit.model.A02OpenModelImpl;
+import jp.myapp.controller.util.SessionUtils;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 @Controller
-public class A02RedrawAction extends ActionSupport implements ModelDriven<A02RedrawModel>, SessionAware {
+public class A02OpenAction extends ActionSupport implements ModelDriven<A02OpenModel>, SessionAware {
 
     private static final long serialVersionUID = 1L;
 
-    private A02RedrawModel model = new A02RedrawModelImpl();
+    private A02OpenModel model = new A02OpenModelImpl();
     private Map<String, Object> session;
 
     @Override
-    public A02RedrawModel getModel() {
+    public A02OpenModel getModel() {
         return this.model;
     }
 
@@ -33,7 +34,11 @@ public class A02RedrawAction extends ActionSupport implements ModelDriven<A02Red
     @Override
     public String execute() throws Exception {
 
-        (new SessionUtils(this.session)).setForm(this.model.getA02Form());
+        A02Form outForm = (new SessionUtils(this.session)).getForm(A02Form.class);
+
+        if (outForm != null) {
+            this.model.setA02Form(outForm);
+        }
 
         return SUCCESS;
     }
