@@ -10,6 +10,14 @@ public interface A02Form {
 
     void setUserId(String userId);
 
+    String[] getUserSelected();
+
+    void setUserSelected(String[] userSelected);
+
+    String[] getListSelected();
+
+    void setListSelected(String[] listSelected);
+
     List<Users> getUserInfoList();
 
     void setUserInfoList(List<Users> userInfoList);

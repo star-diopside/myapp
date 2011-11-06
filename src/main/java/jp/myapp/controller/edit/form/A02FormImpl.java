@@ -20,9 +20,9 @@ public class A02FormImpl implements A02Form, Loggable, Serializable {
 
     private static final long serialVersionUID = -2150353158914657169L;
 
-    /** ÉÜÅ[ÉUID */
     private String userId;
-
+    private String[] userSelected;
+    private String[] listSelected;
     private List<Users> tUserInfoList = new ArrayList<Users>();
 
     /**
@@ -43,6 +43,26 @@ public class A02FormImpl implements A02Form, Loggable, Serializable {
     @Override
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    @Override
+    public String[] getUserSelected() {
+        return this.userSelected;
+    }
+
+    @Override
+    public void setUserSelected(String[] userSelected) {
+        this.userSelected = userSelected;
+    }
+
+    @Override
+    public String[] getListSelected() {
+        return this.listSelected;
+    }
+
+    @Override
+    public void setListSelected(String[] listSelected) {
+        this.listSelected = listSelected;
     }
 
     @Override

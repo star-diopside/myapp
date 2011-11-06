@@ -30,19 +30,26 @@
     </ul>
     <div id="tab-content-1">
       <s:text name="A02.Message" /><br>
-      Login User : <s:property value="a02Form.userId" />
+      Login User : <s:property value="a02Form.userId" /><br>
+      <s:checkboxlist list="a02Form.userInfoList" listKey="userId" listValue="username" name="a02Form.userSelected" />
       <table>
         <thead>
           <tr>
-            <th>userId</th>
-            <th>username</th>
+            <th>選択</th>
+            <th>ユーザID</th>
+            <th>ユーザ名</th>
+            <th>有効フラグ</th>
+            <th>仮登録フラグ</th>
           </tr>
         </thead>
         <tbody>
-          <s:iterator value="a02Form.userInfoList" status="st">
+          <s:iterator value="a02Form.userInfoList" var="item" status="st">
             <tr>
+              <td><s:checkboxlist list="item" listKey="userId" listValue="" name="a02Form.listSelected" /></td>
               <td><s:textfield name="a02Form.userInfoList[%{#st.index}].userId" value="%{userId}" /></td>
               <td><s:textfield name="a02Form.userInfoList[%{#st.index}].username" value="%{username}" /></td>
+              <td><s:checkbox name="a02Form.userInfoList[%{#st.index}].enabled" value="%{enabled}" /></td>
+              <td><s:checkbox name="a02Form.userInfoList[%{#st.index}].provisionalRegistration" value="%{provisionalRegistration}" /></td>
             </tr>
           </s:iterator>
         </tbody>
