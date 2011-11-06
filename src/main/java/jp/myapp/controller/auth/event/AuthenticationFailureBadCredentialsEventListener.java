@@ -1,7 +1,5 @@
 package jp.myapp.controller.auth.event;
 
-import jp.myapp.interceptor.LoggingInterceptor;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationListener;
@@ -11,7 +9,7 @@ public class AuthenticationFailureBadCredentialsEventListener implements
         ApplicationListener<AuthenticationFailureBadCredentialsEvent> {
 
     /** ÉçÉKÅ[ */
-    private static final Logger LOGGER = LoggerFactory.getLogger(LoggingInterceptor.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationFailureBadCredentialsEventListener.class);
 
     @Override
     public void onApplicationEvent(AuthenticationFailureBadCredentialsEvent event) {
