@@ -69,4 +69,11 @@
         <url-pattern>/captcha.jpg</url-pattern>
     </servlet-mapping>
 
+    <jsp-config>
+        <taglib>
+            <taglib-uri>/myapp-tags</taglib-uri>
+            <taglib-location>/WEB-INF/myapp-tags.tld</taglib-location>
+        </taglib>
+    </jsp-config>
+
 </web-app>
