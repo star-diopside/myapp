@@ -6,12 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <jsp:include page="/WEB-INF/jsp/head.jsp" />
   <title><s:text name="A02.Title" /></title>
-  <link rel="stylesheet" type="text/css" href="<c:url value='/www/lib/css/jquery-ui-1.8.16.custom.css' />">
-  <link rel="stylesheet" type="text/css" href="<c:url value='/www/css/stylesheet.css' />">
-  <script type="text/javascript" src="<c:url value='/www/lib/js/jquery-1.6.2.min.js' />"></script>
-  <script type="text/javascript" src="<c:url value='/www/lib/js/jquery-ui-1.8.16.custom.min.js' />"></script>
   <script type="text/javascript">
     $(function() {
       $("#tab-container").tabs();

@@ -6,9 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <jsp:include page="/WEB-INF/jsp/head.jsp" />
   <title><s:text name="A01.Title" /></title>
-  <link rel="stylesheet" type="text/css" href="<c:url value='/www/css/stylesheet.css' />">
 </head>
 <body>
 <s:fielderror />

@@ -8,7 +8,18 @@ $.fn.disableOnSubmit = function(disableList) {
 		list = disableList;
 	}
 
-	$(this).find(list).removeAttr('disabled');
+	$(this).find(list).each(function() {
+		$(this).removeAttr('disabled');
+		if ($(this).attr("name") != undefined) {
+			$(this).click(function() {
+				$(this).closest("form").append(
+					$("<input type=\"hidden\">")
+					.attr("name", ($(this).attr("name")))
+					.attr("value", ($(this).attr("value")))
+				);
+			});
+		}
+	});
 
 	$(this).submit(function() {
 		$(this).find(list).attr('disabled', 'disabled');
