@@ -14,7 +14,7 @@ import com.opensymphony.xwork2.util.ValueStack;
 public class SessionTimeoutWarning extends Component {
 
     /** セッションタイムアウト警告時間(分)のデフォルト値 */
-    private static final int DEF_TIME = 3;
+    private static final Integer DEF_TIME = Integer.valueOf(3);
 
     private HttpSession session;
     private String time;
@@ -30,12 +30,10 @@ public class SessionTimeoutWarning extends Component {
 
         ResourceBundle message = ResourceBundle.getBundle("MessageResources");
 
-        int timeValue;
+        Integer timeValue = (Integer) findValue(this.time, Integer.class);
 
-        if (this.time == null) {
+        if (timeValue == null) {
             timeValue = DEF_TIME;
-        } else {
-            timeValue = ((Integer) findValue(this.time, Integer.class)).intValue();
         }
 
         int sessionTimeout = this.session.getMaxInactiveInterval();
