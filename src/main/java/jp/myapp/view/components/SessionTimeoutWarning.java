@@ -1,12 +1,16 @@
 package jp.myapp.view.components;
 
-import java.io.PrintWriter;
+import java.io.IOException;
 import java.io.Writer;
 import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpSession;
 
+import jp.myapp.exception.SystemException;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.SystemUtils;
 import org.apache.struts2.components.Component;
 
 import com.opensymphony.xwork2.util.ValueStack;
@@ -29,35 +33,47 @@ public class SessionTimeoutWarning extends Component {
         boolean result = super.start(writer);
 
         ResourceBundle message = ResourceBundle.getBundle("MessageResources");
+        Integer timeValue;
 
-        Integer timeValue = (Integer) findValue(this.time, Integer.class);
-
-        if (timeValue == null) {
+        if (StringUtils.isEmpty(this.time)) {
             timeValue = DEF_TIME;
+        } else {
+            timeValue = (Integer) findValue(this.time, Integer.class);
+            if (timeValue == null) {
+                timeValue = DEF_TIME;
+            }
         }
 
         int sessionTimeout = this.session.getMaxInactiveInterval();
-        int warningTime = Math.min(sessionTimeout, timeValue * 60);
+        int warningTime = Math.min(sessionTimeout, timeValue.intValue() * 60);
         int waitTime = (sessionTimeout - warningTime) * 1000;
 
-        PrintWriter out = new PrintWriter(writer);
+        try {
+            writer.write("<script type=\"text/javascript\">");
+            writer.write(SystemUtils.LINE_SEPARATOR);
+            writer.write("<!--");
+            writer.write(SystemUtils.LINE_SEPARATOR);
 
-        out.println("<script type=\"text/javascript\">");
-        out.println("<!--");
+            writer.write("$(function(){");
 
-        out.print("$(function(){");
+            writer.write("setTimeout(function(){alert(\"");
+            writer.write(MessageFormat.format(message.getString("Warning.SessionTimeout"),
+                    String.valueOf(warningTime / 60)));
+            writer.write("\")},");
+            writer.write(String.valueOf(waitTime));
+            writer.write(");");
 
-        out.print("setTimeout(function(){alert(\"");
-        out.print(MessageFormat.format(message.getString("Warning.SessionTimeout"), warningTime / 60));
-        out.print("\")},");
-        out.print(waitTime);
-        out.print(");");
+            writer.write("});");
 
-        out.print("});");
+            writer.write(SystemUtils.LINE_SEPARATOR);
+            writer.write("// -->");
+            writer.write(SystemUtils.LINE_SEPARATOR);
+            writer.write("</script>");
+            writer.write(SystemUtils.LINE_SEPARATOR);
 
-        out.println();
-        out.println("// -->");
-        out.println("</script>");
+        } catch (IOException e) {
+            throw new SystemException(e);
+        }
 
         return result;
     }
