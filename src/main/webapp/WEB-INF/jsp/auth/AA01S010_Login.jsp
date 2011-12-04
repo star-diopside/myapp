@@ -6,7 +6,7 @@
 <html>
 <head>
   <jsp:include page="/WEB-INF/jsp/head.jsp" />
-  <myapp:timeout time="29" />
+  <myapp:timeout />
   <title><s:text name="A01.Title" /></title>
 </head>
 <body>
