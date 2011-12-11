@@ -11,9 +11,7 @@
     <import resource="classpath:applicationContext.xml" />
 
     <!-- オンラインバッチ設定のインポート -->
-<!--
     <import resource="classpath:OnlineBatch-context.xml" />
--->
 
     <!-- プロパティファイル読み込み -->
     <context:property-placeholder location="classpath:database.properties" />
@@ -32,6 +30,6 @@
     </bean>
 
     <!-- コンポーネントスキャン -->
-    <context:component-scan base-package="jp.myapp" scope-resolver="jp.myapp.util.PrototypeScopeMetadataResolver" />
+    <context:component-scan base-package="jp.myapp" />
 
 </beans>
