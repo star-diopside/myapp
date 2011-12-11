@@ -13,12 +13,15 @@ import jp.myapp.service.LoginService;
 
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 @Controller
+@Scope(BeanDefinition.SCOPE_PROTOTYPE)
 public class A01LoginAction extends ActionSupport implements ModelDriven<A01LoginModel>, A01Validation, SessionAware {
 
     private static final long serialVersionUID = 1L;
