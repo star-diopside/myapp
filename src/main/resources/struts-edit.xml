@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+
+    <package name="edit" namespace="/" extends="base">
+
+        <action name="start">
+            <result type="redirectAction">A01OpenAction</result>
+        </action>
+
+        <action name="A01OpenAction" class="a01OpenAction">
+            <result>/WEB-INF/jsp/edit/A01_UserLogin.jsp</result>
+        </action>
+
+        <action name="A01LocaleAction" class="localeAction">
+            <result type="redirectAction">A01OpenAction</result>
+        </action>
+
+        <action name="A01LoginAction" class="a01LoginAction">
+            <result type="redirectAction">A02OpenAction</result>
+            <result name="input">/WEB-INF/jsp/edit/A01_UserLogin.jsp</result>
+        </action>
+
+        <action name="A01RegisterAction" class="a01RegisterAction">
+            <result type="redirectAction">A03OpenAction</result>
+            <result name="input">/WEB-INF/jsp/edit/A01_UserLogin.jsp</result>
+        </action>
+
+        <action name="A02OpenAction" class="a02OpenAction">
+            <result>/WEB-INF/jsp/edit/A02_UserMenu.jsp</result>
+        </action>
+
+        <action name="A02RedrawAction" class="a02RedrawAction">
+            <result type="redirectAction">A02OpenAction</result>
+        </action>
+
+        <action name="A03OpenAction">
+            <result>/WEB-INF/jsp/edit/A03_UserRegister.jsp</result>
+        </action>
+
+        <action name="A03BackAction" class="a03BackAction">
+            <result type="redirectAction">A01OpenAction</result>
+        </action>
+
+        <action name="A03RegisterAction" class="a03RegisterAction">
+            <result type="redirectAction">A02OpenAction</result>
+            <result name="input">/WEB-INF/jsp/edit/A03_UserRegister.jsp</result>
+        </action>
+
+        <action name="A04OpenAction" class="a04OpenAction">
+            <result>/WEB-INF/jsp/edit/A04_FileUpload.jsp</result>
+            <result name="input">/WEB-INF/jsp/edit/A04_FileUpload.jsp</result>
+        </action>
+
+    </package>
+
+</struts>
