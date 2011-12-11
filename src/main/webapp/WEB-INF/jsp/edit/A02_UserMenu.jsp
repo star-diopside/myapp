@@ -59,6 +59,8 @@
     </div>
   </div>
   <s:submit action="A02RedrawAction" value="再表示" />
+  <s:submit action="A02DownloadAction" value="ダウンロード" />
+  <s:reset value="リセット" />
 </s:form>
 </body>
 </html>

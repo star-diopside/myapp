@@ -37,6 +37,13 @@
             <result type="redirectAction">A02OpenAction</result>
         </action>
 
+        <action name="A02DownloadAction" class="a02DownloadAction">
+            <result type="stream">
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">${contentDisposition}</param>
+            </result>
+        </action>
+
         <action name="A03OpenAction">
             <result>/WEB-INF/jsp/edit/A03_UserRegister.jsp</result>
         </action>
