@@ -47,9 +47,9 @@
     </repositories>
 
     <properties>
-        <struts2-version>2.2.3.1</struts2-version>
-        <spring-version>3.0.6.RELEASE</spring-version>
-        <spring-security-version>3.0.7.RELEASE</spring-security-version>
+        <struts2-version>2.3.1.1</struts2-version>
+        <spring-version>3.1.0.RELEASE</spring-version>
+        <spring-security-version>3.1.0.RELEASE</spring-security-version>
         <spring-batch-version>2.1.8.RELEASE</spring-batch-version>
         <mybatis-version>3.0.6</mybatis-version>
         <mybatis-spring-version>1.0.1</mybatis-spring-version>
@@ -94,7 +94,7 @@
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
-            <version>1.5</version>
+            <version>1.6</version>
         </dependency>
 
         <dependency>
@@ -113,7 +113,7 @@
         <dependency>
             <groupId>commons-pool</groupId>
             <artifactId>commons-pool</artifactId>
-            <version>1.5.6</version>
+            <version>1.6</version>
             <scope>runtime</scope>
         </dependency>
 
@@ -126,7 +126,7 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.0.1</version>
+            <version>3.1</version>
         </dependency>
 
         <dependency>
@@ -165,6 +165,13 @@
 
         <dependency>
             <groupId>org.springframework</groupId>
+            <artifactId>spring-expression</artifactId>
+            <version>${spring-version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
             <version>${spring-version}</version>
             <exclusions>
@@ -185,6 +192,7 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
             <version>${spring-version}</version>
+            <scope>runtime</scope>
         </dependency>
 
         <dependency>
@@ -203,6 +211,13 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-openid</artifactId>
             <version>${spring-security-version}</version>
+            <scope>runtime</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -241,12 +256,14 @@
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
             <version>${mybatis-version}</version>
+            <scope>runtime</scope>
         </dependency>
 
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
             <version>${mybatis-spring-version}</version>
+            <scope>runtime</scope>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework</groupId>
