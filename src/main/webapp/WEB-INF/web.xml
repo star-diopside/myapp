@@ -12,6 +12,19 @@
         </param-value>
     </context-param>
 
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+
     <filter>
         <filter-name>loggingConfig</filter-name>
         <filter-class>jp.myapp.servlet.filter.LoggingConfigFilter</filter-class>
@@ -38,6 +51,11 @@
     </filter>
 
     <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
         <filter-name>loggingConfig</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
@@ -65,10 +83,6 @@
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
-
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
 
     <servlet>
         <servlet-name>kaptcha</servlet-name>
