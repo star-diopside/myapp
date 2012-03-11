@@ -43,7 +43,7 @@ public class ApplicationExceptionInterceptor implements Interceptor {
             Object action = invocation.getAction();
 
             if (!(action instanceof ValidationAware)) {
-                // Action ‚ª ValidationAware ƒCƒ“ƒ^ƒtƒF[ƒX‚ğÀ‘•‚µ‚Ä‚¢‚È‚¢ê‡A—áŠO‚ğÄƒXƒ[‚·‚é
+                // Action ãŒ ValidationAware ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å®Ÿè£…ã—ã¦ã„ãªã„å ´åˆã€ä¾‹å¤–ã‚’å†ã‚¹ãƒ­ãƒ¼ã™ã‚‹
                 throw e;
             }
 
@@ -51,17 +51,17 @@ public class ApplicationExceptionInterceptor implements Interceptor {
 
             if (e.isResource()) {
                 if (!(action instanceof TextProvider)) {
-                    // Action ‚ª TextProvider ƒCƒ“ƒ^ƒtƒF[ƒX‚ğÀ‘•‚µ‚Ä‚¢‚È‚¢ê‡A—áŠO‚ğÄƒXƒ[‚·‚é
+                    // Action ãŒ TextProvider ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å®Ÿè£…ã—ã¦ã„ãªã„å ´åˆã€ä¾‹å¤–ã‚’å†ã‚¹ãƒ­ãƒ¼ã™ã‚‹
                     throw e;
                 }
 
-                // TextProvider ‚©‚çæ“¾‚µ‚½ƒƒbƒZ[ƒW‚ğ ActionError ‚É’Ç‰Á‚·‚é
+                // TextProvider ã‹ã‚‰å–å¾—ã—ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ ActionError ã«è¿½åŠ ã™ã‚‹
                 TextProvider textProviderAction = (TextProvider) action;
                 validationAwareAction.addActionError(textProviderAction.getText(
                         e.getMessage(), Arrays.asList(e.getArguments())));
 
             } else {
-                // —áŠOƒƒbƒZ[ƒW‚ğ ActionError ‚É’Ç‰Á‚·‚é
+                // ä¾‹å¤–ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ ActionError ã«è¿½åŠ ã™ã‚‹
                 validationAwareAction.addActionError(e.getMessage());
             }
 

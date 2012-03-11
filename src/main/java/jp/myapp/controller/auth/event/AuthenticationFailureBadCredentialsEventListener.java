@@ -8,11 +8,11 @@ import org.springframework.security.authentication.event.AuthenticationFailureBa
 public class AuthenticationFailureBadCredentialsEventListener implements
         ApplicationListener<AuthenticationFailureBadCredentialsEvent> {
 
-    /** ƒƒK[ */
+    /** ãƒ­ã‚¬ãƒ¼ */
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationFailureBadCredentialsEventListener.class);
 
     @Override
     public void onApplicationEvent(AuthenticationFailureBadCredentialsEvent event) {
-        LOGGER.error("ƒƒOƒCƒ“‚É¸”s‚µ‚Ü‚µ‚½B", event.getException());
+        LOGGER.error("ãƒ­ã‚°ã‚¤ãƒ³ã«å¤±æ•—ã—ã¾ã—ãŸã€‚", event.getException());
     }
 }

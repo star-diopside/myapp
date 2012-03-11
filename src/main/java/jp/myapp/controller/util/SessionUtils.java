@@ -3,7 +3,7 @@ package jp.myapp.controller.util;
 import java.util.Map;
 
 /**
- * ƒtƒH[ƒ€ƒf[ƒ^‚ğƒZƒbƒVƒ‡ƒ“ˆø‚«Œp‚¬‚ğs‚¤‚½‚ß‚Ìƒ†[ƒeƒBƒŠƒeƒBƒNƒ‰ƒX
+ * ãƒ•ã‚©ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒã‚·ãƒ§ãƒ³å¼•ãç¶™ãã‚’è¡Œã†ãŸã‚ã®ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£ã‚¯ãƒ©ã‚¹
  */
 public final class SessionUtils {
 
@@ -15,10 +15,10 @@ public final class SessionUtils {
     }
 
     /**
-     * ƒtƒH[ƒ€‚ÌŒ^‚ğw’è‚µ‚ÄƒZƒbƒVƒ‡ƒ“‚©‚çƒtƒH[ƒ€ƒf[ƒ^‚ğæ“¾‚·‚éB
+     * ãƒ•ã‚©ãƒ¼ãƒ ã®å‹ã‚’æŒ‡å®šã—ã¦ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‹ã‚‰ãƒ•ã‚©ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹ã€‚
      * 
-     * @param formType ƒtƒH[ƒ€‚ÌŒ^
-     * @return ƒZƒbƒVƒ‡ƒ“‚©‚çæ“¾‚µ‚½ƒtƒH[ƒ€ƒf[ƒ^BƒZƒbƒVƒ‡ƒ“‚É‘¶İ‚µ‚È‚¢ê‡‚ÍnullB
+     * @param formType ãƒ•ã‚©ãƒ¼ãƒ ã®å‹
+     * @return ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‹ã‚‰å–å¾—ã—ãŸãƒ•ã‚©ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã€‚ã‚»ãƒƒã‚·ãƒ§ãƒ³ã«å­˜åœ¨ã—ãªã„å ´åˆã¯nullã€‚
      */
     public <T> T getForm(Class<T> formType) {
 
@@ -32,16 +32,16 @@ public final class SessionUtils {
     }
 
     /**
-     * ƒZƒbƒVƒ‡ƒ“‚ÉƒtƒH[ƒ€ƒf[ƒ^‚ğİ’è‚·‚éB
+     * ã‚»ãƒƒã‚·ãƒ§ãƒ³ã«ãƒ•ã‚©ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹ã€‚
      * 
-     * @param form ƒZƒbƒVƒ‡ƒ“‚É“o˜^‚·‚éƒtƒH[ƒ€ƒf[ƒ^
+     * @param form ã‚»ãƒƒã‚·ãƒ§ãƒ³ã«ç™»éŒ²ã™ã‚‹ãƒ•ã‚©ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿
      */
     public void setForm(Object form) {
         this.session.put(TRANSITION_FORM_KEY, form);
     }
 
     /**
-     * ƒZƒbƒVƒ‡ƒ“‚©‚çƒtƒH[ƒ€ƒf[ƒ^‚ğíœ‚·‚éB
+     * ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‹ã‚‰ãƒ•ã‚©ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’å‰Šé™¤ã™ã‚‹ã€‚
      */
     public void removeForm() {
         this.session.remove(TRANSITION_FORM_KEY);

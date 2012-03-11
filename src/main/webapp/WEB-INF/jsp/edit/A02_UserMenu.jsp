@@ -1,6 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page pageEncoding="Windows-31J" %>
-<%@ page language="java" %>
+<%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
@@ -31,11 +29,11 @@
       <table>
         <thead>
           <tr>
-            <th>‘I‘ð</th>
-            <th>ƒ†[ƒUID</th>
-            <th>ƒ†[ƒU–¼</th>
-            <th>—LŒøƒtƒ‰ƒO</th>
-            <th>‰¼“o˜^ƒtƒ‰ƒO</th>
+            <th>é¸æŠž</th>
+            <th>ãƒ¦ãƒ¼ã‚¶ID</th>
+            <th>ãƒ¦ãƒ¼ã‚¶å</th>
+            <th>æœ‰åŠ¹ãƒ•ãƒ©ã‚°</th>
+            <th>ä»®ç™»éŒ²ãƒ•ãƒ©ã‚°</th>
           </tr>
         </thead>
         <tbody>
@@ -58,9 +56,9 @@
       tab3
     </div>
   </div>
-  <s:submit action="A02RedrawAction" value="Ä•\Ž¦" />
-  <s:submit action="A02DownloadAction" value="ƒ_ƒEƒ“ƒ[ƒh" />
-  <s:reset value="ƒŠƒZƒbƒg" />
+  <s:submit action="A02RedrawAction" value="å†è¡¨ç¤º" />
+  <s:submit action="A02DownloadAction" value="ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰" />
+  <s:reset value="ãƒªã‚»ãƒƒãƒˆ" />
 </s:form>
 </body>
 </html>

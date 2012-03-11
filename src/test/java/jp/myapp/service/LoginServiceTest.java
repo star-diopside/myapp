@@ -71,7 +71,7 @@ public class LoginServiceTest {
     }
 
     /**
-     * ‰¼“o˜^ƒ†[ƒUi—LŒøŠÔ“àj‚ÌƒƒOƒCƒ“ƒeƒXƒg‚ğs‚¤B
+     * ä»®ç™»éŒ²ãƒ¦ãƒ¼ã‚¶ï¼ˆæœ‰åŠ¹æ™‚é–“å†…ï¼‰ã®ãƒ­ã‚°ã‚¤ãƒ³ãƒ†ã‚¹ãƒˆã‚’è¡Œã†ã€‚
      */
     @Test
     public void testLoginValidInterim() throws ApplicationException {
@@ -80,7 +80,7 @@ public class LoginServiceTest {
     }
 
     /**
-     * ‰¼“o˜^ƒ†[ƒUi—LŒøŠÔØ‚êj‚ÌƒƒOƒCƒ“ƒeƒXƒg‚ğs‚¤B
+     * ä»®ç™»éŒ²ãƒ¦ãƒ¼ã‚¶ï¼ˆæœ‰åŠ¹æ™‚é–“åˆ‡ã‚Œï¼‰ã®ãƒ­ã‚°ã‚¤ãƒ³ãƒ†ã‚¹ãƒˆã‚’è¡Œã†ã€‚
      */
     @Test(expected = NoRollbackApplicationException.class)
     public void testLoginInvalidInterim() throws ApplicationException {
@@ -88,7 +88,7 @@ public class LoginServiceTest {
     }
 
     /**
-     * V‹Kƒ†[ƒU“o˜^‚ÌƒeƒXƒg‚ğs‚¤B
+     * æ–°è¦ãƒ¦ãƒ¼ã‚¶ç™»éŒ²ã®ãƒ†ã‚¹ãƒˆã‚’è¡Œã†ã€‚
      */
     @Test
     public void testRegisterUser() throws ApplicationException {

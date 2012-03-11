@@ -5,10 +5,10 @@ import jp.myapp.dao.mapper.base.MapperBase;
 import jp.myapp.exception.ExclusiveException;
 
 /**
- * ŠyŠÏ”r‘¼ƒƒbƒN‚ğs‚¤‚½‚ß‚Ìƒ‰ƒbƒp[ƒNƒ‰ƒX
+ * æ¥½è¦³æ’ä»–ãƒ­ãƒƒã‚¯ã‚’è¡Œã†ãŸã‚ã®ãƒ©ãƒƒãƒ‘ãƒ¼ã‚¯ãƒ©ã‚¹
  * 
- * @param <Entity> ƒGƒ“ƒeƒBƒeƒBƒNƒ‰ƒX
- * @param <PK> åƒL[ƒNƒ‰ƒX
+ * @param <Entity> ã‚¨ãƒ³ãƒ†ã‚£ãƒ†ã‚£ã‚¯ãƒ©ã‚¹
+ * @param <PK> ä¸»ã‚­ãƒ¼ã‚¯ãƒ©ã‚¹
  */
 public class OptimisticLockControl<Entity extends EntityBase<PK>, PK> {
 
@@ -43,10 +43,10 @@ public class OptimisticLockControl<Entity extends EntityBase<PK>, PK> {
     }
 
     /**
-     * ”r‘¼ƒL[ƒ`ƒFƒbƒN‚ğs‚¤B
+     * æ’ä»–ã‚­ãƒ¼ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†ã€‚
      * 
-     * @param pk åƒL[
-     * @param version ŠyŠÏ”r‘¼ƒL[
+     * @param pk ä¸»ã‚­ãƒ¼
+     * @param version æ¥½è¦³æ’ä»–ã‚­ãƒ¼
      */
     private void checkVersion(PK pk, Integer version) {
 

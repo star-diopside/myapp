@@ -29,7 +29,7 @@ public class LoginService {
     @Transactional(rollbackFor = Throwable.class, noRollbackFor = NoRollbackApplicationException.class)
     public UserInfo loginUser(String userId, String password) throws ApplicationException {
 
-        // ƒ†[ƒUî•ñƒf[ƒ^‚ğæ“¾‚·‚é
+        // ãƒ¦ãƒ¼ã‚¶æƒ…å ±ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
         Users source = this.usersMapper.selectForUpdate(userId);
 
         if (source == null || source.getPassword() == null) {
@@ -38,15 +38,15 @@ public class LoginService {
 
         UserInfo userInfo = new UserInfo(source);
 
-        // ƒpƒXƒ[ƒh‚ÌƒnƒbƒVƒ…’l‚Æ‚Ìˆê’vƒ`ƒFƒbƒN‚ğs‚¤
+        // ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã®ãƒãƒƒã‚·ãƒ¥å€¤ã¨ã®ä¸€è‡´ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†
         String passwordDigest = DigestUtils.sha256Hex(password);
         if (!passwordDigest.equals(userInfo.getPassword().trim())) {
             throw new ApplicationException("Error.NotMatchUserIdOrPassword", true);
         }
 
-        // ƒ†[ƒU‚Ì—LŒøƒ`ƒFƒbƒN‚ğs‚¤
+        // ãƒ¦ãƒ¼ã‚¶ã®æœ‰åŠ¹ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†
         if (!userInfo.isValidity()) {
-            // –³Œøƒ†[ƒU‚Ìíœ‚ğs‚¤
+            // ç„¡åŠ¹ãƒ¦ãƒ¼ã‚¶ã®å‰Šé™¤ã‚’è¡Œã†
             this.authoritiesMapper.deleteByUserId(source.getUserId());
             (new OptimisticLockControl<>(this.usersMapper)).delete(source);
             throw new NoRollbackApplicationException("Error.UserInvalid", true);

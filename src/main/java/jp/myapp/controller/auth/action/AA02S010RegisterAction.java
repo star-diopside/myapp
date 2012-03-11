@@ -50,7 +50,7 @@ public class AA02S010RegisterAction extends ActionSupport implements ModelDriven
 
         AA02S010Form inForm = this.model.getAA02S010Form();
 
-        // Captcha‚Ìˆê’vƒ`ƒFƒbƒN‚ğs‚¤B
+        // Captchaã®ä¸€è‡´ãƒã‚§ãƒƒã‚¯ã‚’è¡Œã†ã€‚
         if (!StringUtils.equals((String) this.session.get(Constants.KAPTCHA_SESSION_KEY), inForm.getCaptcha())) {
             this.addActionError(this.getText("Error.NotMatchCaptcha"));
             inForm.setCaptcha(StringUtils.EMPTY);
@@ -62,10 +62,10 @@ public class AA02S010RegisterAction extends ActionSupport implements ModelDriven
 
         AA02S010Form inForm = this.model.getAA02S010Form();
 
-        // ƒ†[ƒU‚ğ“o˜^‚·‚éB
+        // ãƒ¦ãƒ¼ã‚¶ã‚’ç™»éŒ²ã™ã‚‹ã€‚
         this.loginService.registerUser(inForm.getUserId(), inForm.getUserName(), inForm.getPassword());
 
-        // Ÿ‰æ–Ê‚Ì•ÒW‚ğs‚¤B
+        // æ¬¡ç”»é¢ã®ç·¨é›†ã‚’è¡Œã†ã€‚
         AA01S010Form outForm = this.model.getAA01S010Form();
         outForm.setUserId(inForm.getUserId());
         (new SessionUtils(this.session)).setForm(outForm);

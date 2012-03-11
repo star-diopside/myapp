@@ -47,6 +47,7 @@
     </repositories>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <struts2-version>2.3.1.2</struts2-version>
         <spring-version>3.1.0.RELEASE</spring-version>
         <spring-security-version>3.1.0.RELEASE</spring-security-version>
@@ -421,13 +422,13 @@
                     <configuration>
                         <source>1.7</source>
                         <target>1.7</target>
-                        <encoding>Windows-31J</encoding>
+                        <encoding>UTF-8</encoding>
                     </configuration>
                 </plugin>
                 <plugin>
                     <artifactId>maven-resources-plugin</artifactId>
                     <configuration>
-                        <encoding>Windows-31J</encoding>
+                        <encoding>UTF-8</encoding>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -439,6 +440,12 @@
                 <plugin>
                     <artifactId>maven-eclipse-plugin</artifactId>
                     <configuration>
+                        <additionalConfig>
+                            <file>
+                                <name>.settings/org.eclipse.core.resources.prefs</name>
+                                <content><![CDATA[eclipse.preferences.version=1${line.separator}encoding/<project>=${project.build.sourceEncoding}${line.separator}]]></content>
+                            </file>
+                        </additionalConfig>
                         <wtpversion>1.5</wtpversion>
                         <additionalProjectFacets>
                             <jst.web>3.0</jst.web>

@@ -15,15 +15,15 @@ public class A01FormImpl implements A01Form, Loggable, Serializable {
 
     private static final long serialVersionUID = -5136237544715207465L;
 
-    /** ƒ†[ƒUID */
+    /** ãƒ¦ãƒ¼ã‚¶ID */
     private String userId;
-    /** ƒpƒXƒ[ƒh */
+    /** ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ */
     private String password;
 
     /**
-     * ƒ†[ƒUID‚ğæ“¾‚·‚éB
+     * ãƒ¦ãƒ¼ã‚¶IDã‚’å–å¾—ã™ã‚‹ã€‚
      * 
-     * @return ƒ†[ƒUID
+     * @return ãƒ¦ãƒ¼ã‚¶ID
      */
     @Override
     public String getUserId() {
@@ -31,9 +31,9 @@ public class A01FormImpl implements A01Form, Loggable, Serializable {
     }
 
     /**
-     * ƒ†[ƒUID‚ğİ’è‚·‚éB
+     * ãƒ¦ãƒ¼ã‚¶IDã‚’è¨­å®šã™ã‚‹ã€‚
      * 
-     * @param userId ƒ†[ƒUID
+     * @param userId ãƒ¦ãƒ¼ã‚¶ID
      */
     @Override
     public void setUserId(String userId) {
@@ -41,9 +41,9 @@ public class A01FormImpl implements A01Form, Loggable, Serializable {
     }
 
     /**
-     * ƒpƒXƒ[ƒh‚ğæ“¾‚·‚éB
+     * ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹ã€‚
      * 
-     * @return ƒpƒXƒ[ƒh
+     * @return ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰
      */
     @Override
     public String getPassword() {
@@ -51,9 +51,9 @@ public class A01FormImpl implements A01Form, Loggable, Serializable {
     }
 
     /**
-     * ƒpƒXƒ[ƒh‚ğİ’è‚·‚éB
+     * ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹ã€‚
      * 
-     * @param password ƒpƒXƒ[ƒh
+     * @param password ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰
      */
     @Override
     public void setPassword(String password) {

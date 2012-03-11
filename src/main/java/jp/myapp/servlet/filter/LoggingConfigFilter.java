@@ -29,10 +29,10 @@ public class LoggingConfigFilter implements Filter {
 
         HttpSession session = ((HttpServletRequest) request).getSession();
 
-        // MDC ‚Ìî•ñ‚ğƒNƒŠƒA‚·‚éB
+        // MDC ã®æƒ…å ±ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ã€‚
         MDC.clear();
 
-        // MDC ‚Éî•ñ‚ğƒZƒbƒg‚·‚éB
+        // MDC ã«æƒ…å ±ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€‚
         MDC.put("sessionId", session.getId());
         MDC.put("remoteAddr", request.getRemoteAddr());
 

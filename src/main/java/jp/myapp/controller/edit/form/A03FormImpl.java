@@ -15,19 +15,19 @@ public class A03FormImpl implements A03Form, Loggable, Serializable {
 
     private static final long serialVersionUID = 9190531531200847613L;
 
-    /** ƒ†[ƒUID */
+    /** ãƒ¦ãƒ¼ã‚¶ID */
     private String userId;
-    /** ƒ†[ƒU–¼ */
+    /** ãƒ¦ãƒ¼ã‚¶å */
     private String userName;
-    /** ƒpƒXƒ[ƒh */
+    /** ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ */
     private String password;
     /** Captcha */
     private String captcha;
 
     /**
-     * ƒ†[ƒUID‚ğæ“¾‚·‚éB
+     * ãƒ¦ãƒ¼ã‚¶IDã‚’å–å¾—ã™ã‚‹ã€‚
      * 
-     * @return ƒ†[ƒUID
+     * @return ãƒ¦ãƒ¼ã‚¶ID
      */
     @Override
     public String getUserId() {
@@ -35,9 +35,9 @@ public class A03FormImpl implements A03Form, Loggable, Serializable {
     }
 
     /**
-     * ƒ†[ƒUID‚ğİ’è‚·‚éB
+     * ãƒ¦ãƒ¼ã‚¶IDã‚’è¨­å®šã™ã‚‹ã€‚
      * 
-     * @param userId ƒ†[ƒUID
+     * @param userId ãƒ¦ãƒ¼ã‚¶ID
      */
     @Override
     public void setUserId(String userId) {
@@ -45,9 +45,9 @@ public class A03FormImpl implements A03Form, Loggable, Serializable {
     }
 
     /**
-     * ƒ†[ƒU–¼‚ğæ“¾‚·‚éB
+     * ãƒ¦ãƒ¼ã‚¶åã‚’å–å¾—ã™ã‚‹ã€‚
      * 
-     * @return ƒ†[ƒU–¼
+     * @return ãƒ¦ãƒ¼ã‚¶å
      */
     @Override
     public String getUserName() {
@@ -55,9 +55,9 @@ public class A03FormImpl implements A03Form, Loggable, Serializable {
     }
 
     /**
-     * ƒ†[ƒU–¼‚ğİ’è‚·‚éB
+     * ãƒ¦ãƒ¼ã‚¶åã‚’è¨­å®šã™ã‚‹ã€‚
      * 
-     * @param userName ƒ†[ƒU–¼
+     * @param userName ãƒ¦ãƒ¼ã‚¶å
      */
     @Override
     public void setUserName(String userName) {
@@ -65,9 +65,9 @@ public class A03FormImpl implements A03Form, Loggable, Serializable {
     }
 
     /**
-     * ƒpƒXƒ[ƒh‚ğæ“¾‚·‚éB
+     * ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’å–å¾—ã™ã‚‹ã€‚
      * 
-     * @return ƒpƒXƒ[ƒh
+     * @return ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰
      */
     @Override
     public String getPassword() {
@@ -75,9 +75,9 @@ public class A03FormImpl implements A03Form, Loggable, Serializable {
     }
 
     /**
-     * ƒpƒXƒ[ƒh‚ğİ’è‚·‚éB
+     * ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹ã€‚
      * 
-     * @param password ƒpƒXƒ[ƒh
+     * @param password ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰
      */
     @Override
     public void setPassword(String password) {
@@ -85,7 +85,7 @@ public class A03FormImpl implements A03Form, Loggable, Serializable {
     }
 
     /**
-     * Captcha‚ğæ“¾‚·‚éB
+     * Captchaã‚’å–å¾—ã™ã‚‹ã€‚
      * 
      * @return Captcha
      */
@@ -95,7 +95,7 @@ public class A03FormImpl implements A03Form, Loggable, Serializable {
     }
 
     /**
-     * Captcha‚ğİ’è‚·‚éB
+     * Captchaã‚’è¨­å®šã™ã‚‹ã€‚
      * 
      * @param captcha Captcha
      */

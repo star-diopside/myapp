@@ -13,15 +13,15 @@ public class UserInfo extends UsersImpl {
     private static final long serialVersionUID = -8977622572020663854L;
 
     /**
-     * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
      */
     public UserInfo() {
     }
 
     /**
-     * ƒRƒs[ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+     * ã‚³ãƒ”ãƒ¼ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
      * 
-     * @param source ƒRƒs[‚·‚éƒ†[ƒUî•ñ
+     * @param source ã‚³ãƒ”ãƒ¼ã™ã‚‹ãƒ¦ãƒ¼ã‚¶æƒ…å ±
      */
     public UserInfo(Users source) {
         try {
@@ -32,18 +32,18 @@ public class UserInfo extends UsersImpl {
     }
 
     /**
-     * —LŒø‚Èƒ†[ƒUî•ñ‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN‚·‚éB
+     * æœ‰åŠ¹ãªãƒ¦ãƒ¼ã‚¶æƒ…å ±ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã€‚
      * 
-     * @return —LŒøƒ†[ƒU‚Ìê‡‚Í trueA–³Œøƒ†[ƒU‚Ìê‡‚Í false ‚ğ•Ô‚·B
+     * @return æœ‰åŠ¹ãƒ¦ãƒ¼ã‚¶ã®å ´åˆã¯ trueã€ç„¡åŠ¹ãƒ¦ãƒ¼ã‚¶ã®å ´åˆã¯ false ã‚’è¿”ã™ã€‚
      */
     public boolean isValidity() {
 
         if (Boolean.FALSE.equals(this.getProvisionalRegistration())) {
-            // –{“o˜^Ï‚İ‚Ìê‡A—LŒøƒ†[ƒU‚Æ‚·‚éB
+            // æœ¬ç™»éŒ²æ¸ˆã¿ã®å ´åˆã€æœ‰åŠ¹ãƒ¦ãƒ¼ã‚¶ã¨ã™ã‚‹ã€‚
             return true;
 
         } else {
-            // ‰¼“o˜^’†‚Ìê‡A“o˜^Œã‚P“úŒo‰ß‚·‚é‚Æ–³Œøƒ†[ƒU‚Æ‚·‚éB
+            // ä»®ç™»éŒ²ä¸­ã®å ´åˆã€ç™»éŒ²å¾Œï¼‘æ—¥çµŒéã™ã‚‹ã¨ç„¡åŠ¹ãƒ¦ãƒ¼ã‚¶ã¨ã™ã‚‹ã€‚
             long duration = System.currentTimeMillis() - this.getRegisterDatetime().getTime();
 
             if (duration <= TimeUnit.DAYS.toMillis(1)) {

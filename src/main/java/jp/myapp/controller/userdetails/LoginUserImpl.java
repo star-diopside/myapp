@@ -33,18 +33,18 @@ public class LoginUserImpl extends User implements LoginUser {
     }
 
     /**
-     * •\¦–¼‚ğæ“¾‚·‚éB
+     * è¡¨ç¤ºåã‚’å–å¾—ã™ã‚‹ã€‚
      * 
-     * @return •\¦–¼
+     * @return è¡¨ç¤ºå
      */
     public String getDisplayName() {
         return this.displayName;
     }
 
     /**
-     * ‰¼“o˜^ƒtƒ‰ƒO‚ğæ“¾‚·‚éB
+     * ä»®ç™»éŒ²ãƒ•ãƒ©ã‚°ã‚’å–å¾—ã™ã‚‹ã€‚
      * 
-     * @return ‰¼“o˜^ƒtƒ‰ƒO
+     * @return ä»®ç™»éŒ²ãƒ•ãƒ©ã‚°
      */
     @Override
     public boolean isProvisionalRegistration() {
@@ -52,9 +52,9 @@ public class LoginUserImpl extends User implements LoginUser {
     }
 
     /**
-     * ÅIƒƒOƒCƒ““ú‚ğæ“¾‚·‚éB
+     * æœ€çµ‚ãƒ­ã‚°ã‚¤ãƒ³æ—¥æ™‚ã‚’å–å¾—ã™ã‚‹ã€‚
      * 
-     * @return ÅIƒƒOƒCƒ““ú
+     * @return æœ€çµ‚ãƒ­ã‚°ã‚¤ãƒ³æ—¥æ™‚
      */
     @Override
     public Date getLastLogin() {

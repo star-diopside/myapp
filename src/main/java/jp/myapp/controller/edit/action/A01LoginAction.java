@@ -50,10 +50,10 @@ public class A01LoginAction extends ActionSupport implements ModelDriven<A01Logi
 
         A01Form inForm = this.model.getA01Form();
 
-        // ƒƒOƒCƒ“ƒ`ƒFƒbƒN
+        // ãƒ­ã‚°ã‚¤ãƒ³ãƒã‚§ãƒƒã‚¯
         this.loginService.loginUser(inForm.getUserId(), inForm.getPassword());
 
-        // o—Íî•ñ‚ÌÝ’è
+        // å‡ºåŠ›æƒ…å ±ã®è¨­å®š
         A02Form outForm = this.model.getA02Form();
 
         outForm.setUserId(inForm.getUserId());

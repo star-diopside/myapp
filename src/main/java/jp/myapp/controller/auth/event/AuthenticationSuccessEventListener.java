@@ -7,11 +7,11 @@ import org.springframework.security.authentication.event.AuthenticationSuccessEv
 
 public class AuthenticationSuccessEventListener implements ApplicationListener<AuthenticationSuccessEvent> {
 
-    /** ƒƒK[ */
+    /** ãƒ­ã‚¬ãƒ¼ */
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationSuccessEventListener.class);
 
     @Override
     public void onApplicationEvent(AuthenticationSuccessEvent event) {
-        LOGGER.info("ƒƒOƒCƒ“‚É¬Œ÷‚µ‚Ü‚µ‚½B(" + event.getAuthentication().getPrincipal() + ")");
+        LOGGER.info("ãƒ­ã‚°ã‚¤ãƒ³ã«æˆåŠŸã—ã¾ã—ãŸã€‚(" + event.getAuthentication().getPrincipal() + ")");
     }
 }

@@ -15,144 +15,144 @@ import org.slf4j.LoggerFactory;
 
 public class LoggingInterceptor implements MethodInterceptor {
 
-    /** ƒƒK[ */
+    /** ãƒ­ã‚¬ãƒ¼ */
     private static final Logger LOGGER = LoggerFactory.getLogger(LoggingInterceptor.class);
 
-    /** ŠJnƒƒOƒtƒH[ƒ}ƒbƒg */
+    /** é–‹å§‹ãƒ­ã‚°ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ */
     private String enterMessage = "{0},{1},[START]";
 
-    /** I—¹ƒƒOƒtƒH[ƒ}ƒbƒg */
+    /** çµ‚äº†ãƒ­ã‚°ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ */
     private String exitMessage = "{0},{1},[END] {2} [ms]";
 
-    /** —áŠOƒƒOƒtƒH[ƒ}ƒbƒg */
+    /** ä¾‹å¤–ãƒ­ã‚°ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ */
     private String exceptionMessage = "{0},{1},{2}";
 
-    /** ƒƒ\ƒbƒhˆø”ƒƒOƒtƒH[ƒ}ƒbƒg */
+    /** ãƒ¡ã‚½ãƒƒãƒ‰å¼•æ•°ãƒ­ã‚°ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ */
     private String argumentsMessage = "{0},{1},INPUT[{2}]: {3}";
 
-    /** –ß‚è’lƒƒOƒtƒH[ƒ}ƒbƒg */
+    /** æˆ»ã‚Šå€¤ãƒ­ã‚°ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ */
     private String resultMessage = "{0},{1},OUTPUT: {2}";
 
     /**
-     * ŠJnƒƒO‚ÌƒƒbƒZ[ƒWƒtƒH[ƒ}ƒbƒg‚ğİ’è‚·‚éB<br>
+     * é–‹å§‹ãƒ­ã‚°ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’è¨­å®šã™ã‚‹ã€‚<br>
      * <p>
      * <table border="0">
      * <tr>
      * <th>PlaceHolder : {0}</th>
-     * <td>ƒNƒ‰ƒX–¼</td>
+     * <td>ã‚¯ãƒ©ã‚¹å</td>
      * <tr>
      * <tr>
      * <th>PlaceHolder : {1}</th>
-     * <td>ƒƒ\ƒbƒh–¼</td>
+     * <td>ãƒ¡ã‚½ãƒƒãƒ‰å</td>
      * </tr>
      * </table>
      * </p>
      * 
-     * @param enterMessage ŠJnƒƒO‚ÌƒƒbƒZ[ƒWƒtƒH[ƒ}ƒbƒg
+     * @param enterMessage é–‹å§‹ãƒ­ã‚°ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
      */
     public void setEnterMessage(String enterMessage) {
         this.enterMessage = enterMessage;
     }
 
     /**
-     * I—¹ƒƒO‚ÌƒƒbƒZ[ƒWƒtƒH[ƒ}ƒbƒg‚ğİ’è‚·‚éB<br>
+     * çµ‚äº†ãƒ­ã‚°ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’è¨­å®šã™ã‚‹ã€‚<br>
      * <p>
      * <table border="0">
      * <tr>
      * <th>PlaceHolder : {0}</th>
-     * <td>ƒNƒ‰ƒX–¼</td>
+     * <td>ã‚¯ãƒ©ã‚¹å</td>
      * <tr>
      * <tr>
      * <th>PlaceHolder : {1}</th>
-     * <td>ƒƒ\ƒbƒh–¼</td>
+     * <td>ãƒ¡ã‚½ãƒƒãƒ‰å</td>
      * </tr>
      * <tr>
      * <th>PlaceHolder : {2}</th>
-     * <td>ÀsŠÔiƒ~ƒŠ•bj</td>
+     * <td>å®Ÿè¡Œæ™‚é–“ï¼ˆãƒŸãƒªç§’ï¼‰</td>
      * </tr>
      * </table>
      * </p>
      * 
-     * @param exitMessage I—¹ƒƒO‚ÌƒƒbƒZ[ƒWƒtƒH[ƒ}ƒbƒg
+     * @param exitMessage çµ‚äº†ãƒ­ã‚°ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
      */
     public void setExitMessage(String exitMessage) {
         this.exitMessage = exitMessage;
     }
 
     /**
-     * —áŠOƒƒO‚ÌƒƒbƒZ[ƒWƒtƒH[ƒ}ƒbƒg‚ğİ’è‚·‚éB<br>
+     * ä¾‹å¤–ãƒ­ã‚°ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’è¨­å®šã™ã‚‹ã€‚<br>
      * <p>
      * <table border="0">
      * <tr>
      * <th>PlaceHolder : {0}</th>
-     * <td>ƒNƒ‰ƒX–¼</td>
+     * <td>ã‚¯ãƒ©ã‚¹å</td>
      * <tr>
      * <tr>
      * <th>PlaceHolder : {1}</th>
-     * <td>ƒƒ\ƒbƒh–¼</td>
+     * <td>ãƒ¡ã‚½ãƒƒãƒ‰å</td>
      * </tr>
      * <tr>
      * <th>PlaceHolder : {2}</th>
-     * <td>—áŠOƒƒbƒZ[ƒW</td>
+     * <td>ä¾‹å¤–ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸</td>
      * </tr>
      * </table>
      * </p>
      * 
-     * @param exceptionMessage —áŠOƒƒO‚ÌƒƒbƒZ[ƒWƒtƒH[ƒ}ƒbƒg
+     * @param exceptionMessage ä¾‹å¤–ãƒ­ã‚°ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
      */
     public void setExceptionMessage(String exceptionMessage) {
         this.exceptionMessage = exceptionMessage;
     }
 
     /**
-     * ƒƒ\ƒbƒhˆø”ƒƒO‚ÌƒƒbƒZ[ƒWƒtƒH[ƒ}ƒbƒg‚ğİ’è‚·‚éB<br>
+     * ãƒ¡ã‚½ãƒƒãƒ‰å¼•æ•°ãƒ­ã‚°ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’è¨­å®šã™ã‚‹ã€‚<br>
      * <p>
      * <table border="0">
      * <tr>
      * <th>PlaceHolder : {0}</th>
-     * <td>ƒNƒ‰ƒX–¼</td>
+     * <td>ã‚¯ãƒ©ã‚¹å</td>
      * <tr>
      * <tr>
      * <th>PlaceHolder : {1}</th>
-     * <td>ƒƒ\ƒbƒh–¼</td>
+     * <td>ãƒ¡ã‚½ãƒƒãƒ‰å</td>
      * </tr>
      * <tr>
      * <th>PlaceHolder : {2}</th>
-     * <td>ˆø”‚ÌƒCƒ“ƒfƒbƒNƒX</td>
+     * <td>å¼•æ•°ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹</td>
      * </tr>
      * <tr>
      * <th>PlaceHolder : {3}</th>
-     * <td>ˆø”‚Ì“à—e</td>
+     * <td>å¼•æ•°ã®å†…å®¹</td>
      * </tr>
      * </table>
      * </p>
      * 
-     * @param argumentsMessage ƒƒ\ƒbƒhˆø”ƒƒO‚ÌƒƒbƒZ[ƒWƒtƒH[ƒ}ƒbƒg
+     * @param argumentsMessage ãƒ¡ã‚½ãƒƒãƒ‰å¼•æ•°ãƒ­ã‚°ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
      */
     public void setArgumentsMessage(String argumentsMessage) {
         this.argumentsMessage = argumentsMessage;
     }
 
     /**
-     * –ß‚è’lƒƒO‚ÌƒƒbƒZ[ƒWƒtƒH[ƒ}ƒbƒg‚ğİ’è‚·‚éB<br>
+     * æˆ»ã‚Šå€¤ãƒ­ã‚°ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’è¨­å®šã™ã‚‹ã€‚<br>
      * <p>
      * <table border="0">
      * <tr>
      * <th>PlaceHolder : {0}</th>
-     * <td>ƒNƒ‰ƒX–¼</td>
+     * <td>ã‚¯ãƒ©ã‚¹å</td>
      * <tr>
      * <tr>
      * <th>PlaceHolder : {1}</th>
-     * <td>ƒƒ\ƒbƒh–¼</td>
+     * <td>ãƒ¡ã‚½ãƒƒãƒ‰å</td>
      * </tr>
      * <tr>
      * <th>PlaceHolder : {2}</th>
-     * <td>–ß‚è’l‚Ì“à—e</td>
+     * <td>æˆ»ã‚Šå€¤ã®å†…å®¹</td>
      * </tr>
      * </table>
      * </p>
      * 
-     * @param resultMessage –ß‚è’lƒƒO‚ÌƒƒbƒZ[ƒWƒtƒH[ƒ}ƒbƒg
+     * @param resultMessage æˆ»ã‚Šå€¤ãƒ­ã‚°ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
      */
     public void setResultMessage(String resultMessage) {
         this.resultMessage = resultMessage;
@@ -166,15 +166,15 @@ public class LoggingInterceptor implements MethodInterceptor {
         String methodName = invocation.getMethod().getName();
 
         try {
-            // ÀsŠÔ‚ÌŒv‘ª‚ğŠJn‚·‚é
+            // å®Ÿè¡Œæ™‚é–“ã®è¨ˆæ¸¬ã‚’é–‹å§‹ã™ã‚‹
             stopWatch.start();
 
-            // ŠJnƒƒO‚ğo—Í‚·‚é
+            // é–‹å§‹ãƒ­ã‚°ã‚’å‡ºåŠ›ã™ã‚‹
             if (LOGGER.isInfoEnabled()) {
                 LOGGER.info(MessageFormat.format(this.enterMessage, className, methodName));
             }
 
-            // “ü—Íƒpƒ‰ƒ[ƒ^ƒƒO‚ğo—Í‚·‚é
+            // å…¥åŠ›ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ­ã‚°ã‚’å‡ºåŠ›ã™ã‚‹
             if (LOGGER.isDebugEnabled()) {
                 Object[] arguments = invocation.getArguments();
                 for (int i = 0; i < arguments.length; i++) {
@@ -184,12 +184,12 @@ public class LoggingInterceptor implements MethodInterceptor {
                 }
             }
 
-            // ˆ—‚ğÀs‚·‚é
+            // å‡¦ç†ã‚’å®Ÿè¡Œã™ã‚‹
             Object result = invocation.proceed();
 
-            // o—Íƒpƒ‰ƒ[ƒ^ƒƒO‚ğo—Í‚·‚é
+            // å‡ºåŠ›ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ­ã‚°ã‚’å‡ºåŠ›ã™ã‚‹
             if (LOGGER.isDebugEnabled()) {
-                // –ß‚è’l‚ª void ˆÈŠO‚Ìê‡‚ÉƒƒOo—Í‚·‚é
+                // æˆ»ã‚Šå€¤ãŒ void ä»¥å¤–ã®å ´åˆã«ãƒ­ã‚°å‡ºåŠ›ã™ã‚‹
                 if (!invocation.getMethod().getReturnType().equals(Void.TYPE)) {
                     for (String data : printableObjectList(result)) {
                         LOGGER.debug(MessageFormat.format(this.resultMessage, className, methodName, data));
@@ -200,25 +200,25 @@ public class LoggingInterceptor implements MethodInterceptor {
             return result;
 
         } catch (ApplicationException e) {
-            // î•ñƒƒO‚ğo—Í‚·‚é
+            // æƒ…å ±ãƒ­ã‚°ã‚’å‡ºåŠ›ã™ã‚‹
             if (LOGGER.isInfoEnabled()) {
                 LOGGER.info(MessageFormat.format(this.exceptionMessage, className, methodName, "thrown " + e.getClass().getName()));
             }
 
-            // —áŠO‚ğÄƒXƒ[‚·‚é
+            // ä¾‹å¤–ã‚’å†ã‚¹ãƒ­ãƒ¼ã™ã‚‹
             throw e;
 
         } catch (Exception e) {
-            // ƒGƒ‰[ƒƒO‚ğo—Í‚·‚é
+            // ã‚¨ãƒ©ãƒ¼ãƒ­ã‚°ã‚’å‡ºåŠ›ã™ã‚‹
             if (LOGGER.isErrorEnabled()) {
                 LOGGER.error(MessageFormat.format(this.exceptionMessage, className, methodName, e.getMessage()), e);
             }
 
-            // —áŠO‚ğÄƒXƒ[‚·‚é
+            // ä¾‹å¤–ã‚’å†ã‚¹ãƒ­ãƒ¼ã™ã‚‹
             throw e;
 
         } finally {
-            // I—¹ƒƒO‚ğo—Í‚·‚é
+            // çµ‚äº†ãƒ­ã‚°ã‚’å‡ºåŠ›ã™ã‚‹
             if (LOGGER.isInfoEnabled()) {
                 LOGGER.info(MessageFormat.format(this.exitMessage, className, methodName, Long.valueOf(stopWatch.getTime())));
             }
@@ -226,9 +226,9 @@ public class LoggingInterceptor implements MethodInterceptor {
     }
 
     /**
-     * ƒIƒuƒWƒFƒNƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚©‚çƒƒOo—Í—p•¶š—ñ‚ğ¶¬‚·‚éB
+     * ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‹ã‚‰ãƒ­ã‚°å‡ºåŠ›ç”¨æ–‡å­—åˆ—ã‚’ç”Ÿæˆã™ã‚‹ã€‚
      * 
-     * @param obj ƒƒOo—Í“à—e‚Ì•¶š—ñƒRƒŒƒNƒVƒ‡ƒ“
+     * @param obj ãƒ­ã‚°å‡ºåŠ›å†…å®¹ã®æ–‡å­—åˆ—ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³
      */
     private static Collection<String> printableObjectList(Object obj) {
 

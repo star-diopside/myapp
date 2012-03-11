@@ -28,9 +28,9 @@ public class SessionTimeoutWarningTag extends ComponentTagSupport {
     }
 
     /**
-     * ƒZƒbƒVƒ‡ƒ“ƒ^ƒCƒ€ƒAƒEƒgŒxŠÔ‚ğİ’è‚·‚éB
+     * ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆè­¦å‘Šæ™‚é–“ã‚’è¨­å®šã™ã‚‹ã€‚
      * 
-     * @param time ƒZƒbƒVƒ‡ƒ“ƒ^ƒCƒ€ƒAƒEƒgŒxŠÔ(•ª)
+     * @param time ã‚»ãƒƒã‚·ãƒ§ãƒ³ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆè­¦å‘Šæ™‚é–“(åˆ†)
      */
     public void setTime(String time) {
         this.time = time;

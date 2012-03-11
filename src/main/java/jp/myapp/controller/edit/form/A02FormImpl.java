@@ -26,9 +26,9 @@ public class A02FormImpl implements A02Form, Loggable, Serializable {
     private List<Users> tUserInfoList = new ArrayList<Users>();
 
     /**
-     * ユーザIDを取得する。
+     * 繝ｦ繝ｼ繧ｶID繧貞叙蠕励☆繧九�
      * 
-     * @return ユーザID
+     * @return 繝ｦ繝ｼ繧ｶID
      */
     @Override
     public String getUserId() {
@@ -36,9 +36,9 @@ public class A02FormImpl implements A02Form, Loggable, Serializable {
     }
 
     /**
-     * ユーザIDを設定する。
+     * 繝ｦ繝ｼ繧ｶID繧定ｨｭ螳壹☆繧九�
      * 
-     * @param userId ユーザID
+     * @param userId 繝ｦ繝ｼ繧ｶID
      */
     @Override
     public void setUserId(String userId) {
