@@ -18,7 +18,7 @@
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="jp.myapp.dao.mapper" />
-        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </bean>
 
     <!-- トランザクションマネージャ定義 -->

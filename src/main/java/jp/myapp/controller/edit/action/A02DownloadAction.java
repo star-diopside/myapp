@@ -1,9 +1,13 @@
 package jp.myapp.controller.edit.action;
 
-import java.io.ByteArrayInputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import jp.myapp.controller.edit.model.A02DownloadModel;
 import jp.myapp.controller.edit.model.A02DownloadModelImpl;
+import jp.myapp.util.FileCleaningUtils;
+import jp.myapp.util.XMLWriterUtil;
 
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
@@ -28,8 +32,14 @@ public class A02DownloadAction extends ActionSupport implements ModelDriven<A02D
     @Override
     public String execute() throws Exception {
 
-        this.model.setInputStream(new ByteArrayInputStream(this.model.toString().getBytes()));
-        this.model.setContentDisposition("attachment; filename=\"string.txt\"");
+        Path tempFile = Files.createTempFile(null, null);
+
+        try (OutputStream out = Files.newOutputStream(tempFile)) {
+            new XMLWriterUtil("    ").write(out, "UTF-8");
+        }
+
+        this.model.setInputStream(FileCleaningUtils.trackInputStream(tempFile));
+        this.model.setContentDisposition("attachment; filename=\"sample.xml\"");
 
         return SUCCESS;
     }
