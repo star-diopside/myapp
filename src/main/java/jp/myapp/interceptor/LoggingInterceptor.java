@@ -7,16 +7,14 @@ import java.util.Collection;
 import jp.myapp.exception.ApplicationException;
 import jp.myapp.util.Loggable;
 
-import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.apache.commons.lang3.time.StopWatch;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.commons.logging.Log;
+import org.springframework.aop.interceptor.AbstractTraceInterceptor;
 
-public class LoggingInterceptor implements MethodInterceptor {
+public class LoggingInterceptor extends AbstractTraceInterceptor {
 
-    /** ロガー */
-    private static final Logger LOGGER = LoggerFactory.getLogger(LoggingInterceptor.class);
+    private static final long serialVersionUID = 1L;
 
     /** 開始ログフォーマット */
     private String enterMessage = "{0},{1},[START]";
@@ -159,10 +157,10 @@ public class LoggingInterceptor implements MethodInterceptor {
     }
 
     @Override
-    public Object invoke(MethodInvocation invocation) throws Throwable {
+    protected Object invokeUnderTrace(MethodInvocation invocation, Log logger) throws Throwable {
 
         StopWatch stopWatch = new StopWatch();
-        String className = invocation.getThis().getClass().getName();
+        String className = getClassForLogging(invocation.getThis()).getName();
         String methodName = invocation.getMethod().getName();
 
         try {
@@ -170,16 +168,16 @@ public class LoggingInterceptor implements MethodInterceptor {
             stopWatch.start();
 
             // 開始ログを出力する
-            if (LOGGER.isInfoEnabled()) {
-                LOGGER.info(MessageFormat.format(this.enterMessage, className, methodName));
+            if (logger.isInfoEnabled()) {
+                logger.info(MessageFormat.format(this.enterMessage, className, methodName));
             }
 
             // 入力パラメータログを出力する
-            if (LOGGER.isDebugEnabled()) {
+            if (logger.isDebugEnabled()) {
                 Object[] arguments = invocation.getArguments();
                 for (int i = 0; i < arguments.length; i++) {
                     for (String data : printableObjectList(arguments[i])) {
-                        LOGGER.debug(MessageFormat.format(this.argumentsMessage, className, methodName, Integer.valueOf(i), data));
+                        logger.debug(MessageFormat.format(this.argumentsMessage, className, methodName, Integer.valueOf(i), data));
                     }
                 }
             }
@@ -188,11 +186,11 @@ public class LoggingInterceptor implements MethodInterceptor {
             Object result = invocation.proceed();
 
             // 出力パラメータログを出力する
-            if (LOGGER.isDebugEnabled()) {
+            if (logger.isDebugEnabled()) {
                 // 戻り値が void 以外の場合にログ出力する
                 if (!invocation.getMethod().getReturnType().equals(Void.TYPE)) {
                     for (String data : printableObjectList(result)) {
-                        LOGGER.debug(MessageFormat.format(this.resultMessage, className, methodName, data));
+                        logger.debug(MessageFormat.format(this.resultMessage, className, methodName, data));
                     }
                 }
             }
@@ -201,8 +199,8 @@ public class LoggingInterceptor implements MethodInterceptor {
 
         } catch (ApplicationException e) {
             // 情報ログを出力する
-            if (LOGGER.isInfoEnabled()) {
-                LOGGER.info(MessageFormat.format(this.exceptionMessage, className, methodName, "thrown " + e.getClass().getName()));
+            if (logger.isInfoEnabled()) {
+                logger.info(MessageFormat.format(this.exceptionMessage, className, methodName, "thrown " + e.getClass().getName()));
             }
 
             // 例外を再スローする
@@ -210,8 +208,8 @@ public class LoggingInterceptor implements MethodInterceptor {
 
         } catch (Exception e) {
             // エラーログを出力する
-            if (LOGGER.isErrorEnabled()) {
-                LOGGER.error(MessageFormat.format(this.exceptionMessage, className, methodName, e.getMessage()), e);
+            if (logger.isErrorEnabled()) {
+                logger.error(MessageFormat.format(this.exceptionMessage, className, methodName, e.getMessage()), e);
             }
 
             // 例外を再スローする
@@ -219,8 +217,8 @@ public class LoggingInterceptor implements MethodInterceptor {
 
         } finally {
             // 終了ログを出力する
-            if (LOGGER.isInfoEnabled()) {
-                LOGGER.info(MessageFormat.format(this.exitMessage, className, methodName, Long.valueOf(stopWatch.getTime())));
+            if (logger.isInfoEnabled()) {
+                logger.info(MessageFormat.format(this.exitMessage, className, methodName, Long.valueOf(stopWatch.getTime())));
             }
         }
     }
