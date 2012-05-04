@@ -10,7 +10,7 @@ import jp.myapp.dao.entity.UsersImpl;
 
 public class UserInfo extends UsersImpl {
 
-    private static final long serialVersionUID = -8977622572020663854L;
+    private static final long serialVersionUID = 1L;
 
     /**
      * コンストラクタ

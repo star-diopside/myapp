@@ -13,7 +13,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class AA02S010FormImpl implements AA02S010Form, Loggable, Serializable {
 
-    private static final long serialVersionUID = 3808355772039542503L;
+    private static final long serialVersionUID = 1L;
 
     /** ユーザID */
     private String userId;

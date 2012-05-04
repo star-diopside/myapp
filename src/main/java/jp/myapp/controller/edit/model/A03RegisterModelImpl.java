@@ -17,7 +17,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class A03RegisterModelImpl implements A03RegisterModel, Loggable, Serializable {
 
-    private static final long serialVersionUID = 7782233735158921356L;
+    private static final long serialVersionUID = 1L;
 
     private A03Form a03Form = new A03FormImpl();
     private A02Form a02Form = new A02FormImpl();

@@ -14,7 +14,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class A04FormImpl implements A04Form, Loggable, Serializable {
 
-    private static final long serialVersionUID = -5126391020712898082L;
+    private static final long serialVersionUID = 1L;
 
     private File uploadFile;
     private String uploadFileContentType;

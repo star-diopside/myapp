@@ -13,7 +13,7 @@ import jp.myapp.util.LoggableUtil;
 
 public class AuthoritiesPKImpl implements AuthoritiesPK, Loggable, Serializable {
 
-    private static final long serialVersionUID = -3293527240831743488L;
+    private static final long serialVersionUID = 1L;
 
     private String userId;
     private String authority;

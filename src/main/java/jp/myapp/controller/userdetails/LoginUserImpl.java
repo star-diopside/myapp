@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class LoginUserImpl extends User implements LoginUser {
 
-    private static final long serialVersionUID = 4141575890493184275L;
+    private static final long serialVersionUID = 1L;
 
     private String displayName;
     private boolean provisionalRegistration;

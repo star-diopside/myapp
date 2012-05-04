@@ -16,7 +16,7 @@ import jp.myapp.util.LoggableUtil;
 
 public class A02DownloadModelImpl implements A02DownloadModel, Loggable, Serializable {
 
-    private static final long serialVersionUID = 7636808502933659179L;
+    private static final long serialVersionUID = 1L;
 
     private A02Form a02Form = new A02FormImpl();
     private InputStream inputStream;

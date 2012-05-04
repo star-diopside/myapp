@@ -15,7 +15,7 @@ import jp.myapp.util.LoggableUtil;
 
 public class A02RedrawModelImpl implements A02RedrawModel, Loggable, Serializable {
 
-    private static final long serialVersionUID = -4410010298693251973L;
+    private static final long serialVersionUID = 1L;
 
     private A02Form a02Form = new A02FormImpl();
 

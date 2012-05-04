@@ -19,7 +19,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class A01RegisterModelImpl implements A01RegisterModel, Loggable, Serializable {
 
-    private static final long serialVersionUID = 2853254202919866793L;
+    private static final long serialVersionUID = 1L;
 
     private LocaleForm localeForm = new LocaleFormImpl();
     private A01Form a01Form = new A01FormImpl();

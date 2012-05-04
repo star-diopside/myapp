@@ -17,7 +17,7 @@ import jp.myapp.util.LoggableUtil;
 
 public class AA02S010RegisterModelImpl implements AA02S010RegisterModel, Loggable, Serializable {
 
-    private static final long serialVersionUID = 7782233735158921356L;
+    private static final long serialVersionUID = 1L;
 
     private AA02S010Form AA02S010Form = new AA02S010FormImpl();
     private AA01S010Form AA01S010Form = new AA01S010FormImpl();

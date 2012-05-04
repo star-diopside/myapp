@@ -17,7 +17,7 @@ import jp.myapp.util.LoggableUtil;
 
 public class A01OpenModelImpl implements A01OpenModel, Loggable, Serializable {
 
-    private static final long serialVersionUID = -7659290009925969521L;
+    private static final long serialVersionUID = 1L;
 
     private LocaleForm localeForm = new LocaleFormImpl();
     private A01Form a01Form = new A01FormImpl();

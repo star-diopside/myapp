@@ -12,7 +12,7 @@ import com.opensymphony.xwork2.util.ValueStack;
 
 public class SessionTimeoutWarningTag extends ComponentTagSupport {
 
-    private static final long serialVersionUID = 270353035162329101L;
+    private static final long serialVersionUID = 1L;
 
     private String time;
 

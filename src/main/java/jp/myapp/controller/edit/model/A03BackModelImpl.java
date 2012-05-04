@@ -17,7 +17,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class A03BackModelImpl implements A03BackModel, Loggable, Serializable {
 
-    private static final long serialVersionUID = 2415320917852761890L;
+    private static final long serialVersionUID = 1L;
 
     private A03Form a03Form = new A03FormImpl();
     private A01Form a01Form = new A01FormImpl();

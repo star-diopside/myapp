@@ -15,7 +15,7 @@ import jp.myapp.util.LoggableUtil;
 
 public class UsersImpl extends EntityBaseImpl<String> implements Users, Loggable, Serializable {
 
-    private static final long serialVersionUID = -2678109518889226923L;
+    private static final long serialVersionUID = 1L;
 
     private String userId;
     private String username;

@@ -18,7 +18,7 @@ import com.opensymphony.xwork2.util.Element;
 
 public class A02FormImpl implements A02Form, Loggable, Serializable {
 
-    private static final long serialVersionUID = -2150353158914657169L;
+    private static final long serialVersionUID = 1L;
 
     private String userId;
     private String[] userSelected;

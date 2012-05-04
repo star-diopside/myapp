@@ -14,7 +14,7 @@ import jp.myapp.util.LoggableUtil;
 
 public class AuthoritiesImpl extends EntityBaseImpl<AuthoritiesPK> implements Authorities, Loggable, Serializable {
 
-    private static final long serialVersionUID = 2303835022424445708L;
+    private static final long serialVersionUID = 1L;
 
     private AuthoritiesPK pk;
 
