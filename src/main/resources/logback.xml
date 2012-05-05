@@ -6,7 +6,7 @@
         <file>E:/log/error.log</file>
         <append>true</append>
         <encoder>
-            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS},%mdc{sessionId},%mdc{remoteAddr},%level,%thread,%message%n</pattern>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS},%mdc{sessionId},%mdc{remoteAddr},%level,%thread,%mdc{className},%mdc{methodName},%message%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>E:/log/error_%d{yyyy-MM-dd}.log.%i</fileNamePattern>
@@ -24,7 +24,7 @@
         <file>E:/log/trace.log</file>
         <append>true</append>
         <encoder>
-            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS},%mdc{sessionId},%mdc{remoteAddr},%level,%thread,%message%n</pattern>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS},%mdc{sessionId},%mdc{remoteAddr},%level,%thread,%mdc{className},%mdc{methodName},%message%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>E:/log/trace_%d{yyyy-MM-dd}.log.%i</fileNamePattern>
