@@ -450,6 +450,10 @@
                                 <name>.settings/org.eclipse.core.resources.prefs</name>
                                 <content><![CDATA[eclipse.preferences.version=1${line.separator}encoding/<project>=${project.build.sourceEncoding}${line.separator}]]></content>
                             </file>
+                            <file>
+                                <name>.settings/org.eclipse.core.runtime.prefs</name>
+                                <content><![CDATA[eclipse.preferences.version=1${line.separator}line.separator=\n${line.separator}]]></content>
+                            </file>
                         </additionalConfig>
                         <wtpversion>1.5</wtpversion>
                         <additionalProjectFacets>
