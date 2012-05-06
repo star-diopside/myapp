@@ -5,10 +5,10 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>jp.myapp</groupId>
-    <artifactId>MyWeb</artifactId>
+    <artifactId>MyApp</artifactId>
     <packaging>war</packaging>
     <version>0.0.1-SNAPSHOT</version>
-    <name>MyWeb</name>
+    <name>MyApp</name>
 
     <repositories>
         <repository>
@@ -419,7 +419,7 @@
     </dependencies>
 
     <build>
-        <finalName>MyWeb</finalName>
+        <finalName>MyApp</finalName>
         <pluginManagement>
             <plugins>
                 <plugin>
