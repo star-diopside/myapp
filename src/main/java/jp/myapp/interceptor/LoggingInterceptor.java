@@ -15,7 +15,6 @@ import org.aopalliance.intercept.MethodInvocation;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.StopWatch;
 import org.apache.commons.logging.Log;
-import org.slf4j.MDC;
 import org.springframework.aop.interceptor.AbstractTraceInterceptor;
 
 /**
@@ -75,12 +74,6 @@ public class LoggingInterceptor extends AbstractTraceInterceptor {
 
     /** 戻り値ログフォーマットのデフォルト値 */
     private static final String DEFAULT_RESULT_MESSAGE = "OUTPUT: " + DEFAULT_PLACEHOLDER_RETURN_VALUE;
-
-    /** クラス名を格納するMDCキー */
-    private static final String MDC_CLASS_NAME = "className";
-
-    /** メソッド名を格納するMDCキー */
-    private static final String MDC_METHOD_NAME = "methodName";
 
     /** メソッド名のプレースホルダー */
     private String placeholderMethodName = DEFAULT_PLACEHOLDER_METHOD_NAME;
@@ -285,12 +278,6 @@ public class LoggingInterceptor extends AbstractTraceInterceptor {
         HashMap<String, Object> addition = new HashMap<>();
         StringBuffer sb = new StringBuffer();
 
-        // MDCにメソッド呼び出し情報をセットする。
-        String beforeClassName = MDC.get(MDC_CLASS_NAME);
-        String beforeMethodName = MDC.get(MDC_METHOD_NAME);
-        MDC.put(MDC_CLASS_NAME, getClassForLogging(invocation.getThis()).getSimpleName());
-        MDC.put(MDC_METHOD_NAME, invocation.getMethod().getName());
-
         try {
             // 実行時間の計測を開始する
             stopWatch.start();
@@ -347,18 +334,6 @@ public class LoggingInterceptor extends AbstractTraceInterceptor {
                 addition.clear();
                 addition.put(this.placeholderInvocationTime, Long.valueOf(stopWatch.getTime()));
                 this.writeToExitLog(logger, replacePlaceholders(this.exitMessage, sb, base, addition));
-            }
-
-            // MDCのメソッド呼び出し情報を元に戻す。
-            if (beforeClassName == null) {
-                MDC.remove(MDC_CLASS_NAME);
-            } else {
-                MDC.put(MDC_CLASS_NAME, beforeClassName);
-            }
-            if (beforeMethodName == null) {
-                MDC.remove(MDC_METHOD_NAME);
-            } else {
-                MDC.put(MDC_METHOD_NAME, beforeMethodName);
             }
         }
     }

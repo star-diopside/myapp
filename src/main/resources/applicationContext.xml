@@ -29,7 +29,7 @@
     <tx:annotation-driven transaction-manager="transactionManager" />
 
     <!-- ログ出力インターセプター -->
-    <bean id="logging" class="jp.myapp.interceptor.LoggingInterceptor" />
+    <bean id="logging" class="jp.myapp.interceptor.CustomLoggingInterceptor" />
 
     <!-- AOP定義 -->
     <aop:config>
