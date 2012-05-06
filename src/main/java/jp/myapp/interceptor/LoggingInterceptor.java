@@ -478,7 +478,7 @@ public class LoggingInterceptor extends AbstractTraceInterceptor {
      * 
      * @param obj ログ出力内容の文字列コレクション
      */
-    private static Collection<? extends Object> createPrintableObjects(Object obj) {
+    private static Collection<?> createPrintableObjects(Object obj) {
 
         if (obj == null) {
             return Arrays.asList((Object) null);
