@@ -366,7 +366,9 @@ public class LoggingInterceptor extends AbstractTraceInterceptor {
      * @param t 例外インスタンス
      */
     protected void writeToExceptionLog(Log logger, Object message, Throwable t) {
-        if (t instanceof ApplicationException) {
+        if (t == null) {
+            logger.error(message);
+        } else if (t instanceof ApplicationException) {
             logger.info(message);
         } else {
             logger.error(message, t);
