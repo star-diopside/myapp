@@ -10,7 +10,6 @@ import jp.myapp.controller.util.SessionUtils;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -48,8 +47,6 @@ public class AA01S010Action extends ActionSupport implements ModelDriven<AA01S01
 
         if (Boolean.TRUE.equals(this.model.getLoginError())) {
             this.addActionError(this.getText("Error.NotMatchUserIdOrPassword"));
-            outForm.setUserId((String) this.session.get(
-                    UsernamePasswordAuthenticationFilter.SPRING_SECURITY_LAST_USERNAME_KEY));
         }
 
         return SUCCESS;

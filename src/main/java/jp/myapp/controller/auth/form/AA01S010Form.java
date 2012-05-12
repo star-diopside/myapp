@@ -10,4 +10,7 @@ public interface AA01S010Form {
 
     void setPassword(String password);
 
+    Boolean getLoginError();
+
+    void setLoginError(Boolean loginError);
 }

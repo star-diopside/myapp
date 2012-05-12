@@ -19,6 +19,8 @@ public class AA01S010FormImpl implements AA01S010Form, Loggable, Serializable {
     private String userId;
     /** パスワード */
     private String password;
+    /** ログインエラーかどうかを示す値 */
+    private Boolean loginError;
 
     /**
      * ユーザIDを取得する。
@@ -60,6 +62,26 @@ public class AA01S010FormImpl implements AA01S010Form, Loggable, Serializable {
         this.password = password;
     }
 
+    /**
+     * ログインエラーかどうかを示す値を取得する。
+     * 
+     * @return ログインエラーの場合にtrue、それ以外の場合はnullまたはfalse。
+     */
+    @Override
+    public Boolean getLoginError() {
+        return this.loginError;
+    }
+
+    /**
+     * ログインエラーかどうかを示す値を設定する。
+     * 
+     * @param loginError ログインエラーの場合にtrue、それ以外の場合はnullまたはfalse。
+     */
+    @Override
+    public void setLoginError(Boolean loginError) {
+        this.loginError = loginError;
+    }
+
     @Override
     public Collection<String> getLogText() {
 
@@ -67,6 +89,7 @@ public class AA01S010FormImpl implements AA01S010Form, Loggable, Serializable {
 
         LoggableUtil.addLog(list, this.userId, "userId");
         LoggableUtil.addLog(list, this.password, "password");
+        LoggableUtil.addLog(list, this.loginError, "loginError");
 
         return list;
     }

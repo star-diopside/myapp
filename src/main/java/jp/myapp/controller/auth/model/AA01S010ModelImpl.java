@@ -18,7 +18,6 @@ public class AA01S010ModelImpl implements AA01S010Model, Loggable, Serializable 
     private static final long serialVersionUID = 1L;
 
     private AA01S010Form AA01S010Form = new AA01S010FormImpl();
-    private Boolean loginError;
 
     @Override
     public AA01S010Form getAA01S010Form() {
@@ -52,12 +51,12 @@ public class AA01S010ModelImpl implements AA01S010Model, Loggable, Serializable 
 
     @Override
     public Boolean getLoginError() {
-        return loginError;
+        return this.AA01S010Form.getLoginError();
     }
 
     @Override
     public void setLoginError(Boolean loginError) {
-        this.loginError = loginError;
+        this.AA01S010Form.setLoginError(loginError);
     }
 
     @Override
@@ -66,7 +65,6 @@ public class AA01S010ModelImpl implements AA01S010Model, Loggable, Serializable 
         ArrayList<String> log = new ArrayList<String>();
 
         LoggableUtil.addLog(log, this.AA01S010Form, "AA01S010Form");
-        LoggableUtil.addLog(log, this.loginError, "loginError");
 
         return log;
     }
