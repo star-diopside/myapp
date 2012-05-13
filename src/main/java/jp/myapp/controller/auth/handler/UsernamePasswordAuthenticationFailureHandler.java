@@ -10,7 +10,6 @@ import jp.myapp.controller.auth.form.AA01S010Form;
 import jp.myapp.controller.auth.form.AA01S010FormImpl;
 import jp.myapp.controller.util.SessionUtils;
 
-import org.apache.struts2.dispatcher.SessionMap;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -30,7 +29,7 @@ public class UsernamePasswordAuthenticationFailureHandler extends SimpleUrlAuthe
         AA01S010Form form = new AA01S010FormImpl();
         form.setUserId(request.getParameter(this.usernameParameter));
         form.setLoginError(Boolean.TRUE);
-        (new SessionUtils(new SessionMap<String, Object>(request))).setForm(form);
+        (new SessionUtils(request)).setForm(form);
 
         super.onAuthenticationFailure(request, response, exception);
     }

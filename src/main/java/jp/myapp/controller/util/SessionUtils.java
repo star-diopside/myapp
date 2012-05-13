@@ -2,6 +2,10 @@ package jp.myapp.controller.util;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.dispatcher.SessionMap;
+
 /**
  * フォームデータをセッション引き継ぎを行うためのユーティリティクラス
  */
@@ -10,8 +14,22 @@ public final class SessionUtils {
     private static final String TRANSITION_FORM_KEY = "TRANSITION_FORM_KEY";
     private Map<String, Object> session;
 
+    /**
+     * コンストラクタ
+     * 
+     * @param session セッションマップ
+     */
     public SessionUtils(Map<String, Object> session) {
         this.session = session;
+    }
+
+    /**
+     * コンストラクタ
+     * 
+     * @param request サーブレットリクエスト
+     */
+    public SessionUtils(HttpServletRequest request) {
+        this.session = new SessionMap<>(request);
     }
 
     /**
