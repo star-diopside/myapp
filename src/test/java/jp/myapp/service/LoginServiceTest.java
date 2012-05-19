@@ -4,7 +4,7 @@ import static org.hamcrest.core.Is.*;
 import static org.junit.Assert.*;
 
 import java.io.InputStream;
-import java.util.Date;
+import java.sql.Timestamp;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -58,7 +58,7 @@ public class LoginServiceTest {
         FlatXmlDataSet fxds = builder.build(is);
         ReplacementDataSet rds = new ReplacementDataSet(fxds);
 
-        rds.addReplacementObject("[NOW_DATETIME]", new Date());
+        rds.addReplacementObject("[NOW_DATETIME]", new Timestamp(System.currentTimeMillis()));
 
         this.databaseTester = new DataSourceDatabaseTester(this.dataSource);
         this.databaseTester.setDataSet(rds);
