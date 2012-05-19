@@ -1,9 +1,9 @@
 package jp.myapp.dao.entity;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -22,7 +22,7 @@ public class UsersImpl extends EntityBaseImpl<String> implements Users, Loggable
     private String password;
     private Boolean enabled;
     private Boolean provisionalRegistration;
-    private Date lastLogin;
+    private Timestamp lastLogin;
     private boolean updatedUsername = false;
     private boolean updatedPassword = false;
     private boolean updatedEnabled = false;
@@ -94,12 +94,12 @@ public class UsersImpl extends EntityBaseImpl<String> implements Users, Loggable
     }
 
     @Override
-    public Date getLastLogin() {
+    public Timestamp getLastLogin() {
         return this.lastLogin;
     }
 
     @Override
-    public void setLastLogin(Date lastLogin) {
+    public void setLastLogin(Timestamp lastLogin) {
         this.lastLogin = lastLogin;
         this.updatedLastLogin = true;
     }

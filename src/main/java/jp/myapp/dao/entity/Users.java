@@ -1,6 +1,6 @@
 package jp.myapp.dao.entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 import jp.myapp.dao.entity.base.EntityBase;
 
@@ -26,9 +26,9 @@ public interface Users extends EntityBase<String> {
 
     void setProvisionalRegistration(Boolean provisionalRegistration);
 
-    Date getLastLogin();
+    Timestamp getLastLogin();
 
-    void setLastLogin(Date lastLogin);
+    void setLastLogin(Timestamp lastLogin);
 
     boolean isUpdatedUsername();
 

@@ -1,17 +1,17 @@
 package jp.myapp.dao.entity.base;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 
 import jp.myapp.util.Loggable;
 import jp.myapp.util.LoggableUtil;
 
 public abstract class EntityBaseImpl<PK> implements EntityBase<PK>, Loggable {
 
-    private Date registerDatetime;
+    private Timestamp registerDatetime;
     private String registerUserId;
-    private Date updatedDatetime;
+    private Timestamp updatedDatetime;
     private String updatedUserId;
     private Integer version;
     private boolean updatedRegisterDatetime = false;
@@ -21,12 +21,12 @@ public abstract class EntityBaseImpl<PK> implements EntityBase<PK>, Loggable {
     private boolean updatedVersion = false;
 
     @Override
-    public Date getRegisterDatetime() {
+    public Timestamp getRegisterDatetime() {
         return this.registerDatetime;
     }
 
     @Override
-    public void setRegisterDatetime(Date registerDatetime) {
+    public void setRegisterDatetime(Timestamp registerDatetime) {
         this.registerDatetime = registerDatetime;
         this.updatedRegisterDatetime = true;
     }
@@ -43,12 +43,12 @@ public abstract class EntityBaseImpl<PK> implements EntityBase<PK>, Loggable {
     }
 
     @Override
-    public Date getUpdatedDatetime() {
+    public Timestamp getUpdatedDatetime() {
         return this.updatedDatetime;
     }
 
     @Override
-    public void setUpdatedDatetime(Date updatedDatetime) {
+    public void setUpdatedDatetime(Timestamp updatedDatetime) {
         this.updatedDatetime = updatedDatetime;
         this.updatedUpdatedDatetime = true;
     }

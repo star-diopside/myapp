@@ -1,6 +1,6 @@
 package jp.myapp.service;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 import jp.myapp.bean.UserInfo;
 import jp.myapp.dao.entity.AuthoritiesImpl;
@@ -63,7 +63,7 @@ public class LoginService {
         }
 
         UsersImpl usersEntity = new UsersImpl();
-        Date current = new Date();
+        Timestamp current = new Timestamp(System.currentTimeMillis());
 
         usersEntity.setUserId(userId);
         usersEntity.setUsername(userName);

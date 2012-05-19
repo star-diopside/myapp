@@ -1,6 +1,6 @@
 package jp.myapp.dao.entity.base;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public interface EntityBase<PK> {
 
@@ -8,17 +8,17 @@ public interface EntityBase<PK> {
 
     void setPK(PK pk);
 
-    Date getRegisterDatetime();
+    Timestamp getRegisterDatetime();
 
-    void setRegisterDatetime(Date registerDatetime);
+    void setRegisterDatetime(Timestamp registerDatetime);
 
     String getRegisterUserId();
 
     void setRegisterUserId(String registerUserId);
 
-    Date getUpdatedDatetime();
+    Timestamp getUpdatedDatetime();
 
-    void setUpdatedDatetime(Date updatedDatetime);
+    void setUpdatedDatetime(Timestamp updatedDatetime);
 
     String getUpdatedUserId();
 

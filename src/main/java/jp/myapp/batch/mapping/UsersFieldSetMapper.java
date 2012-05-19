@@ -1,5 +1,7 @@
 package jp.myapp.batch.mapping;
 
+import java.sql.Timestamp;
+
 import jp.myapp.dao.entity.Users;
 import jp.myapp.dao.entity.UsersImpl;
 
@@ -23,10 +25,10 @@ public class UsersFieldSetMapper implements FieldSetMapper<Users> {
         userEntity.setPassword(fieldSet.readString("password"));
         userEntity.setEnabled(fieldSet.readBoolean("enabled"));
         userEntity.setProvisionalRegistration(fieldSet.readBoolean("provisionalRegistration"));
-        userEntity.setLastLogin(fieldSet.readDate("lastLogin"));
-        userEntity.setRegisterDatetime(fieldSet.readDate("registerDatetime"));
+        userEntity.setLastLogin(new Timestamp(fieldSet.readDate("lastLogin").getTime()));
+        userEntity.setRegisterDatetime(new Timestamp(fieldSet.readDate("registerDatetime").getTime()));
         userEntity.setRegisterUserId(fieldSet.readString("registerUserId"));
-        userEntity.setUpdatedDatetime(fieldSet.readDate("updatedDatetime"));
+        userEntity.setUpdatedDatetime(new Timestamp(fieldSet.readDate("updatedDatetime").getTime()));
         userEntity.setUpdatedUserId(fieldSet.readString("updatedUserId"));
         userEntity.setVersion(fieldSet.readInt("version"));
 
