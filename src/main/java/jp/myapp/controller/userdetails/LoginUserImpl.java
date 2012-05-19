@@ -37,6 +37,7 @@ public class LoginUserImpl extends User implements LoginUser {
      * 
      * @return 表示名
      */
+    @Override
     public String getDisplayName() {
         return this.displayName;
     }

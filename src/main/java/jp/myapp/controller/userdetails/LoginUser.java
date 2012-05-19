@@ -1,6 +1,6 @@
 package jp.myapp.controller.userdetails;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public interface LoginUser {
 
@@ -8,6 +8,6 @@ public interface LoginUser {
 
     boolean isProvisionalRegistration();
 
-    Date getLastLogin();
+    Timestamp getLastLogin();
 
 }
