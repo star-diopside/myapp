@@ -1,7 +1,7 @@
 package jp.myapp.controller.userdetails;
 
+import java.sql.Timestamp;
 import java.util.Collection;
-import java.util.Date;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -13,11 +13,11 @@ public class LoginUserImpl extends User implements LoginUser {
 
     private String displayName;
     private boolean provisionalRegistration;
-    private Date lastLogin;
+    private Timestamp lastLogin;
 
     public LoginUserImpl(String username, String displayName, String password, boolean enabled,
-            boolean provisionalRegistration, Date lastLogin, boolean accountNonExpired, boolean credentialsNonExpired,
-            boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
+            boolean provisionalRegistration, Timestamp lastLogin, boolean accountNonExpired,
+            boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
 
         super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
         this.displayName = displayName;
@@ -25,7 +25,7 @@ public class LoginUserImpl extends User implements LoginUser {
         this.lastLogin = lastLogin;
     }
 
-    public LoginUserImpl(UserDetails user, String displayName, boolean provisionalRegistration, Date lastLogin) {
+    public LoginUserImpl(UserDetails user, String displayName, boolean provisionalRegistration, Timestamp lastLogin) {
 
         this(user.getUsername(), displayName, user.getPassword(), user.isEnabled(), provisionalRegistration, lastLogin,
                 user.isAccountNonExpired(), user.isCredentialsNonExpired(), user.isAccountNonLocked(),
@@ -57,7 +57,7 @@ public class LoginUserImpl extends User implements LoginUser {
      * @return 最終ログイン日時
      */
     @Override
-    public Date getLastLogin() {
+    public Timestamp getLastLogin() {
         return this.lastLogin;
     }
 

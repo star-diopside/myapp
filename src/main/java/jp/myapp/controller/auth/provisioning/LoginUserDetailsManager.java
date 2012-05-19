@@ -2,7 +2,7 @@ package jp.myapp.controller.auth.provisioning;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 import jp.myapp.controller.userdetails.LoginUserImpl;
@@ -27,7 +27,7 @@ public class LoginUserDetailsManager extends JdbcUserDetailsManager {
                         String password = rs.getString(3);
                         boolean enabled = rs.getBoolean(4);
                         boolean provisionalRegistration = rs.getBoolean(5);
-                        Date lastLogin = rs.getTimestamp(6);
+                        Timestamp lastLogin = rs.getTimestamp(6);
 
                         return new LoginUserImpl(username, displayName, password, enabled, provisionalRegistration,
                                 lastLogin, true, true, true, AuthorityUtils.NO_AUTHORITIES);
