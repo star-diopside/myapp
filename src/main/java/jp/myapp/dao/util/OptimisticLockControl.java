@@ -52,7 +52,7 @@ public class OptimisticLockControl<Entity extends EntityBase<PK>, PK> {
 
         Entity entity = this.mapper.selectForUpdate(pk);
 
-        if (entity.getVersion() == null || !entity.getVersion().equals(version)) {
+        if (entity == null || entity.getVersion() == null || !entity.getVersion().equals(version)) {
             throw new ExclusiveException();
         }
     }
