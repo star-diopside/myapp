@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import jp.myapp.exception.ApplicationException;
-import jp.myapp.util.Loggable;
+import jp.myapp.logging.Loggable;
 
 import org.aopalliance.intercept.MethodInvocation;
 import org.apache.commons.lang3.StringUtils;

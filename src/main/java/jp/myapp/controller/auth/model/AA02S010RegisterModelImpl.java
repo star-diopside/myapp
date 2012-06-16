@@ -12,8 +12,8 @@ import jp.myapp.controller.auth.form.AA01S010Form;
 import jp.myapp.controller.auth.form.AA01S010FormImpl;
 import jp.myapp.controller.auth.form.AA02S010Form;
 import jp.myapp.controller.auth.form.AA02S010FormImpl;
-import jp.myapp.util.Loggable;
-import jp.myapp.util.LoggableUtil;
+import jp.myapp.logging.Loggable;
+import jp.myapp.logging.LoggableUtil;
 
 public class AA02S010RegisterModelImpl implements AA02S010RegisterModel, Loggable, Serializable {
 

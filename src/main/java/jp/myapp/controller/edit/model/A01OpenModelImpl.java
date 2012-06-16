@@ -12,8 +12,8 @@ import jp.myapp.controller.common.form.LocaleForm;
 import jp.myapp.controller.common.form.LocaleFormImpl;
 import jp.myapp.controller.edit.form.A01Form;
 import jp.myapp.controller.edit.form.A01FormImpl;
-import jp.myapp.util.Loggable;
-import jp.myapp.util.LoggableUtil;
+import jp.myapp.logging.Loggable;
+import jp.myapp.logging.LoggableUtil;
 
 public class A01OpenModelImpl implements A01OpenModel, Loggable, Serializable {
 

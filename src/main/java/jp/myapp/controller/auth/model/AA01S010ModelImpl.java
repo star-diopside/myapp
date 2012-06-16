@@ -10,8 +10,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import jp.myapp.controller.auth.form.AA01S010Form;
 import jp.myapp.controller.auth.form.AA01S010FormImpl;
-import jp.myapp.util.Loggable;
-import jp.myapp.util.LoggableUtil;
+import jp.myapp.logging.Loggable;
+import jp.myapp.logging.LoggableUtil;
 
 public class AA01S010ModelImpl implements AA01S010Model, Loggable, Serializable {
 

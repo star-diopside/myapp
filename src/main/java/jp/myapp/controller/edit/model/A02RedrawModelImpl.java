@@ -10,8 +10,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import jp.myapp.controller.edit.form.A02Form;
 import jp.myapp.controller.edit.form.A02FormImpl;
-import jp.myapp.util.Loggable;
-import jp.myapp.util.LoggableUtil;
+import jp.myapp.logging.Loggable;
+import jp.myapp.logging.LoggableUtil;
 
 public class A02RedrawModelImpl implements A02RedrawModel, Loggable, Serializable {
 

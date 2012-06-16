@@ -8,8 +8,8 @@ import jp.myapp.controller.edit.form.A02Form;
 import jp.myapp.controller.edit.form.A02FormImpl;
 import jp.myapp.controller.edit.form.A03Form;
 import jp.myapp.controller.edit.form.A03FormImpl;
-import jp.myapp.util.Loggable;
-import jp.myapp.util.LoggableUtil;
+import jp.myapp.logging.Loggable;
+import jp.myapp.logging.LoggableUtil;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;

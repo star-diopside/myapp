@@ -7,8 +7,8 @@ import java.util.List;
 
 import jp.myapp.dao.entity.Users;
 import jp.myapp.dao.entity.UsersImpl;
-import jp.myapp.util.Loggable;
-import jp.myapp.util.LoggableUtil;
+import jp.myapp.logging.Loggable;
+import jp.myapp.logging.LoggableUtil;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;

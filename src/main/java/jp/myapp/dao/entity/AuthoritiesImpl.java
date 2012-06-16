@@ -9,8 +9,8 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import jp.myapp.dao.entity.base.EntityBaseImpl;
-import jp.myapp.util.Loggable;
-import jp.myapp.util.LoggableUtil;
+import jp.myapp.logging.Loggable;
+import jp.myapp.logging.LoggableUtil;
 
 public class AuthoritiesImpl extends EntityBaseImpl<AuthoritiesPK> implements Authorities, Loggable, Serializable {
 

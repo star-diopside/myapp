@@ -4,8 +4,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import jp.myapp.util.Loggable;
-import jp.myapp.util.LoggableUtil;
+import jp.myapp.logging.Loggable;
+import jp.myapp.logging.LoggableUtil;
 
 public abstract class EntityBaseImpl<PK> implements EntityBase<PK>, Loggable {
 
