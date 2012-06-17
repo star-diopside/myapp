@@ -160,7 +160,7 @@ public class UsersImpl extends EntityBaseImpl<String> implements Users, Loggable
     }
 
     @Override
-    public Collection<String> getLogText() {
+    public Collection<String> toLogText() {
 
         ArrayList<String> log = new ArrayList<String>();
 
@@ -171,7 +171,7 @@ public class UsersImpl extends EntityBaseImpl<String> implements Users, Loggable
         LoggableUtil.addLog(log, this.provisionalRegistration, "provisionalRegistration",
                 this.updatedProvisionalRegistration);
         LoggableUtil.addLog(log, this.lastLogin, "lastLogin", this.updatedLastLogin);
-        log.addAll(super.getLogText());
+        log.addAll(super.toLogText());
 
         return log;
     }

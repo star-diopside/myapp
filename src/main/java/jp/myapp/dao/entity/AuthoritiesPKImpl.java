@@ -39,7 +39,7 @@ public class AuthoritiesPKImpl implements AuthoritiesPK, Loggable, Serializable 
     }
 
     @Override
-    public Collection<String> getLogText() {
+    public Collection<String> toLogText() {
 
         ArrayList<String> log = new ArrayList<String>();
 

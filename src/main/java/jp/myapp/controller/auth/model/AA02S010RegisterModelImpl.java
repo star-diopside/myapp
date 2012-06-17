@@ -43,7 +43,7 @@ public class AA02S010RegisterModelImpl implements AA02S010RegisterModel, Loggabl
     }
 
     @Override
-    public Collection<String> getLogText() {
+    public Collection<String> toLogText() {
 
         ArrayList<String> list = new ArrayList<String>();
 

@@ -56,7 +56,7 @@ public class A01LoginModelImpl implements A01LoginModel, Loggable, Serializable 
     }
 
     @Override
-    public Collection<String> getLogText() {
+    public Collection<String> toLogText() {
 
         ArrayList<String> list = new ArrayList<String>();
 

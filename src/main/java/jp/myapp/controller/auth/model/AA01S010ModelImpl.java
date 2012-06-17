@@ -60,7 +60,7 @@ public class AA01S010ModelImpl implements AA01S010Model, Loggable, Serializable 
     }
 
     @Override
-    public Collection<String> getLogText() {
+    public Collection<String> toLogText() {
 
         ArrayList<String> log = new ArrayList<String>();
 

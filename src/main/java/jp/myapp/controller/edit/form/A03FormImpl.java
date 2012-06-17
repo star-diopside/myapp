@@ -105,7 +105,7 @@ public class A03FormImpl implements A03Form, Loggable, Serializable {
     }
 
     @Override
-    public Collection<String> getLogText() {
+    public Collection<String> toLogText() {
 
         ArrayList<String> list = new ArrayList<String>();
 

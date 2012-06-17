@@ -43,7 +43,7 @@ public class A01OpenModelImpl implements A01OpenModel, Loggable, Serializable {
     }
 
     @Override
-    public Collection<String> getLogText() {
+    public Collection<String> toLogText() {
 
         ArrayList<String> list = new ArrayList<String>();
 

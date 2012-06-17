@@ -43,7 +43,7 @@ public class A03BackModelImpl implements A03BackModel, Loggable, Serializable {
     }
 
     @Override
-    public Collection<String> getLogText() {
+    public Collection<String> toLogText() {
 
         ArrayList<String> list = new ArrayList<String>();
 

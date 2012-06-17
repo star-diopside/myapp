@@ -105,7 +105,7 @@ public class AA02S010FormImpl implements AA02S010Form, Loggable, Serializable {
     }
 
     @Override
-    public Collection<String> getLogText() {
+    public Collection<String> toLogText() {
 
         ArrayList<String> list = new ArrayList<String>();
 

@@ -30,7 +30,7 @@ public class A02RedrawModelImpl implements A02RedrawModel, Loggable, Serializabl
     }
 
     @Override
-    public Collection<String> getLogText() {
+    public Collection<String> toLogText() {
 
         ArrayList<String> list = new ArrayList<String>();
 

@@ -485,7 +485,7 @@ public class LoggingInterceptor extends AbstractTraceInterceptor {
         if (obj == null) {
             return Arrays.asList((Object) null);
         } else if (obj instanceof Loggable) {
-            Collection<String> logText = ((Loggable) obj).getLogText();
+            Collection<String> logText = ((Loggable) obj).toLogText();
             if (logText == null) {
                 return Arrays.asList((Object) null);
             } else {

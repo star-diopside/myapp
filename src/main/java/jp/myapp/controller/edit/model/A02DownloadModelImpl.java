@@ -64,7 +64,7 @@ public class A02DownloadModelImpl implements A02DownloadModel, Loggable, Seriali
     }
 
     @Override
-    public Collection<String> getLogText() {
+    public Collection<String> toLogText() {
 
         ArrayList<String> log = new ArrayList<String>();
 

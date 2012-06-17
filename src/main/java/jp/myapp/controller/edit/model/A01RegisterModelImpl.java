@@ -56,7 +56,7 @@ public class A01RegisterModelImpl implements A01RegisterModel, Loggable, Seriali
     }
 
     @Override
-    public Collection<String> getLogText() {
+    public Collection<String> toLogText() {
 
         ArrayList<String> list = new ArrayList<String>();
 

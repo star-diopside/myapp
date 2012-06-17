@@ -57,13 +57,13 @@ public class AuthoritiesImpl extends EntityBaseImpl<AuthoritiesPK> implements Au
     }
 
     @Override
-    public Collection<String> getLogText() {
+    public Collection<String> toLogText() {
 
         ArrayList<String> log = new ArrayList<String>();
 
         LoggableUtil.addLog(log, this.pk.getUserId(), "userId");
         LoggableUtil.addLog(log, this.pk.getAuthority(), "authority");
-        log.addAll(super.getLogText());
+        log.addAll(super.toLogText());
 
         return log;
     }

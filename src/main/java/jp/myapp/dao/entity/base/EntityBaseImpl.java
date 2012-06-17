@@ -131,7 +131,7 @@ public abstract class EntityBaseImpl<PK> implements EntityBase<PK>, Loggable {
     }
 
     @Override
-    public Collection<String> getLogText() {
+    public Collection<String> toLogText() {
 
         ArrayList<String> log = new ArrayList<String>();
 

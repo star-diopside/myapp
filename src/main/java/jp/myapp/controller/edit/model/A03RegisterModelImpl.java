@@ -43,7 +43,7 @@ public class A03RegisterModelImpl implements A03RegisterModel, Loggable, Seriali
     }
 
     @Override
-    public Collection<String> getLogText() {
+    public Collection<String> toLogText() {
 
         ArrayList<String> list = new ArrayList<String>();
 

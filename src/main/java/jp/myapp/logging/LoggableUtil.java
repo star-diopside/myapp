@@ -19,7 +19,7 @@ public class LoggableUtil {
             log.add(itemName + " = " + item);
 
         } else if (item instanceof Loggable) {
-            for (String s : ((Loggable) item).getLogText()) {
+            for (String s : ((Loggable) item).toLogText()) {
                 log.add(itemName + "." + s);
             }
 
