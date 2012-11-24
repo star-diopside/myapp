@@ -15,27 +15,27 @@
 
     <select id="select" parameterType="jp.myapp.dao.entity.AuthoritiesPK" resultMap="authorities">
         <![CDATA[
-            select * from AUTHORITIES where USER_ID = #{userId} and AUTHORITY = #{authority}
+            SELECT * FROM AUTHORITIES WHERE USER_ID = #{userId} AND AUTHORITY = #{authority}
         ]]>
     </select>
 
     <select id="selectForUpdate" parameterType="jp.myapp.dao.entity.AuthoritiesPK" resultMap="authorities">
         <![CDATA[
-            select * from AUTHORITIES where USER_ID = #{userId} and AUTHORITY = #{authority} for update
+            SELECT * FROM AUTHORITIES WHERE USER_ID = #{userId} AND AUTHORITY = #{authority} FOR UPDATE
         ]]>
     </select>
 
     <insert id="insert" parameterType="jp.myapp.dao.entity.Authorities">
         <![CDATA[
-            insert into AUTHORITIES
+            INSERT INTO AUTHORITIES
             ( USER_ID, AUTHORITY, REGISTER_DATETIME, REGISTER_USER_ID, UPDATED_DATETIME, UPDATED_USER_ID, VERSION )
-            values
+            VALUES
             ( #{userId}, #{authority}, #{registerDatetime}, #{registerUserId}, #{updatedDatetime}, #{updatedUserId}, #{version} )
         ]]>
     </insert>
 
     <update id="update" parameterType="jp.myapp.dao.entity.Authorities">
-        <![CDATA[update AUTHORITIES]]>
+        <![CDATA[UPDATE AUTHORITIES]]>
         <trim prefix="set" suffixOverrides=",">
             <if test="updatedRegisterDatetime == true"><![CDATA[REGISTER_DATETIME = #{registerDatetime},]]></if>
             <if test="updatedRegisterUserId == true"><![CDATA[REGISTER_USER_ID = #{registerUserId},]]></if>
@@ -43,18 +43,18 @@
             <if test="updatedUpdatedUserId == true"><![CDATA[UPDATED_USER_ID = #{updatedUserId},]]></if>
             <if test="updatedVersion == true"><![CDATA[VERSION = #{version},]]></if>
         </trim>
-        <![CDATA[where USER_ID = #{userId} and AUTHORITY = #{authority}]]>
+        <![CDATA[WHERE USER_ID = #{userId} AND AUTHORITY = #{authority}]]>
     </update>
 
     <delete id="delete" parameterType="jp.myapp.dao.entity.AuthoritiesPK">
         <![CDATA[
-            delete from AUTHORITIES where USER_ID = #{userId} and AUTHORITY = #{authority}
+            DELETE FROM AUTHORITIES WHERE USER_ID = #{userId} AND AUTHORITY = #{authority}
         ]]>
     </delete>
 
     <delete id="deleteByUserId" parameterType="string">
         <![CDATA[
-            delete from AUTHORITIES where USER_ID = #{userId}
+            DELETE FROM AUTHORITIES WHERE USER_ID = #{userId}
         ]]>
     </delete>
 

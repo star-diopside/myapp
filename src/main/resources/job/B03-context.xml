@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd">
+
+    <job id="B03" incrementer="jobParametersIncrementer" xmlns="http://www.springframework.org/schema/batch">
+        <step id="B03S010" parent="simpleStep">
+            <tasklet>
+                <chunk reader="B03S010Reader" processor="B03S010Processor" writer="B03S010Writer" />
+            </tasklet>
+        </step>
+    </job>
+
+    <bean id="B03S010Reader" class="org.springframework.batch.item.database.JdbcCursorItemReader" scope="step">
+        <property name="dataSource" ref="dataSource" />
+        <property name="verifyCursorPosition" value="false" />
+        <property name="sql" value="SELECT * FROM USERS" />
+        <property name="rowMapper">
+            <bean class="jp.myapp.dao.jdbc.mapper.UsersRowMapper" />
+        </property>
+    </bean>
+
+    <bean id="B03S010Processor" class="jp.myapp.batch.B03S010Processor" scope="step" />
+
+    <bean id="B03S010Writer" class="jp.myapp.batch.B03S010Writer" scope="step" />
+
+</beans>
