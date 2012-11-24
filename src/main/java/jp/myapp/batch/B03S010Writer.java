@@ -26,8 +26,9 @@ public class B03S010Writer implements ItemWriter<Users> {
 
         for (Users users : items) {
             try {
+                usersLockCtrl.lock(users);
                 this.authoritiesMapper.deleteByUserId(users.getUserId());
-                usersLockCtrl.delete(users);
+                this.usersMapper.delete(users.getPK());
             } catch (ExclusiveException e) {
                 // 楽観排他エラーが発生した場合、何も処理しない。
             }

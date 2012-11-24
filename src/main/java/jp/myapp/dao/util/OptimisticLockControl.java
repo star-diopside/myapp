@@ -22,6 +22,21 @@ public class OptimisticLockControl<Entity extends EntityBase<PK>, PK> {
         return mapper;
     }
 
+    /**
+     * レコードロックを行い、楽観排他チェックを行う。
+     * 
+     * @param entity エンティティ
+     */
+    public void lock(Entity entity) {
+        this.checkVersion(entity.getPK(), entity.getVersion());
+    }
+
+    /**
+     * 楽観排他チェック後に更新処理を行う。
+     * 
+     * @param entity エンティティ
+     * @return 更新件数
+     */
     public int update(Entity entity) {
 
         this.checkVersion(entity.getPK(), entity.getVersion());
@@ -37,6 +52,12 @@ public class OptimisticLockControl<Entity extends EntityBase<PK>, PK> {
         return this.mapper.update(entity);
     }
 
+    /**
+     * 楽観排他チェック後に削除処理を行う。
+     * 
+     * @param entity エンティティ
+     * @return 削除件数
+     */
     public int delete(Entity entity) {
         this.checkVersion(entity.getPK(), entity.getVersion());
         return this.mapper.delete(entity.getPK());
