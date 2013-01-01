@@ -2,7 +2,7 @@ package jp.myapp.controller.interceptor;
 
 import java.util.Arrays;
 
-import jp.myapp.exception.ApplicationException;
+import jp.myapp.exception.IBusinessException;
 
 import org.springframework.stereotype.Controller;
 
@@ -39,7 +39,13 @@ public class ApplicationExceptionInterceptor implements Interceptor {
         try {
             result = invocation.invoke();
 
-        } catch (ApplicationException e) {
+        } catch (Exception e) {
+            // 業務例外以外の場合、例外を再スローする
+            if (!(e instanceof IBusinessException)) {
+                throw e;
+            }
+
+            IBusinessException be = (IBusinessException) e;
             Object action = invocation.getAction();
 
             if (!(action instanceof ValidationAware)) {
@@ -49,7 +55,7 @@ public class ApplicationExceptionInterceptor implements Interceptor {
 
             ValidationAware validationAwareAction = (ValidationAware) action;
 
-            if (e.isResource()) {
+            if (be.isResource()) {
                 if (!(action instanceof TextProvider)) {
                     // Action が TextProvider インタフェースを実装していない場合、例外を再スローする
                     throw e;
@@ -58,11 +64,11 @@ public class ApplicationExceptionInterceptor implements Interceptor {
                 // TextProvider から取得したメッセージを ActionError に追加する
                 TextProvider textProviderAction = (TextProvider) action;
                 validationAwareAction.addActionError(textProviderAction.getText(
-                        e.getMessage(), Arrays.asList(e.getArguments())));
+                        be.getMessage(), Arrays.asList(be.getArguments())));
 
             } else {
                 // 例外メッセージを ActionError に追加する
-                validationAwareAction.addActionError(e.getMessage());
+                validationAwareAction.addActionError(be.getMessage());
             }
 
             result = this.inputResultName;

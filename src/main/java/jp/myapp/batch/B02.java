@@ -14,7 +14,7 @@ public class B02 {
     @Autowired
     private UsersMapper usersMapper;
 
-    @Transactional(rollbackFor = Throwable.class)
+    @Transactional
     public ExitStatus exec(String key, String value) {
 
         List<Users> list = this.usersMapper.selectAll();

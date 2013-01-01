@@ -1,9 +1,9 @@
 package jp.myapp.exception;
 
 /**
- * 業務例外が発生したことを表す検査例外クラス
+ * 業務例外が発生したことを表す例外クラス
  */
-public class ApplicationException extends Exception implements IBusinessException {
+public class BusinessException extends RuntimeException implements IBusinessException {
 
     private static final long serialVersionUID = 1L;
 
@@ -13,7 +13,7 @@ public class ApplicationException extends Exception implements IBusinessExceptio
     /**
      * コンストラクタ
      */
-    public ApplicationException() {
+    public BusinessException() {
         super();
     }
 
@@ -22,7 +22,7 @@ public class ApplicationException extends Exception implements IBusinessExceptio
      * 
      * @param message 例外メッセージ
      */
-    public ApplicationException(String message) {
+    public BusinessException(String message) {
         super(message);
     }
 
@@ -32,7 +32,7 @@ public class ApplicationException extends Exception implements IBusinessExceptio
      * @param message 例外クラス
      * @param cause 原因例外
      */
-    public ApplicationException(String message, Throwable cause) {
+    public BusinessException(String message, Throwable cause) {
         super(message, cause);
     }
 
@@ -41,7 +41,7 @@ public class ApplicationException extends Exception implements IBusinessExceptio
      * 
      * @param cause 原因例外
      */
-    public ApplicationException(Throwable cause) {
+    public BusinessException(Throwable cause) {
         super(cause);
     }
 
@@ -52,7 +52,7 @@ public class ApplicationException extends Exception implements IBusinessExceptio
      * @param resource messageをリソースキーとする場合はtrue、メッセージ文字列の場合はfalse
      * @param arguments messageにリソースキーを指定した場合の埋め字配列
      */
-    public ApplicationException(String message, boolean resource, Object... arguments) {
+    public BusinessException(String message, boolean resource, Object... arguments) {
         super(message);
         this.resource = resource;
         this.arguments = arguments;
@@ -66,7 +66,7 @@ public class ApplicationException extends Exception implements IBusinessExceptio
      * @param resource messageをリソースキーとする場合はtrue、メッセージ文字列の場合はfalse
      * @param arguments messageにリソースキーを指定した場合の埋め字配列
      */
-    public ApplicationException(String message, Throwable cause, boolean resource, Object... arguments) {
+    public BusinessException(String message, Throwable cause, boolean resource, Object... arguments) {
         super(message, cause);
         this.resource = resource;
         this.arguments = arguments;

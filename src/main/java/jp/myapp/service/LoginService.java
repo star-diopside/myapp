@@ -10,7 +10,7 @@ import jp.myapp.dao.mapper.AuthoritiesMapper;
 import jp.myapp.dao.mapper.UsersMapper;
 import jp.myapp.dao.util.OptimisticLockControl;
 import jp.myapp.exception.ApplicationException;
-import jp.myapp.exception.NoRollbackApplicationException;
+import jp.myapp.exception.BusinessException;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +26,14 @@ public class LoginService {
     @Autowired
     private AuthoritiesMapper authoritiesMapper;
 
-    @Transactional(rollbackFor = Throwable.class, noRollbackFor = NoRollbackApplicationException.class)
+    @Transactional
     public UserInfo loginUser(String userId, String password) throws ApplicationException {
 
         // ユーザ情報データを取得する
         Users source = this.usersMapper.selectForUpdate(userId);
 
         if (source == null || source.getPassword() == null) {
-            throw new ApplicationException("Error.NotMatchUserIdOrPassword", true);
+            throw new BusinessException("Error.NotMatchUserIdOrPassword", true);
         }
 
         UserInfo userInfo = new UserInfo(source);
@@ -41,7 +41,7 @@ public class LoginService {
         // パスワードのハッシュ値との一致チェックを行う
         String passwordDigest = DigestUtils.sha256Hex(password);
         if (!passwordDigest.equals(userInfo.getPassword().trim())) {
-            throw new ApplicationException("Error.NotMatchUserIdOrPassword", true);
+            throw new BusinessException("Error.NotMatchUserIdOrPassword", true);
         }
 
         // ユーザの有効チェックを行う
@@ -49,17 +49,17 @@ public class LoginService {
             // 無効ユーザの削除を行う
             this.authoritiesMapper.deleteByUserId(source.getUserId());
             (new OptimisticLockControl<>(this.usersMapper)).delete(source);
-            throw new NoRollbackApplicationException("Error.UserInvalid", true);
+            throw new ApplicationException("Error.UserInvalid", true);
         }
 
         return userInfo;
     }
 
-    @Transactional(rollbackFor = Throwable.class)
-    public void registerUser(String userId, String userName, String password) throws ApplicationException {
+    @Transactional
+    public void registerUser(String userId, String userName, String password) {
 
         if (this.usersMapper.select(userId) != null) {
-            throw new ApplicationException("Error.UserExists", true);
+            throw new BusinessException("Error.UserExists", true);
         }
 
         UsersImpl usersEntity = new UsersImpl();

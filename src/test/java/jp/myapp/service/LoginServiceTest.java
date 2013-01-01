@@ -11,7 +11,6 @@ import javax.sql.DataSource;
 
 import jp.myapp.bean.UserInfo;
 import jp.myapp.exception.ApplicationException;
-import jp.myapp.exception.NoRollbackApplicationException;
 import jp.myapp.test.TestTrace;
 
 import org.dbunit.DataSourceDatabaseTester;
@@ -82,7 +81,7 @@ public class LoginServiceTest {
     /**
      * 仮登録ユーザ（有効時間切れ）のログインテストを行う。
      */
-    @Test(expected = NoRollbackApplicationException.class)
+    @Test(expected = ApplicationException.class)
     public void testLoginInvalidInterim() throws ApplicationException {
         this.loginService.loginUser("InvalidUser01", "InvalidUser01_Password");
     }
@@ -91,7 +90,7 @@ public class LoginServiceTest {
      * 新規ユーザ登録のテストを行う。
      */
     @Test
-    public void testRegisterUser() throws ApplicationException {
+    public void testRegisterUser() {
         this.loginService.registerUser("userId", "userName", "password");
     }
 }
