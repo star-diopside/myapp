@@ -7,15 +7,15 @@ import jp.myapp.controller.edit.model.A02RedrawModelImpl;
 import jp.myapp.controller.util.SessionUtils;
 
 import org.apache.struts2.interceptor.SessionAware;
-import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.context.request.RequestAttributes;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 @Controller
-@Scope(BeanDefinition.SCOPE_PROTOTYPE)
+@Scope(RequestAttributes.REFERENCE_REQUEST)
 public class A02RedrawAction extends ActionSupport implements ModelDriven<A02RedrawModel>, SessionAware {
 
     private static final long serialVersionUID = 1L;
