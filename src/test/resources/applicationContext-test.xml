@@ -6,6 +6,7 @@
 
     <!-- 定義のインポート -->
     <import resource="classpath:applicationContext-online.xml" />
+    <import resource="classpath:applicationContext-security.xml" />
 
     <!-- データソース定義の上書き -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy">

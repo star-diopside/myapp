@@ -12,8 +12,8 @@ import jp.myapp.dao.util.OptimisticLockControl;
 import jp.myapp.exception.ApplicationException;
 import jp.myapp.exception.BusinessException;
 
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +25,9 @@ public class LoginService {
 
     @Autowired
     private AuthoritiesMapper authoritiesMapper;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Transactional
     public UserInfo loginUser(String userId, String password) throws ApplicationException {
@@ -39,8 +42,9 @@ public class LoginService {
         UserInfo userInfo = new UserInfo(source);
 
         // パスワードのハッシュ値との一致チェックを行う
-        String passwordDigest = DigestUtils.sha256Hex(password);
-        if (!passwordDigest.equals(userInfo.getPassword().trim())) {
+        boolean passwordValid = this.passwordEncoder.isPasswordValid(userInfo.getPassword(), password,
+                userInfo.getPasswordUpdatedDatetime());
+        if (!passwordValid) {
             throw new BusinessException("Error.NotMatchUserIdOrPassword", true);
         }
 
@@ -67,7 +71,7 @@ public class LoginService {
 
         usersEntity.setUserId(userId);
         usersEntity.setUsername(userName);
-        usersEntity.setPassword(DigestUtils.sha256Hex(password));
+        usersEntity.setPassword(this.passwordEncoder.encodePassword(password, current));
         usersEntity.setPasswordUpdatedDatetime(current);
         usersEntity.setEnabled(true);
         usersEntity.setProvisionalRegistration(true);

@@ -20,7 +20,9 @@
 
     <authentication-manager>
         <authentication-provider user-service-ref="userDetailsManager">
-            <password-encoder hash="sha-256" />
+            <password-encoder ref="passwordEncoder">
+                <salt-source user-property="passwordUpdatedDatetime" />
+            </password-encoder>
         </authentication-provider>
     </authentication-manager>
 
@@ -30,6 +32,10 @@
             value="select user_id, username, password, password_updated_datetime, enabled, provisional_registration, last_login, register_datetime, register_user_id, updated_datetime, updated_user_id, version from users where user_id = ?" />
         <beans:property name="authoritiesByUsernameQuery"
             value="select user_id as username, authority, register_datetime, register_user_id, updated_datetime, updated_user_id, version from authorities where user_id = ?" />
+    </beans:bean>
+
+    <beans:bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
+        <beans:constructor-arg value="256" />
     </beans:bean>
 
     <!-- イベントリスナーの登録 -->
