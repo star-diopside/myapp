@@ -5,7 +5,6 @@ import java.sql.Timestamp;
 import jp.myapp.bean.UserInfo;
 import jp.myapp.dao.entity.AuthoritiesImpl;
 import jp.myapp.dao.entity.Users;
-import jp.myapp.dao.entity.UsersImpl;
 import jp.myapp.dao.mapper.AuthoritiesMapper;
 import jp.myapp.dao.mapper.UsersMapper;
 import jp.myapp.dao.util.OptimisticLockControl;
@@ -42,14 +41,14 @@ public class LoginService {
         UserInfo userInfo = new UserInfo(source);
 
         // パスワードのハッシュ値との一致チェックを行う
-        boolean passwordValid = this.passwordEncoder.isPasswordValid(userInfo.getPassword(), password,
-                userInfo.getPasswordUpdatedDatetime());
+        boolean passwordValid = this.passwordEncoder.isPasswordValid(
+                userInfo.getPassword(), password, userInfo.getSalt());
         if (!passwordValid) {
             throw new BusinessException("Error.NotMatchUserIdOrPassword", true);
         }
 
         // ユーザの有効チェックを行う
-        if (!userInfo.isValidity()) {
+        if (!userInfo.isValid()) {
             // 無効ユーザの削除を行う
             this.authoritiesMapper.deleteByUserId(source.getUserId());
             (new OptimisticLockControl<>(this.usersMapper)).delete(source);
@@ -66,12 +65,11 @@ public class LoginService {
             throw new BusinessException("Error.UserExists", true);
         }
 
-        UsersImpl usersEntity = new UsersImpl();
+        UserInfo usersEntity = new UserInfo();
         Timestamp current = new Timestamp(System.currentTimeMillis());
 
         usersEntity.setUserId(userId);
         usersEntity.setUsername(userName);
-        usersEntity.setPassword(this.passwordEncoder.encodePassword(password, current));
         usersEntity.setPasswordUpdatedDatetime(current);
         usersEntity.setEnabled(true);
         usersEntity.setProvisionalRegistration(true);
@@ -81,6 +79,7 @@ public class LoginService {
         usersEntity.setUpdatedDatetime(current);
         usersEntity.setUpdatedUserId(userId);
         usersEntity.setVersion(0);
+        usersEntity.setPassword(this.passwordEncoder.encodePassword(password, usersEntity.getSalt()));
 
         this.usersMapper.insert(usersEntity);
 

@@ -1,4 +1,4 @@
-package jp.myapp.controller.userdetails;
+package jp.myapp.bean.userdetails;
 
 import java.sql.Timestamp;
 
@@ -36,5 +36,12 @@ public interface LoginUser extends UserDetails {
      * @return 最終ログイン日時
      */
     Timestamp getLastLogin();
+
+    /**
+     * パスワードハッシュのソルトを取得する。
+     * 
+     * @return ソルト
+     */
+    Object getSalt();
 
 }

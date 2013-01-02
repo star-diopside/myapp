@@ -21,12 +21,12 @@
     <authentication-manager>
         <authentication-provider user-service-ref="userDetailsManager">
             <password-encoder ref="passwordEncoder">
-                <salt-source user-property="passwordUpdatedDatetime" />
+                <salt-source user-property="salt" />
             </password-encoder>
         </authentication-provider>
     </authentication-manager>
 
-    <beans:bean id="userDetailsManager" class="jp.myapp.controller.auth.provisioning.LoginUserDetailsManager">
+    <beans:bean id="userDetailsManager" class="jp.myapp.service.auth.LoginUserDetailsManager">
         <beans:property name="dataSource" ref="dataSource" />
         <beans:property name="usersByUsernameQuery"
             value="select user_id, username, password, password_updated_datetime, enabled, provisional_registration, last_login, register_datetime, register_user_id, updated_datetime, updated_user_id, version from users where user_id = ?" />

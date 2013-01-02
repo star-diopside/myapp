@@ -75,7 +75,7 @@ public class LoginServiceTest {
     @Test
     public void testLoginValidInterim() throws ApplicationException {
         UserInfo userInfo = this.loginService.loginUser("ValidUser01", "ValidUser01_Password");
-        assertThat(userInfo.isValidity(), is(true));
+        assertThat(userInfo.isValid(), is(true));
     }
 
     /**

@@ -1,4 +1,4 @@
-package jp.myapp.controller.userdetails;
+package jp.myapp.bean.userdetails;
 
 import java.sql.Timestamp;
 import java.util.Collection;
@@ -53,6 +53,11 @@ public class LoginUserImpl extends User implements LoginUser {
     @Override
     public Timestamp getLastLogin() {
         return this.lastLogin;
+    }
+
+    @Override
+    public Object getSalt() {
+        return this.passwordUpdatedDatetime;
     }
 
     @Override

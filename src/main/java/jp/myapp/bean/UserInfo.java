@@ -36,7 +36,7 @@ public class UserInfo extends UsersImpl {
      * 
      * @return 有効ユーザの場合は true、無効ユーザの場合は false を返す。
      */
-    public boolean isValidity() {
+    public boolean isValid() {
 
         if (Boolean.FALSE.equals(this.getProvisionalRegistration())) {
             // 本登録済みの場合、有効ユーザとする。
@@ -52,5 +52,14 @@ public class UserInfo extends UsersImpl {
                 return false;
             }
         }
+    }
+
+    /**
+     * パスワードハッシュのソルトを取得する。
+     * 
+     * @return ソルト
+     */
+    public Object getSalt() {
+        return this.getPasswordUpdatedDatetime();
     }
 }

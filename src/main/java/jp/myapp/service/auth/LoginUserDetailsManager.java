@@ -1,11 +1,11 @@
-package jp.myapp.controller.auth.provisioning;
+package jp.myapp.service.auth;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 
-import jp.myapp.controller.userdetails.LoginUserImpl;
+import jp.myapp.bean.userdetails.LoginUserImpl;
 
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.core.GrantedAuthority;

@@ -11,7 +11,7 @@ public class B03S010Processor implements ItemProcessor<Users, Users> {
     public Users process(Users item) throws Exception {
 
         // 無効ユーザの場合に処理対象とする。
-        if ((new UserInfo(item)).isValidity()) {
+        if ((new UserInfo(item)).isValid()) {
             return null;
         }
 
