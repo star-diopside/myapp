@@ -12,51 +12,44 @@ public class LoginUserImpl extends User implements LoginUser {
     private static final long serialVersionUID = 1L;
 
     private String displayName;
+    private Timestamp passwordUpdatedDatetime;
     private boolean provisionalRegistration;
     private Timestamp lastLogin;
 
-    public LoginUserImpl(String username, String displayName, String password, boolean enabled,
-            boolean provisionalRegistration, Timestamp lastLogin, boolean accountNonExpired,
+    public LoginUserImpl(String username, String displayName, String password, Timestamp passwordUpdatedDatetime,
+            boolean enabled, boolean provisionalRegistration, Timestamp lastLogin, boolean accountNonExpired,
             boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
 
         super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
         this.displayName = displayName;
+        this.passwordUpdatedDatetime = passwordUpdatedDatetime;
         this.provisionalRegistration = provisionalRegistration;
         this.lastLogin = lastLogin;
     }
 
-    public LoginUserImpl(UserDetails user, String displayName, boolean provisionalRegistration, Timestamp lastLogin) {
+    public LoginUserImpl(UserDetails user, String displayName, Timestamp passwordUpdatedDatetime,
+            boolean provisionalRegistration, Timestamp lastLogin) {
 
-        this(user.getUsername(), displayName, user.getPassword(), user.isEnabled(), provisionalRegistration, lastLogin,
-                user.isAccountNonExpired(), user.isCredentialsNonExpired(), user.isAccountNonLocked(),
-                user.getAuthorities());
+        this(user.getUsername(), displayName, user.getPassword(), passwordUpdatedDatetime, user.isEnabled(),
+                provisionalRegistration, lastLogin, user.isAccountNonExpired(), user.isCredentialsNonExpired(),
+                user.isAccountNonLocked(), user.getAuthorities());
     }
 
-    /**
-     * 表示名を取得する。
-     * 
-     * @return 表示名
-     */
     @Override
     public String getDisplayName() {
         return this.displayName;
     }
 
-    /**
-     * 仮登録フラグを取得する。
-     * 
-     * @return 仮登録フラグ
-     */
+    @Override
+    public Timestamp getPasswordUpdatedDatetime() {
+        return this.passwordUpdatedDatetime;
+    }
+
     @Override
     public boolean isProvisionalRegistration() {
         return this.provisionalRegistration;
     }
 
-    /**
-     * 最終ログイン日時を取得する。
-     * 
-     * @return 最終ログイン日時
-     */
     @Override
     public Timestamp getLastLogin() {
         return this.lastLogin;
@@ -68,6 +61,7 @@ public class LoginUserImpl extends User implements LoginUser {
         StringBuilder sb = new StringBuilder(super.toString());
 
         sb.append("; ").append("DisplayName: ").append(this.displayName);
+        sb.append("; ").append("PasswordUpdatedDatetime: ").append(this.passwordUpdatedDatetime);
         sb.append("; ").append("ProvisionalRegistration: ").append(this.provisionalRegistration);
         sb.append("; ").append("LastLogin: ").append(this.lastLogin);
 

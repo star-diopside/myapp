@@ -20,11 +20,13 @@ public class UsersImpl extends EntityBaseImpl<String> implements Users, Loggable
     private String userId;
     private String username;
     private String password;
+    private Timestamp passwordUpdatedDatetime;
     private Boolean enabled;
     private Boolean provisionalRegistration;
     private Timestamp lastLogin;
     private boolean updatedUsername = false;
     private boolean updatedPassword = false;
+    private boolean updatedPasswordUpdatedDatetime = false;
     private boolean updatedEnabled = false;
     private boolean updatedProvisionalRegistration = false;
     private boolean updatedLastLogin = false;
@@ -72,6 +74,17 @@ public class UsersImpl extends EntityBaseImpl<String> implements Users, Loggable
     }
 
     @Override
+    public Timestamp getPasswordUpdatedDatetime() {
+        return this.passwordUpdatedDatetime;
+    }
+
+    @Override
+    public void setPasswordUpdatedDatetime(Timestamp passwordUpdatedDatetime) {
+        this.passwordUpdatedDatetime = passwordUpdatedDatetime;
+        this.updatedPasswordUpdatedDatetime = true;
+    }
+
+    @Override
     public Boolean getEnabled() {
         return this.enabled;
     }
@@ -112,6 +125,11 @@ public class UsersImpl extends EntityBaseImpl<String> implements Users, Loggable
     @Override
     public boolean isUpdatedPassword() {
         return this.updatedPassword;
+    }
+
+    @Override
+    public boolean isUpdatedPasswordUpdatedDatetime() {
+        return this.updatedPasswordUpdatedDatetime;
     }
 
     @Override
@@ -167,6 +185,8 @@ public class UsersImpl extends EntityBaseImpl<String> implements Users, Loggable
         LoggableUtil.addLog(log, this.userId, "userId");
         LoggableUtil.addLog(log, this.username, "username", this.updatedUsername);
         LoggableUtil.addLog(log, this.password, "password", this.updatedPassword);
+        LoggableUtil.addLog(log, this.passwordUpdatedDatetime, "passwordUpdatedDatetime",
+                this.updatedPasswordUpdatedDatetime);
         LoggableUtil.addLog(log, this.enabled, "enabled", this.updatedEnabled);
         LoggableUtil.addLog(log, this.provisionalRegistration, "provisionalRegistration",
                 this.updatedProvisionalRegistration);

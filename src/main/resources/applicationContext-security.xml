@@ -27,7 +27,7 @@
     <beans:bean id="userDetailsManager" class="jp.myapp.controller.auth.provisioning.LoginUserDetailsManager">
         <beans:property name="dataSource" ref="dataSource" />
         <beans:property name="usersByUsernameQuery"
-            value="select user_id, username, password, enabled, provisional_registration, last_login, register_datetime, register_user_id, updated_datetime, updated_user_id, version from users where user_id = ?" />
+            value="select user_id, username, password, password_updated_datetime, enabled, provisional_registration, last_login, register_datetime, register_user_id, updated_datetime, updated_user_id, version from users where user_id = ?" />
         <beans:property name="authoritiesByUsernameQuery"
             value="select user_id as username, authority, register_datetime, register_user_id, updated_datetime, updated_user_id, version from authorities where user_id = ?" />
     </beans:bean>

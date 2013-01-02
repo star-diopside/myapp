@@ -7,6 +7,7 @@
         <id column="USER_ID" property="userId" />
         <result column="USERNAME" property="username" />
         <result column="PASSWORD" property="password" />
+        <result column="PASSWORD_UPDATED_DATETIME" property="passwordUpdatedDatetime" />
         <result column="ENABLED" property="enabled" />
         <result column="PROVISIONAL_REGISTRATION" property="provisionalRegistration" />
         <result column="LAST_LOGIN" property="lastLogin" />
@@ -32,9 +33,9 @@
     <insert id="insert" parameterType="jp.myapp.dao.entity.Users">
         <![CDATA[
             INSERT INTO USERS
-            ( USER_ID, USERNAME, PASSWORD, ENABLED, PROVISIONAL_REGISTRATION, LAST_LOGIN, REGISTER_DATETIME, REGISTER_USER_ID, UPDATED_DATETIME, UPDATED_USER_ID, VERSION )
+            ( USER_ID, USERNAME, PASSWORD, PASSWORD_UPDATED_DATETIME, ENABLED, PROVISIONAL_REGISTRATION, LAST_LOGIN, REGISTER_DATETIME, REGISTER_USER_ID, UPDATED_DATETIME, UPDATED_USER_ID, VERSION )
             VALUES
-            ( #{userId}, #{username}, #{password}, #{enabled}, #{provisionalRegistration}, #{lastLogin,jdbcType=TIMESTAMP}, #{registerDatetime}, #{registerUserId}, #{updatedDatetime}, #{updatedUserId}, #{version} )
+            ( #{userId}, #{username}, #{password}, #{passwordUpdatedDatetime,jdbcType=TIMESTAMP}, #{enabled}, #{provisionalRegistration}, #{lastLogin,jdbcType=TIMESTAMP}, #{registerDatetime}, #{registerUserId}, #{updatedDatetime}, #{updatedUserId}, #{version} )
         ]]>
     </insert>
 
@@ -43,6 +44,7 @@
         <trim prefix="set" suffixOverrides=",">
             <if test="updatedUsername == true"><![CDATA[USERNAME = #{username},]]></if>
             <if test="updatedPassword == true"><![CDATA[PASSWORD = #{password},]]></if>
+            <if test="updatedPasswordUpdatedDatetime == true"><![CDATA[PASSWORD = #{passwordUpdatedDatetime},]]></if>
             <if test="updatedEnabled == true"><![CDATA[ENABLED = #{enabled},]]></if>
             <if test="updatedProvisionalRegistration == true"><![CDATA[PROVISIONAL_REGISTRATION = #{provisionalRegistration},]]></if>
             <if test="updatedLastLogin == true"><![CDATA[LAST_LOGIN = #{lastLogin},]]></if>

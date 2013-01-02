@@ -18,6 +18,10 @@ public interface Users extends EntityBase<String> {
 
     void setPassword(String password);
 
+    Timestamp getPasswordUpdatedDatetime();
+
+    void setPasswordUpdatedDatetime(Timestamp passwordUpdatedDatetime);
+
     Boolean getEnabled();
 
     void setEnabled(Boolean enabled);
@@ -33,6 +37,8 @@ public interface Users extends EntityBase<String> {
     boolean isUpdatedUsername();
 
     boolean isUpdatedPassword();
+
+    boolean isUpdatedPasswordUpdatedDatetime();
 
     boolean isUpdatedEnabled();
 

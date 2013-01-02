@@ -25,12 +25,13 @@ public class LoginUserDetailsManager extends JdbcUserDetailsManager {
                         String username = rs.getString(1);
                         String displayName = rs.getString(2);
                         String password = rs.getString(3);
-                        boolean enabled = rs.getBoolean(4);
-                        boolean provisionalRegistration = rs.getBoolean(5);
-                        Timestamp lastLogin = rs.getTimestamp(6);
+                        Timestamp passwordUpdatedDatetime = rs.getTimestamp(4);
+                        boolean enabled = rs.getBoolean(5);
+                        boolean provisionalRegistration = rs.getBoolean(6);
+                        Timestamp lastLogin = rs.getTimestamp(7);
 
-                        return new LoginUserImpl(username, displayName, password, enabled, provisionalRegistration,
-                                lastLogin, true, true, true, AuthorityUtils.NO_AUTHORITIES);
+                        return new LoginUserImpl(username, displayName, password, passwordUpdatedDatetime, enabled,
+                                provisionalRegistration, lastLogin, true, true, true, AuthorityUtils.NO_AUTHORITIES);
                     }
                 });
     }
@@ -42,7 +43,7 @@ public class LoginUserDetailsManager extends JdbcUserDetailsManager {
         LoginUserImpl loginUser = (LoginUserImpl) userFromUserQuery;
         UserDetails returnUserDetails = super.createUserDetails(username, userFromUserQuery, combinedAuthorities);
 
-        return new LoginUserImpl(returnUserDetails, loginUser.getDisplayName(), loginUser.isProvisionalRegistration(),
-                loginUser.getLastLogin());
+        return new LoginUserImpl(returnUserDetails, loginUser.getDisplayName(), loginUser.getPasswordUpdatedDatetime(),
+                loginUser.isProvisionalRegistration(), loginUser.getLastLogin());
     }
 }

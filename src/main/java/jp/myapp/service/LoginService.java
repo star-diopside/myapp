@@ -68,6 +68,7 @@ public class LoginService {
         usersEntity.setUserId(userId);
         usersEntity.setUsername(userName);
         usersEntity.setPassword(DigestUtils.sha256Hex(password));
+        usersEntity.setPasswordUpdatedDatetime(current);
         usersEntity.setEnabled(true);
         usersEntity.setProvisionalRegistration(true);
         usersEntity.setLastLogin(null);
