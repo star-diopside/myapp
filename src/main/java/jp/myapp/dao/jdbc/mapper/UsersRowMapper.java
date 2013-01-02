@@ -18,6 +18,7 @@ public class UsersRowMapper implements RowMapper<Users> {
         users.setUserId(rs.getString("USER_ID"));
         users.setUsername(rs.getString("USERNAME"));
         users.setPassword(rs.getString("PASSWORD"));
+        users.setPasswordUpdatedDatetime(rs.getTimestamp("PASSWORD_UPDATED_DATETIME"));
         users.setEnabled(rs.getBoolean("ENABLED"));
         users.setProvisionalRegistration(rs.getBoolean("PROVISIONAL_REGISTRATION"));
         users.setLastLogin(rs.getTimestamp("LAST_LOGIN"));

@@ -23,6 +23,7 @@ public class UsersFieldSetMapper implements FieldSetMapper<Users> {
         userEntity.setUserId(fieldSet.readString("userId"));
         userEntity.setUsername(fieldSet.readString("username"));
         userEntity.setPassword(fieldSet.readString("password"));
+        userEntity.setPasswordUpdatedDatetime(new Timestamp(fieldSet.readDate("passwordUpdatedDatetime").getTime()));
         userEntity.setEnabled(fieldSet.readBoolean("enabled"));
         userEntity.setProvisionalRegistration(fieldSet.readBoolean("provisionalRegistration"));
         userEntity.setLastLogin(new Timestamp(fieldSet.readDate("lastLogin").getTime()));
