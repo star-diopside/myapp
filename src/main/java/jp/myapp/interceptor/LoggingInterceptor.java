@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import jp.myapp.exception.ApplicationException;
+import jp.myapp.exception.IBusinessException;
 import jp.myapp.logging.Loggable;
 
 import org.aopalliance.intercept.MethodInvocation;
@@ -368,7 +368,7 @@ public class LoggingInterceptor extends AbstractTraceInterceptor {
     protected void writeToExceptionLog(Log logger, Object message, Throwable t) {
         if (t == null) {
             logger.error(message);
-        } else if (t instanceof ApplicationException) {
+        } else if (t instanceof IBusinessException) {
             logger.info(message);
         } else {
             logger.error(message, t);
@@ -423,7 +423,7 @@ public class LoggingInterceptor extends AbstractTraceInterceptor {
      * @return ログ出力を有効にする場合はtrueを返す。
      */
     protected boolean isExceptionLogEnabled(Log logger, Throwable t) {
-        if (t instanceof ApplicationException) {
+        if (t instanceof IBusinessException) {
             return logger.isInfoEnabled();
         } else {
             return logger.isErrorEnabled();
