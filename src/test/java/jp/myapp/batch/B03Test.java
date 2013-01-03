@@ -2,6 +2,7 @@ package jp.myapp.batch;
 
 import static org.hamcrest.core.Is.*;
 import static org.junit.Assert.*;
+
 import jp.myapp.test.TestTrace;
 
 import org.junit.Rule;
@@ -17,7 +18,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:job-runner/B03-runner.xml", "classpath:launcher-test.xml" })
+@ContextConfiguration
 public class B03Test {
 
     @Autowired

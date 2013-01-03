@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="classpath:job-runner/B01-runner.xml" />
+    <import resource="classpath:applicationContext-batch-test.xml" />
+
+    <bean id="infile" class="java.lang.String">
+        <constructor-arg value="file:test-data/in/B01-IN.txt" />
+    </bean>
+
+    <bean id="outfile" class="java.lang.String">
+        <constructor-arg value="file:test-data/out/B01-OUT.txt" />
+    </bean>
+
+
+</beans>

@@ -4,6 +4,8 @@
     xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <import resource="applicationContext-test.xml" />
+
     <bean class="org.springframework.batch.test.JobLauncherTestUtils" />
 
 </beans>

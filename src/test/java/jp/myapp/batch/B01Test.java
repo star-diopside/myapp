@@ -2,6 +2,7 @@ package jp.myapp.batch;
 
 import static org.hamcrest.core.Is.*;
 import static org.junit.Assert.*;
+
 import jp.myapp.test.TestTrace;
 
 import org.junit.Rule;
@@ -13,15 +14,22 @@ import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.test.JobLauncherTestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:job-runner/B01-runner.xml", "classpath:launcher-test.xml" })
+@ContextConfiguration
 public class B01Test {
 
     @Autowired
     private JobLauncherTestUtils jobLauncherTestUtils;
+
+    @Value("#{@infile}")
+    private String infile;
+
+    @Value("#{@outfile}")
+    private String outfile;
 
     @Rule
     public TestRule testTrace = new TestTrace();
@@ -31,8 +39,8 @@ public class B01Test {
 
         JobParametersBuilder jpb = new JobParametersBuilder(this.jobLauncherTestUtils.getUniqueJobParameters());
 
-        jpb.addString("infile", "file:test-data/in/B01-IN.txt");
-        jpb.addString("outfile", "file:test-data/out/B01-OUT.txt");
+        jpb.addString("infile", this.infile);
+        jpb.addString("outfile", this.outfile);
 
         JobExecution jobExecution = this.jobLauncherTestUtils.launchJob(jpb.toJobParameters());
 

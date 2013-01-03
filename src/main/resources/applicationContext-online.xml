@@ -6,12 +6,6 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- 共通設定のインポート -->
-    <import resource="classpath:applicationContext.xml" />
-
-    <!-- オンラインバッチ設定のインポート -->
-    <import resource="classpath:OnlineBatch-context.xml" />
-
     <!-- プロパティファイル読み込み -->
     <context:property-placeholder location="classpath:database.properties" />
 
@@ -30,5 +24,9 @@
 
     <!-- コンポーネントスキャン -->
     <context:component-scan base-package="jp.myapp" />
+
+    <!-- オンラインバッチ定義 -->
+    <import resource="classpath:simple-job-launcher-context.xml" />
+    <import resource="classpath:job/B01-context.xml" />
 
 </beans>

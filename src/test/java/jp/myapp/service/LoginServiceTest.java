@@ -51,17 +51,19 @@ public class LoginServiceTest {
     public void setUp() throws Exception {
 
         Class<?> clazz = this.getClass();
-        InputStream is = clazz.getResourceAsStream(clazz.getSimpleName() + "-data.xml");
 
-        FlatXmlDataSetBuilder builder = new FlatXmlDataSetBuilder();
-        FlatXmlDataSet fxds = builder.build(is);
-        ReplacementDataSet rds = new ReplacementDataSet(fxds);
+        try (InputStream is = clazz.getResourceAsStream(clazz.getSimpleName() + "-data.xml")) {
 
-        rds.addReplacementObject("[NOW_DATETIME]", new Timestamp(System.currentTimeMillis()));
+            FlatXmlDataSetBuilder builder = new FlatXmlDataSetBuilder();
+            FlatXmlDataSet fxds = builder.build(is);
+            ReplacementDataSet rds = new ReplacementDataSet(fxds);
 
-        this.databaseTester = new DataSourceDatabaseTester(this.dataSource);
-        this.databaseTester.setDataSet(rds);
-        this.databaseTester.onSetup();
+            rds.addReplacementObject("[NOW_DATETIME]", new Timestamp(System.currentTimeMillis()));
+
+            this.databaseTester = new DataSourceDatabaseTester(this.dataSource);
+            this.databaseTester.setDataSet(rds);
+            this.databaseTester.onSetup();
+        }
     }
 
     @After
