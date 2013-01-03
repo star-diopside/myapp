@@ -1,34 +1,276 @@
 package jp.myapp.bean;
 
-import java.lang.reflect.InvocationTargetException;
+import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import jp.myapp.dao.entity.Users;
 import jp.myapp.dao.entity.UsersImpl;
+import jp.myapp.logging.Loggable;
+import jp.myapp.logging.LoggableUtil;
 
-public class UserInfo extends UsersImpl {
+public class UserInfo implements Users, Loggable, Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    /** ユーザ情報 */
+    private Users users;
 
     /**
      * コンストラクタ
      */
     public UserInfo() {
+        this.users = new UsersImpl();
     }
 
     /**
-     * コピーコンストラクタ
+     * コンストラクタ
      * 
-     * @param source コピーするユーザ情報
+     * @param source ユーザ情報
      */
     public UserInfo(Users source) {
-        try {
-            PropertyUtils.copyProperties(this, source);
-        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-            throw new IllegalArgumentException(e);
-        }
+        this.users = source;
+    }
+
+    @Override
+    public String getPK() {
+        return this.users.getPK();
+    }
+
+    @Override
+    public void setPK(String pk) {
+        this.users.setPK(pk);
+    }
+
+    @Override
+    public String getUserId() {
+        return this.users.getUserId();
+    }
+
+    @Override
+    public void setUserId(String userId) {
+        this.users.setUserId(userId);
+    }
+
+    @Override
+    public String getUsername() {
+        return this.users.getUsername();
+    }
+
+    @Override
+    public void setUsername(String username) {
+        this.users.setUsername(username);
+    }
+
+    @Override
+    public String getPassword() {
+        return this.users.getPassword();
+    }
+
+    @Override
+    public void setPassword(String password) {
+        this.users.setPassword(password);
+    }
+
+    @Override
+    public Timestamp getPasswordUpdatedDatetime() {
+        return this.users.getPasswordUpdatedDatetime();
+    }
+
+    @Override
+    public void setPasswordUpdatedDatetime(Timestamp passwordUpdatedDatetime) {
+        this.users.setPasswordUpdatedDatetime(passwordUpdatedDatetime);
+    }
+
+    @Override
+    public Boolean getEnabled() {
+        return this.users.getEnabled();
+    }
+
+    @Override
+    public void setEnabled(Boolean enabled) {
+        this.users.setEnabled(enabled);
+    }
+
+    @Override
+    public Boolean getProvisionalRegistration() {
+        return this.users.getProvisionalRegistration();
+    }
+
+    @Override
+    public void setProvisionalRegistration(Boolean provisionalRegistration) {
+        this.users.setProvisionalRegistration(provisionalRegistration);
+    }
+
+    @Override
+    public Timestamp getLastLogin() {
+        return this.users.getLastLogin();
+    }
+
+    @Override
+    public void setLastLogin(Timestamp lastLogin) {
+        this.users.setLastLogin(lastLogin);
+    }
+
+    @Override
+    public Timestamp getRegisterDatetime() {
+        return this.users.getRegisterDatetime();
+    }
+
+    @Override
+    public void setRegisterDatetime(Timestamp registerDatetime) {
+        this.users.setRegisterDatetime(registerDatetime);
+    }
+
+    @Override
+    public String getRegisterUserId() {
+        return this.users.getRegisterUserId();
+    }
+
+    @Override
+    public void setRegisterUserId(String registerUserId) {
+        this.users.setRegisterUserId(registerUserId);
+    }
+
+    @Override
+    public Timestamp getUpdatedDatetime() {
+        return this.users.getUpdatedDatetime();
+    }
+
+    @Override
+    public void setUpdatedDatetime(Timestamp updatedDatetime) {
+        this.users.setUpdatedDatetime(updatedDatetime);
+    }
+
+    @Override
+    public String getUpdatedUserId() {
+        return this.users.getUpdatedUserId();
+    }
+
+    @Override
+    public void setUpdatedUserId(String updatedUserId) {
+        this.users.setUpdatedUserId(updatedUserId);
+    }
+
+    @Override
+    public Integer getVersion() {
+        return this.users.getVersion();
+    }
+
+    @Override
+    public void setVersion(Integer version) {
+        this.users.setVersion(version);
+    }
+
+    @Override
+    public boolean isUpdatedUsername() {
+        return this.users.isUpdatedUsername();
+    }
+
+    @Override
+    public boolean isUpdatedPassword() {
+        return this.users.isUpdatedPassword();
+    }
+
+    @Override
+    public boolean isUpdatedPasswordUpdatedDatetime() {
+        return this.users.isUpdatedPasswordUpdatedDatetime();
+    }
+
+    @Override
+    public boolean isUpdatedEnabled() {
+        return this.users.isUpdatedEnabled();
+    }
+
+    @Override
+    public boolean isUpdatedProvisionalRegistration() {
+        return this.users.isUpdatedProvisionalRegistration();
+    }
+
+    @Override
+    public boolean isUpdatedLastLogin() {
+        return this.users.isUpdatedLastLogin();
+    }
+
+    @Override
+    public boolean isUpdatedRegisterDatetime() {
+        return this.users.isUpdatedRegisterDatetime();
+    }
+
+    @Override
+    public boolean isUpdatedRegisterUserId() {
+        return this.users.isUpdatedRegisterUserId();
+    }
+
+    @Override
+    public boolean isUpdatedUpdatedDatetime() {
+        return this.users.isUpdatedUpdatedDatetime();
+    }
+
+    @Override
+    public boolean isUpdatedUpdatedUserId() {
+        return this.users.isUpdatedUpdatedUserId();
+    }
+
+    @Override
+    public boolean isUpdatedVersion() {
+        return this.users.isUpdatedVersion();
+    }
+
+    @Override
+    public void resetUsername() {
+        this.users.resetUsername();
+    }
+
+    @Override
+    public void resetPassword() {
+        this.users.resetPassword();
+    }
+
+    @Override
+    public void resetEnabled() {
+        this.users.resetEnabled();
+    }
+
+    @Override
+    public void resetProvisionalRegistration() {
+        this.users.resetProvisionalRegistration();
+    }
+
+    @Override
+    public void resetLastLogin() {
+        this.users.resetLastLogin();
+    }
+
+    @Override
+    public void resetRegisterDatetime() {
+        this.users.resetRegisterDatetime();
+    }
+
+    @Override
+    public void resetRegisterUserId() {
+        this.users.resetRegisterUserId();
+    }
+
+    @Override
+    public void resetUpdatedDatetime() {
+        this.users.resetUpdatedDatetime();
+    }
+
+    @Override
+    public void resetUpdatedUserId() {
+        this.users.resetUpdatedUserId();
+    }
+
+    @Override
+    public void resetVersion() {
+        this.users.resetVersion();
     }
 
     /**
@@ -61,5 +303,34 @@ public class UserInfo extends UsersImpl {
      */
     public Object getSalt() {
         return this.getPasswordUpdatedDatetime();
+    }
+
+    @Override
+    public Collection<String> toLogText() {
+
+        ArrayList<String> log = new ArrayList<String>();
+
+        if (this.users instanceof Loggable) {
+            LoggableUtil.addLogList(log, ((Loggable) this.users).toLogText(), "users");
+        } else {
+            LoggableUtil.addLog(log, this.users, "users");
+        }
+
+        return log;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return EqualsBuilder.reflectionEquals(this, obj, true);
+    }
+
+    @Override
+    public int hashCode() {
+        return HashCodeBuilder.reflectionHashCode(this, true);
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }

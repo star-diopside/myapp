@@ -3,7 +3,10 @@ package jp.myapp.bean.userdetails;
 import java.sql.Timestamp;
 import java.util.Collection;
 
+import jp.myapp.dao.entity.Users;
+
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -19,7 +22,6 @@ public class LoginUserImpl extends User implements LoginUser {
     public LoginUserImpl(String username, String displayName, String password, Timestamp passwordUpdatedDatetime,
             boolean enabled, boolean provisionalRegistration, Timestamp lastLogin, boolean accountNonExpired,
             boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
-
         super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
         this.displayName = displayName;
         this.passwordUpdatedDatetime = passwordUpdatedDatetime;
@@ -29,10 +31,15 @@ public class LoginUserImpl extends User implements LoginUser {
 
     public LoginUserImpl(UserDetails user, String displayName, Timestamp passwordUpdatedDatetime,
             boolean provisionalRegistration, Timestamp lastLogin) {
-
         this(user.getUsername(), displayName, user.getPassword(), passwordUpdatedDatetime, user.isEnabled(),
                 provisionalRegistration, lastLogin, user.isAccountNonExpired(), user.isCredentialsNonExpired(),
                 user.isAccountNonLocked(), user.getAuthorities());
+    }
+
+    public LoginUserImpl(Users user) {
+        this(user.getUserId(), user.getUsername(), user.getPassword(), user.getPasswordUpdatedDatetime(),
+                user.getEnabled(), user.getProvisionalRegistration(), user.getLastLogin(), true, true, true,
+                AuthorityUtils.NO_AUTHORITIES);
     }
 
     @Override
