@@ -34,26 +34,4 @@ public interface Users extends EntityBase<String> {
 
     void setLastLogin(Timestamp lastLogin);
 
-    boolean isUpdatedUsername();
-
-    boolean isUpdatedPassword();
-
-    boolean isUpdatedPasswordUpdatedDatetime();
-
-    boolean isUpdatedEnabled();
-
-    boolean isUpdatedProvisionalRegistration();
-
-    boolean isUpdatedLastLogin();
-
-    void resetUsername();
-
-    void resetPassword();
-
-    void resetEnabled();
-
-    void resetProvisionalRegistration();
-
-    void resetLastLogin();
-
 }

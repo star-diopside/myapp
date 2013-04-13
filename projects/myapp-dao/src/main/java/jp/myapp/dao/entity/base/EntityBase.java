@@ -28,24 +28,4 @@ public interface EntityBase<PK> {
 
     void setVersion(Integer version);
 
-    boolean isUpdatedRegisterDatetime();
-
-    boolean isUpdatedRegisterUserId();
-
-    boolean isUpdatedUpdatedDatetime();
-
-    boolean isUpdatedUpdatedUserId();
-
-    boolean isUpdatedVersion();
-
-    void resetRegisterDatetime();
-
-    void resetRegisterUserId();
-
-    void resetUpdatedDatetime();
-
-    void resetUpdatedUserId();
-
-    void resetVersion();
-
 }

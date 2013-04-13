@@ -27,13 +27,15 @@ public class LoggingConfigFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
             ServletException {
 
-        HttpSession session = ((HttpServletRequest) request).getSession();
-
         // MDC の情報をクリアする。
         MDC.clear();
 
         // MDC に情報をセットする。
-        MDC.put("sessionId", session.getId());
+        HttpSession session = ((HttpServletRequest) request).getSession(false);
+
+        if (session != null) {
+            MDC.put("sessionId", session.getId());
+        }
         MDC.put("remoteAddr", request.getRemoteAddr());
 
         chain.doFilter(request, response);

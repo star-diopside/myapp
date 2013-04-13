@@ -35,26 +35,26 @@
             INSERT INTO USERS
             ( USER_ID, USERNAME, PASSWORD, PASSWORD_UPDATED_DATETIME, ENABLED, PROVISIONAL_REGISTRATION, LAST_LOGIN, REGISTER_DATETIME, REGISTER_USER_ID, UPDATED_DATETIME, UPDATED_USER_ID, VERSION )
             VALUES
-            ( #{userId}, #{username}, #{password}, #{passwordUpdatedDatetime,jdbcType=TIMESTAMP}, #{enabled}, #{provisionalRegistration}, #{lastLogin,jdbcType=TIMESTAMP}, #{registerDatetime}, #{registerUserId}, #{updatedDatetime}, #{updatedUserId}, #{version} )
+            ( #{userId}, #{username}, #{password}, #{passwordUpdatedDatetime,jdbcType=TIMESTAMP}, #{enabled}, #{provisionalRegistration}, #{lastLogin,jdbcType=TIMESTAMP}, #{registerDatetime,jdbcType=TIMESTAMP}, #{registerUserId}, #{updatedDatetime,jdbcType=TIMESTAMP}, #{updatedUserId}, #{version} )
         ]]>
     </insert>
 
     <update id="update" parameterType="jp.myapp.dao.entity.Users">
-        <![CDATA[UPDATE USERS]]>
-        <trim prefix="set" suffixOverrides=",">
-            <if test="updatedUsername == true"><![CDATA[USERNAME = #{username},]]></if>
-            <if test="updatedPassword == true"><![CDATA[PASSWORD = #{password},]]></if>
-            <if test="updatedPasswordUpdatedDatetime == true"><![CDATA[PASSWORD = #{passwordUpdatedDatetime},]]></if>
-            <if test="updatedEnabled == true"><![CDATA[ENABLED = #{enabled},]]></if>
-            <if test="updatedProvisionalRegistration == true"><![CDATA[PROVISIONAL_REGISTRATION = #{provisionalRegistration},]]></if>
-            <if test="updatedLastLogin == true"><![CDATA[LAST_LOGIN = #{lastLogin},]]></if>
-            <if test="updatedRegisterDatetime == true"><![CDATA[REGISTER_DATETIME = #{registerDatetime},]]></if>
-            <if test="updatedRegisterUserId == true"><![CDATA[REGISTER_USER_ID = #{registerUserId},]]></if>
-            <if test="updatedUpdatedDatetime == true"><![CDATA[UPDATED_DATETIME = #{updatedDatetime},]]></if>
-            <if test="updatedUpdatedUserId == true"><![CDATA[UPDATED_USER_ID = #{updatedUserId},]]></if>
-            <if test="updatedVersion == true"><![CDATA[VERSION = #{version},]]></if>
-        </trim>
-        <![CDATA[WHERE USER_ID = #{userId}]]>
+        <![CDATA[
+            UPDATE USERS
+            SET USERNAME = #{username},
+                PASSWORD = #{password},
+                PASSWORD_UPDATED_DATETIME = #{passwordUpdatedDatetime,jdbcType=TIMESTAMP},
+                ENABLED = #{enabled},
+                PROVISIONAL_REGISTRATION = #{provisionalRegistration},
+                LAST_LOGIN = #{lastLogin,jdbcType=TIMESTAMP},
+                REGISTER_DATETIME = #{registerDatetime,jdbcType=TIMESTAMP},
+                REGISTER_USER_ID = #{registerUserId},
+                UPDATED_DATETIME = #{updatedDatetime,jdbcType=TIMESTAMP},
+                UPDATED_USER_ID = #{updatedUserId},
+                VERSION = #{version}
+            WHERE USER_ID = #{userId}
+        ]]>
     </update>
 
     <delete id="delete" parameterType="string">

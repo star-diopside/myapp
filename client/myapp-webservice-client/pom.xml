@@ -4,32 +4,25 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>jp.myapp.project.projects</groupId>
-    <artifactId>myapp-batch</artifactId>
+    <groupId>jp.myapp.project.client</groupId>
+    <artifactId>myapp-webservice-client</artifactId>
     <packaging>jar</packaging>
-    <name>myapp-batch</name>
+    <name>myapp-webservice-client</name>
 
     <parent>
         <groupId>jp.myapp.project</groupId>
-        <artifactId>projects</artifactId>
+        <artifactId>client</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-
-    <repositories>
-        <repository>
-            <id>local.repository</id>
-            <url>file:${project.basedir}/../../resources/repository</url>
-        </repository>
-    </repositories>
 
     <dependencies>
         <dependency>
             <groupId>jp.myapp.project.projects</groupId>
-            <artifactId>myapp-dao</artifactId>
+            <artifactId>myapp-core</artifactId>
         </dependency>
         <dependency>
             <groupId>jp.myapp.project.projects</groupId>
-            <artifactId>myapp-service</artifactId>
+            <artifactId>myapp-webservice-interface</artifactId>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -56,32 +49,18 @@
             <artifactId>spring-context</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.batch</groupId>
-            <artifactId>spring-batch-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>postgresql</groupId>
-            <artifactId>postgresql</artifactId>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxrs</artifactId>
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derbyLocale_ja_JP</artifactId>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-json-provider</artifactId>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.batch</groupId>
-            <artifactId>spring-batch-test</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -112,8 +91,8 @@
                             <repositoryName>lib</repositoryName>
                             <programs>
                                 <program>
-                                    <mainClass>org.springframework.batch.core.launch.support.CommandLineJobRunner</mainClass>
-                                    <name>CommandLineJobRunner</name>
+                                    <mainClass>jp.myapp.client.main.Launcher</mainClass>
+                                    <name>myapp-webservice-client</name>
                                 </program>
                             </programs>
                         </configuration>

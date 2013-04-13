@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-    <property name="LOG_DIR" value="E:/log/batch" />
+    <property name="LOG_DIR" value="E:/log/webservice-client" />
 
     <!-- Error Interceptor Log Appender -->
     <appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -38,14 +38,6 @@
 
     <!-- Logger Setting -->
     <logger name="jp.myapp" level="TRACE">
-        <appender-ref ref="trace" />
-    </logger>
-
-    <logger name="java.sql" level="TRACE">
-        <appender-ref ref="trace" />
-    </logger>
-
-    <logger name="org.apache.ibatis" level="TRACE">
         <appender-ref ref="trace" />
     </logger>
 

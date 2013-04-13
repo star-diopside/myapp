@@ -30,20 +30,20 @@
             INSERT INTO AUTHORITIES
             ( USER_ID, AUTHORITY, REGISTER_DATETIME, REGISTER_USER_ID, UPDATED_DATETIME, UPDATED_USER_ID, VERSION )
             VALUES
-            ( #{userId}, #{authority}, #{registerDatetime}, #{registerUserId}, #{updatedDatetime}, #{updatedUserId}, #{version} )
+            ( #{userId}, #{authority}, #{registerDatetime,jdbcType=TIMESTAMP}, #{registerUserId}, #{updatedDatetime,jdbcType=TIMESTAMP}, #{updatedUserId}, #{version} )
         ]]>
     </insert>
 
     <update id="update" parameterType="jp.myapp.dao.entity.Authorities">
-        <![CDATA[UPDATE AUTHORITIES]]>
-        <trim prefix="set" suffixOverrides=",">
-            <if test="updatedRegisterDatetime == true"><![CDATA[REGISTER_DATETIME = #{registerDatetime},]]></if>
-            <if test="updatedRegisterUserId == true"><![CDATA[REGISTER_USER_ID = #{registerUserId},]]></if>
-            <if test="updatedUpdatedDatetime == true"><![CDATA[UPDATED_DATETIME = #{updatedDatetime},]]></if>
-            <if test="updatedUpdatedUserId == true"><![CDATA[UPDATED_USER_ID = #{updatedUserId},]]></if>
-            <if test="updatedVersion == true"><![CDATA[VERSION = #{version},]]></if>
-        </trim>
-        <![CDATA[WHERE USER_ID = #{userId} AND AUTHORITY = #{authority}]]>
+        <![CDATA[
+            UPDATE AUTHORITIES
+            SET REGISTER_DATETIME = #{registerDatetime,jdbcType=TIMESTAMP},
+                REGISTER_USER_ID = #{registerUserId},
+                UPDATED_DATETIME = #{updatedDatetime,jdbcType=TIMESTAMP},
+                UPDATED_USER_ID = #{updatedUserId},
+                VERSION = #{version}
+            WHERE USER_ID = #{userId} AND AUTHORITY = #{authority}
+        ]]>
     </update>
 
     <delete id="delete" parameterType="jp.myapp.dao.entity.AuthoritiesPK">

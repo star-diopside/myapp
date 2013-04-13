@@ -5,9 +5,9 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>jp.myapp.project</groupId>
-    <artifactId>projects</artifactId>
+    <artifactId>client</artifactId>
     <packaging>pom</packaging>
-    <name>sub projects</name>
+    <name>client</name>
 
     <parent>
         <groupId>jp.myapp</groupId>
@@ -16,12 +16,7 @@
     </parent>
 
     <modules>
-        <module>myapp-batch</module>
-        <module>myapp-core</module>
-        <module>myapp-dao</module>
-        <module>myapp-service</module>
-        <module>myapp-webservice-interface</module>
-        <module>myapp-webservice-implement</module>
+        <module>myapp-webservice-client</module>
     </modules>
 
 </project>

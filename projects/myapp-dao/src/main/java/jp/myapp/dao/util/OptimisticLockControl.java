@@ -26,9 +26,29 @@ public class OptimisticLockControl<Entity extends EntityBase<PK>, PK> {
      * レコードロックを行い、楽観排他チェックを行う。
      * 
      * @param entity エンティティ
+     * @return ロックを行ったレコード情報
+     * @exception ExclusiveException 楽観排他エラーの場合
      */
-    public void lock(Entity entity) {
-        this.checkVersion(entity.getPK(), entity.getVersion());
+    public Entity lock(Entity entity) {
+        return this.lock(entity.getPK(), entity.getVersion());
+    }
+
+    /**
+     * レコードロックを行い、楽観排他チェックを行う。
+     * 
+     * @param pk 主キー
+     * @param version 楽観排他キー
+     * @exception ExclusiveException 楽観排他エラーの場合
+     */
+    public Entity lock(PK pk, Integer version) {
+
+        Entity entity = this.mapper.selectForUpdate(pk);
+
+        if (entity == null || entity.getVersion() == null || !entity.getVersion().equals(version)) {
+            throw new ExclusiveException();
+        }
+
+        return entity;
     }
 
     /**
@@ -36,10 +56,11 @@ public class OptimisticLockControl<Entity extends EntityBase<PK>, PK> {
      * 
      * @param entity エンティティ
      * @return 更新件数
+     * @exception ExclusiveException 楽観排他エラーの場合
      */
     public int update(Entity entity) {
 
-        this.checkVersion(entity.getPK(), entity.getVersion());
+        this.lock(entity);
 
         Integer version = entity.getVersion();
 
@@ -57,24 +78,10 @@ public class OptimisticLockControl<Entity extends EntityBase<PK>, PK> {
      * 
      * @param entity エンティティ
      * @return 削除件数
+     * @exception ExclusiveException 楽観排他エラーの場合
      */
     public int delete(Entity entity) {
-        this.checkVersion(entity.getPK(), entity.getVersion());
+        this.lock(entity);
         return this.mapper.delete(entity.getPK());
-    }
-
-    /**
-     * 排他キーチェックを行う。
-     * 
-     * @param pk 主キー
-     * @param version 楽観排他キー
-     */
-    private void checkVersion(PK pk, Integer version) {
-
-        Entity entity = this.mapper.selectForUpdate(pk);
-
-        if (entity == null || entity.getVersion() == null || !entity.getVersion().equals(version)) {
-            throw new ExclusiveException();
-        }
     }
 }

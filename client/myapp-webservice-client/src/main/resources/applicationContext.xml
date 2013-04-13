@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
+
+    <!-- ログ出力インターセプター -->
+    <bean id="logging" class="jp.myapp.interceptor.CustomLoggingInterceptor" />
+
+    <!-- AOP定義 -->
+    <aop:config>
+        <aop:advisor advice-ref="logging"
+            pointcut="execution(public * jp.myapp..*(..))" />
+    </aop:config>
+
+    <context:property-placeholder location="webservice.properties" />
+
+    <jaxrs:client id="userService" address="${webservice.address}"
+        serviceClass="jp.myapp.webservice.service.UserService">
+        <jaxrs:providers>
+            <bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
+        </jaxrs:providers>
+    </jaxrs:client>
+
+</beans>

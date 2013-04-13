@@ -24,12 +24,6 @@ public class UsersImpl extends EntityBaseImpl<String> implements Users, Loggable
     private Boolean enabled;
     private Boolean provisionalRegistration;
     private Timestamp lastLogin;
-    private boolean updatedUsername = false;
-    private boolean updatedPassword = false;
-    private boolean updatedPasswordUpdatedDatetime = false;
-    private boolean updatedEnabled = false;
-    private boolean updatedProvisionalRegistration = false;
-    private boolean updatedLastLogin = false;
 
     @Override
     public String getPK() {
@@ -59,7 +53,6 @@ public class UsersImpl extends EntityBaseImpl<String> implements Users, Loggable
     @Override
     public void setUsername(String username) {
         this.username = username;
-        this.updatedUsername = true;
     }
 
     @Override
@@ -70,7 +63,6 @@ public class UsersImpl extends EntityBaseImpl<String> implements Users, Loggable
     @Override
     public void setPassword(String password) {
         this.password = password;
-        this.updatedPassword = true;
     }
 
     @Override
@@ -81,7 +73,6 @@ public class UsersImpl extends EntityBaseImpl<String> implements Users, Loggable
     @Override
     public void setPasswordUpdatedDatetime(Timestamp passwordUpdatedDatetime) {
         this.passwordUpdatedDatetime = passwordUpdatedDatetime;
-        this.updatedPasswordUpdatedDatetime = true;
     }
 
     @Override
@@ -92,7 +83,6 @@ public class UsersImpl extends EntityBaseImpl<String> implements Users, Loggable
     @Override
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
-        this.updatedEnabled = true;
     }
 
     @Override
@@ -103,7 +93,6 @@ public class UsersImpl extends EntityBaseImpl<String> implements Users, Loggable
     @Override
     public void setProvisionalRegistration(Boolean provisionalRegistration) {
         this.provisionalRegistration = provisionalRegistration;
-        this.updatedProvisionalRegistration = true;
     }
 
     @Override
@@ -114,67 +103,6 @@ public class UsersImpl extends EntityBaseImpl<String> implements Users, Loggable
     @Override
     public void setLastLogin(Timestamp lastLogin) {
         this.lastLogin = lastLogin;
-        this.updatedLastLogin = true;
-    }
-
-    @Override
-    public boolean isUpdatedUsername() {
-        return this.updatedUsername;
-    }
-
-    @Override
-    public boolean isUpdatedPassword() {
-        return this.updatedPassword;
-    }
-
-    @Override
-    public boolean isUpdatedPasswordUpdatedDatetime() {
-        return this.updatedPasswordUpdatedDatetime;
-    }
-
-    @Override
-    public boolean isUpdatedEnabled() {
-        return this.updatedEnabled;
-    }
-
-    @Override
-    public boolean isUpdatedProvisionalRegistration() {
-        return this.updatedProvisionalRegistration;
-    }
-
-    @Override
-    public boolean isUpdatedLastLogin() {
-        return this.updatedLastLogin;
-    }
-
-    @Override
-    public void resetUsername() {
-        this.username = null;
-        this.updatedUsername = false;
-    }
-
-    @Override
-    public void resetPassword() {
-        this.password = null;
-        this.updatedPassword = false;
-    }
-
-    @Override
-    public void resetEnabled() {
-        this.enabled = null;
-        this.updatedEnabled = false;
-    }
-
-    @Override
-    public void resetProvisionalRegistration() {
-        this.provisionalRegistration = null;
-        this.updatedProvisionalRegistration = false;
-    }
-
-    @Override
-    public void resetLastLogin() {
-        this.lastLogin = null;
-        this.updatedLastLogin = false;
     }
 
     @Override
@@ -183,14 +111,12 @@ public class UsersImpl extends EntityBaseImpl<String> implements Users, Loggable
         ArrayList<String> log = new ArrayList<String>();
 
         LoggableUtil.addLog(log, this.userId, "userId");
-        LoggableUtil.addLog(log, this.username, "username", this.updatedUsername);
-        LoggableUtil.addLog(log, this.password, "password", this.updatedPassword);
-        LoggableUtil.addLog(log, this.passwordUpdatedDatetime, "passwordUpdatedDatetime",
-                this.updatedPasswordUpdatedDatetime);
-        LoggableUtil.addLog(log, this.enabled, "enabled", this.updatedEnabled);
-        LoggableUtil.addLog(log, this.provisionalRegistration, "provisionalRegistration",
-                this.updatedProvisionalRegistration);
-        LoggableUtil.addLog(log, this.lastLogin, "lastLogin", this.updatedLastLogin);
+        LoggableUtil.addLog(log, this.username, "username");
+        LoggableUtil.addLog(log, this.password, "password");
+        LoggableUtil.addLog(log, this.passwordUpdatedDatetime, "passwordUpdatedDatetime");
+        LoggableUtil.addLog(log, this.enabled, "enabled");
+        LoggableUtil.addLog(log, this.provisionalRegistration, "provisionalRegistration");
+        LoggableUtil.addLog(log, this.lastLogin, "lastLogin");
         log.addAll(super.toLogText());
 
         return log;
