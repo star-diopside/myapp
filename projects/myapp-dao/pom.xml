@@ -35,7 +35,6 @@
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
-            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.mybatis</groupId>
