@@ -11,19 +11,23 @@ import org.apache.ibatis.type.JdbcType;
 
 public class SQLXMLTypeHandler extends BaseTypeHandler<SQLXML> {
 
+    @Override
     public void setNonNullParameter(PreparedStatement ps, int i, SQLXML parameter, JdbcType jdbcType)
             throws SQLException {
         ps.setSQLXML(i, parameter);
     }
 
+    @Override
     public SQLXML getNullableResult(ResultSet rs, String columnName) throws SQLException {
         return rs.getSQLXML(columnName);
     }
 
+    @Override
     public SQLXML getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
         return rs.getSQLXML(columnIndex);
     }
 
+    @Override
     public SQLXML getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
         return cs.getSQLXML(columnIndex);
     }

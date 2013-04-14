@@ -50,4 +50,5 @@ public interface UserService {
     @DELETE
     @Path("/{userId}/{version}")
     void deleteUser(@PathParam("userId") String userId, @PathParam("version") Integer version);
+
 }
