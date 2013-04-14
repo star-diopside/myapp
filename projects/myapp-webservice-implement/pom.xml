@@ -24,6 +24,10 @@
             <artifactId>myapp-dao</artifactId>
         </dependency>
         <dependency>
+            <groupId>jp.myapp.project.projects</groupId>
+            <artifactId>myapp-service</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
         </dependency>

@@ -29,8 +29,7 @@ public class XMLWriterUtil {
     }
 
     public void write(OutputStream stream, String encoding) throws XMLStreamException {
-        try (AutoCloseXMLStreamWriter writer = new AutoCloseXMLStreamWriter(this.factory.createXMLStreamWriter(stream,
-                encoding))) {
+        try (AutoCloseXMLStreamWriter writer = new AutoCloseXMLStreamWriter(this.factory.createXMLStreamWriter(stream, encoding))) {
             this.write(writer.getInstance());
         }
     }
@@ -47,7 +46,7 @@ public class XMLWriterUtil {
         }
     }
 
-    private void write(XMLStreamWriter writer) throws XMLStreamException {
+    public void write(XMLStreamWriter writer) throws XMLStreamException {
         writer.writeStartDocument("UTF-8", "1.0");
         this.writeBeansElement(writer, 0);
         writer.writeEndDocument();

@@ -13,8 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import jp.myapp.dao.entity.Users;
 import jp.myapp.dao.entity.UsersImpl;
+import jp.myapp.dao.mapper.AuthoritiesMapper;
+import jp.myapp.dao.mapper.UserAttributeMapper;
 import jp.myapp.dao.mapper.UsersMapper;
 import jp.myapp.dao.util.OptimisticLockControl;
+import jp.myapp.function.UserManager;
 import jp.myapp.webservice.bean.User;
 
 @Service
@@ -25,7 +28,16 @@ public class UserServiceImpl implements UserService {
     private UsersMapper usersMapper;
 
     @Autowired
+    private AuthoritiesMapper authoritiesMapper;
+
+    @Autowired
+    private UserAttributeMapper userAttributeMapper;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private UserManager userManager;
 
     @Override
     @Transactional
@@ -80,6 +92,8 @@ public class UserServiceImpl implements UserService {
 
         this.usersMapper.insert(entity);
 
+        this.userManager.process(user.getUserId());
+
         user.setVersion(entity.getVersion());
         return user;
     }
@@ -106,11 +120,9 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void deleteUser(String userId, Integer version) {
 
-        UsersImpl entity = new UsersImpl();
-
-        entity.setUserId(userId);
-        entity.setVersion(version);
-
-        (new OptimisticLockControl<>(this.usersMapper)).delete(entity);
+        (new OptimisticLockControl<>(this.usersMapper)).lock(userId, version);
+        this.authoritiesMapper.deleteByUserId(userId);
+        this.userAttributeMapper.delete(userId);
+        this.usersMapper.delete(userId);
     }
 }

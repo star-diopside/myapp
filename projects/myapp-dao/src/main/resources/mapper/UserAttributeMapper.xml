@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.myapp.dao.mapper.UserAttributeMapper">
+
+    <resultMap type="jp.myapp.dao.entity.UserAttributeImpl" id="userAttribute">
+        <id column="USER_ID" property="userId" />
+        <result column="ATTRIBUTE" property="attribute" />
+        <result column="REGISTER_DATETIME" property="registerDatetime" />
+        <result column="REGISTER_USER_ID" property="registerUserId" />
+        <result column="UPDATED_DATETIME" property="updatedDatetime" />
+        <result column="UPDATED_USER_ID" property="updatedUserId" />
+        <result column="VERSION" property="version" />
+    </resultMap>
+
+    <select id="select" parameterType="string" resultMap="userAttribute">
+        <![CDATA[
+            SELECT * FROM USER_ATTRIBUTE WHERE USER_ID = #{userId}
+        ]]>
+    </select>
+
+    <select id="selectForUpdate" parameterType="string" resultMap="userAttribute">
+        <![CDATA[
+            SELECT * FROM USER_ATTRIBUTE WHERE USER_ID = #{userId} FOR UPDATE
+        ]]>
+    </select>
+
+    <insert id="insert" parameterType="jp.myapp.dao.entity.UserAttribute">
+        <![CDATA[
+            INSERT INTO USER_ATTRIBUTE
+            ( USER_ID, ATTRIBUTE, REGISTER_DATETIME, REGISTER_USER_ID, UPDATED_DATETIME, UPDATED_USER_ID, VERSION )
+            VALUES
+            ( #{userId}, #{attribute}, #{registerDatetime,jdbcType=TIMESTAMP}, #{registerUserId}, #{updatedDatetime,jdbcType=TIMESTAMP}, #{updatedUserId}, #{version} )
+        ]]>
+    </insert>
+
+    <update id="update" parameterType="jp.myapp.dao.entity.UserAttribute">
+        <![CDATA[
+            UPDATE USER_ATTRIBUTE
+            SET USERNAME = #{username},
+                ATTRIBUTE = #{attribute},
+                REGISTER_DATETIME = #{registerDatetime,jdbcType=TIMESTAMP},
+                REGISTER_USER_ID = #{registerUserId},
+                UPDATED_DATETIME = #{updatedDatetime,jdbcType=TIMESTAMP},
+                UPDATED_USER_ID = #{updatedUserId},
+                VERSION = #{version}
+            WHERE USER_ID = #{userId}
+        ]]>
+    </update>
+
+    <delete id="delete" parameterType="string">
+        <![CDATA[
+            DELETE FROM USER_ATTRIBUTE WHERE USER_ID = #{userId}
+        ]]>
+    </delete>
+
+</mapper>
