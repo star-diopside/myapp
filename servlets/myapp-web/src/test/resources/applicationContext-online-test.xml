@@ -9,7 +9,8 @@
     <import resource="classpath:applicationContext.xml" />
     <import resource="classpath:applicationContext-dao.xml" />
     <import resource="classpath:applicationContext-security.xml" />
-    <import resource="applicationContext-test.xml" />
+    <import resource="classpath:applicationContext-webservice.xml" />
+    <import resource="classpath:applicationContext-test.xml" />
 
     <!-- コンポーネントスキャン -->
     <context:component-scan base-package="jp.myapp" />

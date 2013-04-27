@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>jp.myapp.project</groupId>
     <artifactId>ear</artifactId>
-    <packaging>ear</packaging>
+    <packaging>pom</packaging>
     <name>ear</name>
 
     <parent>
@@ -15,32 +15,8 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <dependencies>
-        <dependency>
-            <groupId>jp.myapp.project.servlets</groupId>
-            <artifactId>myapp-web</artifactId>
-            <type>war</type>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <finalName>MyApp</finalName>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <artifactId>maven-ear-plugin</artifactId>
-                    <configuration>
-                        <modules>
-                            <webModule>
-                                <groupId>jp.myapp.project.servlets</groupId>
-                                <artifactId>myapp-web</artifactId>
-                                <contextRoot>/MyApp</contextRoot>
-                            </webModule>
-                        </modules>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
+    <modules>
+        <module>myapp</module>
+    </modules>
 
 </project>

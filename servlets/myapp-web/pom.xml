@@ -15,6 +15,10 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
+    <build>
+        <finalName>${project.artifactId}</finalName>
+    </build>
+
     <repositories>
         <repository>
             <id>local.repository</id>
@@ -158,11 +162,6 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-rs-extension-providers</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
             <groupId>com.fasterxml.jackson.jaxrs</groupId>
             <artifactId>jackson-jaxrs-json-provider</artifactId>
             <scope>runtime</scope>
@@ -193,22 +192,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <build>
-        <finalName>MyApp</finalName>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <artifactId>maven-eclipse-plugin</artifactId>
-                    <configuration>
-                        <wtpversion>1.5</wtpversion>
-                        <additionalProjectFacets>
-                            <jst.web>3.0</jst.web>
-                        </additionalProjectFacets>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
 
 </project>

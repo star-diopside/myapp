@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-web>
+    <resource-ref>
+        <res-ref-name>jdbc/DataSource01</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <jndi-name>java:jboss/datasources/DataSource01</jndi-name>
+    </resource-ref>
+    <resource-ref>
+        <res-ref-name>jdbc/DataSource02</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <jndi-name>java:jboss/datasources/DataSource02</jndi-name>
+    </resource-ref>
+    <resource-ref>
+        <res-ref-name>jdbc/XADataSource01</res-ref-name>
+        <res-type>javax.sql.XADataSource</res-type>
+        <jndi-name>java:jboss/datasources/XADataSource01</jndi-name>
+    </resource-ref>
+    <resource-ref>
+        <res-ref-name>jdbc/XADataSource02</res-ref-name>
+        <res-type>javax.sql.XADataSource</res-type>
+        <jndi-name>java:jboss/datasources/XADataSource02</jndi-name>
+    </resource-ref>
+    <resource-ref>
+        <res-ref-name>UserTransaction</res-ref-name>
+        <res-type>javax.transaction.UserTransaction</res-type>
+        <jndi-name>java:jboss/UserTransaction</jndi-name>
+    </resource-ref>
+    <resource-ref>
+        <res-ref-name>TransactionSynchronizationRegistry</res-ref-name>
+        <res-type>javax.transaction.TransactionSynchronizationRegistry</res-type>
+        <jndi-name>java:jboss/TransactionSynchronizationRegistry</jndi-name>
+    </resource-ref>
+</jboss-web>

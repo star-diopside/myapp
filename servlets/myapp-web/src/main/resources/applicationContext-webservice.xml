@@ -17,15 +17,6 @@
         </jaxrs:providers>
     </jaxrs:server>
 
-    <jaxrs:server id="rest2" address="/rest2">
-        <jaxrs:serviceBeans>
-            <ref bean="userServiceImpl" />
-        </jaxrs:serviceBeans>
-        <jaxrs:providers>
-            <bean class="org.apache.cxf.jaxrs.provider.json.JSONProvider" />
-        </jaxrs:providers>
-    </jaxrs:server>
-
     <jaxws:endpoint id="userService"
         implementor="jp.myapp.webservice.service.UserServiceImpl"
         address="/soap/userService" />
