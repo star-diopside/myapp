@@ -5,7 +5,7 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <import resource="classpath:job-runner/B01-runner.xml" />
-    <import resource="classpath:applicationContext-batch-test.xml" />
+    <import resource="classpath:applicationContext-test.xml" />
 
     <bean id="infile" class="java.lang.String">
         <constructor-arg value="file:test-data/in/B01-IN.txt" />
@@ -14,6 +14,5 @@
     <bean id="outfile" class="java.lang.String">
         <constructor-arg value="file:test-data/out/B01-OUT.txt" />
     </bean>
-
 
 </beans>

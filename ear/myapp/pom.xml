@@ -10,8 +10,8 @@
     <name>myapp</name>
 
     <parent>
-        <groupId>jp.myapp</groupId>
-        <artifactId>project</artifactId>
+        <groupId>jp.myapp.project</groupId>
+        <artifactId>ear</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 

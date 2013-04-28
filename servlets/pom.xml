@@ -25,7 +25,6 @@
                 <plugin>
                     <artifactId>maven-eclipse-plugin</artifactId>
                     <configuration>
-                        <jeeversion>6.0</jeeversion>
                         <wtpversion>2.0</wtpversion>
                     </configuration>
                 </plugin>

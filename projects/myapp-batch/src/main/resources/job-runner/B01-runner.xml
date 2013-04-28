@@ -5,8 +5,8 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <import resource="classpath:applicationContext.xml" />
+    <import resource="classpath:applicationContext-tx.xml" />
     <import resource="classpath:applicationContext-dao.xml" />
-    <import resource="classpath:applicationContext-batch.xml" />
     <import resource="classpath:simple-job-launcher-context.xml" />
     <import resource="classpath:job/B01-context.xml" />
 
