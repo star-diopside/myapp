@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="jp.myapp.dao.mapper.UsersMapper">
+<mapper namespace="jp.myapp.data.mapper.UsersMapper">
 
-    <resultMap type="jp.myapp.dao.entity.UsersImpl" id="users">
+    <resultMap type="jp.myapp.data.entity.UsersImpl" id="users">
         <id column="USER_ID" property="userId" />
         <result column="USERNAME" property="username" />
         <result column="PASSWORD" property="password" />
@@ -30,7 +30,7 @@
         ]]>
     </select>
 
-    <insert id="insert" parameterType="jp.myapp.dao.entity.Users">
+    <insert id="insert" parameterType="jp.myapp.data.entity.Users">
         <![CDATA[
             INSERT INTO USERS
             ( USER_ID, USERNAME, PASSWORD, PASSWORD_UPDATED_DATETIME, ENABLED, PROVISIONAL_REGISTRATION, LAST_LOGIN, REGISTER_DATETIME, REGISTER_USER_ID, UPDATED_DATETIME, UPDATED_USER_ID, VERSION )
@@ -39,7 +39,7 @@
         ]]>
     </insert>
 
-    <update id="update" parameterType="jp.myapp.dao.entity.Users">
+    <update id="update" parameterType="jp.myapp.data.entity.Users">
         <![CDATA[
             UPDATE USERS
             SET USERNAME = #{username},

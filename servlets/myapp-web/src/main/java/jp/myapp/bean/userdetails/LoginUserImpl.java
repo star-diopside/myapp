@@ -3,7 +3,7 @@ package jp.myapp.bean.userdetails;
 import java.sql.Timestamp;
 import java.util.Collection;
 
-import jp.myapp.dao.entity.Users;
+import jp.myapp.data.entity.Users;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;

@@ -18,7 +18,7 @@
         <property name="verifyCursorPosition" value="false" />
         <property name="sql" value="SELECT * FROM USERS" />
         <property name="rowMapper">
-            <bean class="jp.myapp.dao.jdbc.mapper.UsersRowMapper" />
+            <bean class="jp.myapp.data.jdbc.mapper.UsersRowMapper" />
         </property>
     </bean>
 

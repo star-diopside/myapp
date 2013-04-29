@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <import resource="classpath:applicationContext-dao.xml" />
+
+    <context:component-scan base-package="jp.myapp" />
+
+    <!-- プロパティファイル読み込み -->
+    <context:property-placeholder location="classpath:database-test.properties" />
+
+    <!-- データソース定義 -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy">
+        <constructor-arg>
+            <bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+                <property name="driverClassName" value="${test.jdbc.driverClassName}" />
+                <property name="url" value="${test.jdbc.url}" />
+                <property name="username" value="${test.jdbc.username}" />
+                <property name="password" value="${test.jdbc.password}" />
+            </bean>
+        </constructor-arg>
+    </bean>
+
+    <!-- トランザクションマネージャ定義 -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <!-- トランザクションアノテーションの有効化 -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
+</beans>

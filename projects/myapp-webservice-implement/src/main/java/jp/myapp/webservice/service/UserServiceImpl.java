@@ -11,12 +11,12 @@ import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import jp.myapp.dao.entity.Users;
-import jp.myapp.dao.entity.UsersImpl;
-import jp.myapp.dao.mapper.AuthoritiesMapper;
-import jp.myapp.dao.mapper.UserAttributeMapper;
-import jp.myapp.dao.mapper.UsersMapper;
-import jp.myapp.dao.util.OptimisticLockControl;
+import jp.myapp.data.entity.Users;
+import jp.myapp.data.entity.UsersImpl;
+import jp.myapp.data.mapper.AuthoritiesMapper;
+import jp.myapp.data.mapper.UserAttributeMapper;
+import jp.myapp.data.mapper.UsersMapper;
+import jp.myapp.data.support.OptimisticLockControl;
 import jp.myapp.function.UserManager;
 import jp.myapp.webservice.bean.User;
 

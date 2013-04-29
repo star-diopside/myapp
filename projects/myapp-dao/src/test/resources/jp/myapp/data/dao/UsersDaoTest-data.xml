@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+
+    <USERS USER_ID="user01"
+           USERNAME="テストユーザ０１"
+           PASSWORD="7df66186426c6ec83191ac99e491ecf590745762eb3789ed6219e97b6826d216"
+           PASSWORD_UPDATED_DATETIME="1970-01-01 00:00:00.0"
+           ENABLED="true"
+           PROVISIONAL_REGISTRATION="true"
+           LAST_LOGIN="1970-01-01 00:00:00.0"
+           REGISTER_DATETIME="1970-01-01 00:00:00.0"
+           REGISTER_USER_ID="TEST-DATA"
+           UPDATED_DATETIME="1970-01-01 00:00:00.0"
+           UPDATED_USER_ID="TEST-DATA"
+           VERSION="0" />
+
+</dataset>

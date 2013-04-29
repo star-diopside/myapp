@@ -22,6 +22,7 @@
         <module>myapp-service</module>
         <module>myapp-webservice-interface</module>
         <module>myapp-webservice-implement</module>
+        <module>myapp-test-utils</module>
     </modules>
 
 </project>

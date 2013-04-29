@@ -2,8 +2,8 @@ package jp.myapp.batch.mapping;
 
 import java.sql.Timestamp;
 
-import jp.myapp.dao.entity.Users;
-import jp.myapp.dao.entity.UsersImpl;
+import jp.myapp.data.entity.Users;
+import jp.myapp.data.entity.UsersImpl;
 
 import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.batch.item.file.transform.FieldSet;

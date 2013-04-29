@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import jp.myapp.dao.entity.Users;
-import jp.myapp.dao.entity.UsersImpl;
+import jp.myapp.data.entity.Users;
+import jp.myapp.data.entity.UsersImpl;
 import jp.myapp.logging.Loggable;
 import jp.myapp.logging.LoggableUtil;
 

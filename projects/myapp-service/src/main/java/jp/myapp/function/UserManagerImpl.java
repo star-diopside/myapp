@@ -8,9 +8,9 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import javax.xml.transform.stax.StAXResult;
 
-import jp.myapp.dao.entity.UserAttributeImpl;
-import jp.myapp.dao.mapper.UserAttributeMapper;
-import jp.myapp.dao.util.TypeFactory;
+import jp.myapp.data.entity.UserAttributeImpl;
+import jp.myapp.data.mapper.UserAttributeMapper;
+import jp.myapp.data.support.JdbcObjectFactory;
 import jp.myapp.exception.SystemException;
 import jp.myapp.util.XMLWriterUtil;
 
@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserManagerImpl implements UserManager {
 
     @Autowired
-    private TypeFactory typeFactory;
+    private JdbcObjectFactory JdbcObjectFactory;
 
     @Autowired
     private UserAttributeMapper userAttributeMapper;
@@ -32,7 +32,7 @@ public class UserManagerImpl implements UserManager {
     public void process(String userId) {
 
         try {
-            SQLXML xml = this.typeFactory.createSQLXML();
+            SQLXML xml = this.JdbcObjectFactory.createSQLXML();
             StAXResult result = xml.setResult(StAXResult.class);
             XMLStreamWriter writer = result.getXMLStreamWriter();
 

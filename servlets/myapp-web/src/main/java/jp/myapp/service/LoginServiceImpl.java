@@ -3,11 +3,11 @@ package jp.myapp.service;
 import java.sql.Timestamp;
 
 import jp.myapp.bean.UserInfo;
-import jp.myapp.dao.entity.AuthoritiesImpl;
-import jp.myapp.dao.entity.Users;
-import jp.myapp.dao.mapper.AuthoritiesMapper;
-import jp.myapp.dao.mapper.UsersMapper;
-import jp.myapp.dao.util.OptimisticLockControl;
+import jp.myapp.data.entity.AuthoritiesImpl;
+import jp.myapp.data.entity.Users;
+import jp.myapp.data.mapper.AuthoritiesMapper;
+import jp.myapp.data.mapper.UsersMapper;
+import jp.myapp.data.support.OptimisticLockControl;
 import jp.myapp.exception.ApplicationException;
 import jp.myapp.exception.BusinessException;
 

@@ -2,8 +2,8 @@ package jp.myapp.batch;
 
 import java.util.List;
 
-import jp.myapp.dao.entity.Users;
-import jp.myapp.dao.mapper.UsersMapper;
+import jp.myapp.data.entity.Users;
+import jp.myapp.data.mapper.UsersMapper;
 
 import org.springframework.batch.core.ExitStatus;
 import org.springframework.beans.factory.annotation.Autowired;

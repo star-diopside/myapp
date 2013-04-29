@@ -2,10 +2,10 @@ package jp.myapp.batch;
 
 import java.util.List;
 
-import jp.myapp.dao.entity.Users;
-import jp.myapp.dao.mapper.AuthoritiesMapper;
-import jp.myapp.dao.mapper.UsersMapper;
-import jp.myapp.dao.util.OptimisticLockControl;
+import jp.myapp.data.entity.Users;
+import jp.myapp.data.mapper.AuthoritiesMapper;
+import jp.myapp.data.mapper.UsersMapper;
+import jp.myapp.data.support.OptimisticLockControl;
 import jp.myapp.exception.ExclusiveException;
 
 import org.springframework.batch.item.ItemWriter;

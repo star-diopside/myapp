@@ -1,7 +1,7 @@
 package jp.myapp.batch;
 
 import jp.myapp.bean.UserInfo;
-import jp.myapp.dao.entity.Users;
+import jp.myapp.data.entity.Users;
 
 import org.springframework.batch.item.ItemProcessor;
 

@@ -10,8 +10,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import jp.myapp.dao.entity.Users;
-import jp.myapp.dao.entity.UsersImpl;
+import jp.myapp.data.entity.Users;
+import jp.myapp.data.entity.UsersImpl;
 import jp.myapp.logging.Loggable;
 import jp.myapp.logging.LoggableUtil;
 

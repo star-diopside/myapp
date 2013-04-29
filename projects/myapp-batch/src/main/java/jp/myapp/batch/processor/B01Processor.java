@@ -1,6 +1,6 @@
 package jp.myapp.batch.processor;
 
-import jp.myapp.dao.entity.Users;
+import jp.myapp.data.entity.Users;
 
 import org.springframework.batch.item.ItemProcessor;
 
