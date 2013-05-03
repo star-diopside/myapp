@@ -23,7 +23,10 @@ public class UsersRowMapper implements RowMapper<Users> {
         users.setEnabled(rs.wasNull() ? null : enabled);
         boolean provisionalRegistration = rs.getBoolean("PROVISIONAL_REGISTRATION");
         users.setProvisionalRegistration(rs.wasNull() ? null : provisionalRegistration);
-        users.setLastLogin(rs.getTimestamp("LAST_LOGIN"));
+        int loginErrorCount = rs.getInt("LOGIN_ERROR_COUNT");
+        users.setLoginErrorCount(rs.wasNull() ? null : loginErrorCount);
+        users.setLastLoginDatetime(rs.getTimestamp("LAST_LOGIN_DATETIME"));
+        users.setLogoutDatetime(rs.getTimestamp("LOGOUT_DATETIME"));
         users.setRegisterDatetime(rs.getTimestamp("REGISTER_DATETIME"));
         users.setRegisterUserId(rs.getString("REGISTER_USER_ID"));
         users.setUpdatedDatetime(rs.getTimestamp("UPDATED_DATETIME"));

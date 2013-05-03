@@ -75,7 +75,9 @@ public class LoginServiceImpl implements LoginService {
         usersEntity.setPasswordUpdatedDatetime(current);
         usersEntity.setEnabled(Boolean.TRUE);
         usersEntity.setProvisionalRegistration(Boolean.TRUE);
-        usersEntity.setLastLogin(null);
+        usersEntity.setLoginErrorCount(0);
+        usersEntity.setLastLoginDatetime(null);
+        usersEntity.setLogoutDatetime(null);
         usersEntity.setRegisterDatetime(current);
         usersEntity.setRegisterUserId(userId);
         usersEntity.setUpdatedDatetime(current);

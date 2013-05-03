@@ -17,7 +17,6 @@ import jp.myapp.data.mapper.AuthoritiesMapper;
 import jp.myapp.data.mapper.UserAttributeMapper;
 import jp.myapp.data.mapper.UsersMapper;
 import jp.myapp.data.support.OptimisticLockControl;
-import jp.myapp.function.UserManager;
 import jp.myapp.webservice.bean.User;
 
 @Service
@@ -35,9 +34,6 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private UserManager userManager;
 
     @Override
     @Transactional
@@ -83,7 +79,9 @@ public class UserServiceImpl implements UserService {
         entity.setPasswordUpdatedDatetime(current);
         entity.setEnabled(Boolean.TRUE);
         entity.setProvisionalRegistration(Boolean.TRUE);
-        entity.setLastLogin(null);
+        entity.setLoginErrorCount(0);
+        entity.setLastLoginDatetime(null);
+        entity.setLogoutDatetime(null);
         entity.setRegisterDatetime(current);
         entity.setRegisterUserId(user.getUserId());
         entity.setUpdatedDatetime(current);
@@ -91,8 +89,6 @@ public class UserServiceImpl implements UserService {
         entity.setVersion(0);
 
         this.usersMapper.insert(entity);
-
-        this.userManager.process(user.getUserId());
 
         user.setVersion(entity.getVersion());
         return user;

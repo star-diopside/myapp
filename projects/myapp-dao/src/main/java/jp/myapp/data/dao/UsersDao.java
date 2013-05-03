@@ -6,4 +6,8 @@ public interface UsersDao {
 
     Users get(String userId);
 
+    Users load(String userId);
+
+    void update(Users users);
+
 }

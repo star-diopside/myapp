@@ -109,13 +109,33 @@ public class UserInfo implements Users, Loggable, Serializable {
     }
 
     @Override
-    public Timestamp getLastLogin() {
-        return this.users.getLastLogin();
+    public Integer getLoginErrorCount() {
+        return this.users.getLoginErrorCount();
     }
 
     @Override
-    public void setLastLogin(Timestamp lastLogin) {
-        this.users.setLastLogin(lastLogin);
+    public void setLoginErrorCount(Integer loginErrorCount) {
+        this.users.setLoginErrorCount(loginErrorCount);
+    }
+
+    @Override
+    public Timestamp getLastLoginDatetime() {
+        return this.users.getLastLoginDatetime();
+    }
+
+    @Override
+    public void setLastLoginDatetime(Timestamp lastLoginDatetime) {
+        this.users.setLastLoginDatetime(lastLoginDatetime);
+    }
+
+    @Override
+    public Timestamp getLogoutDatetime() {
+        return this.users.getLogoutDatetime();
+    }
+
+    @Override
+    public void setLogoutDatetime(Timestamp logoutDatetime) {
+        this.users.setLogoutDatetime(logoutDatetime);
     }
 
     @Override

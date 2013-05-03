@@ -13,6 +13,9 @@
   </script>
 </head>
 <body>
+<p>
+  <a href="<s:url value='/j_spring_security_logout' />">ログアウト</a>
+</p>
 <s:fielderror />
 <s:actionerror />
 <s:form>

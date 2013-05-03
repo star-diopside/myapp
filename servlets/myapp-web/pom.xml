@@ -19,18 +19,7 @@
         <finalName>${project.artifactId}</finalName>
     </build>
 
-    <repositories>
-        <repository>
-            <id>local.repository</id>
-            <url>file:${project.basedir}/../../resources/repository</url>
-        </repository>
-    </repositories>
-
     <dependencies>
-        <dependency>
-            <groupId>jp.myapp.project.projects</groupId>
-            <artifactId>myapp-batch</artifactId>
-        </dependency>
         <dependency>
             <groupId>jp.myapp.project.projects</groupId>
             <artifactId>myapp-dao</artifactId>
@@ -38,6 +27,14 @@
         <dependency>
             <groupId>jp.myapp.project.projects</groupId>
             <artifactId>myapp-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jp.myapp.project.projects</groupId>
+            <artifactId>myapp-batch</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jp.myapp.project.projects</groupId>
+            <artifactId>myapp-controller</artifactId>
         </dependency>
         <dependency>
             <groupId>jp.myapp.project.projects</groupId>
@@ -143,13 +140,8 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>com.google.code.kaptcha</groupId>
+            <groupId>com.google.code</groupId>
             <artifactId>kaptcha</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.tuckey</groupId>
-            <artifactId>urlrewritefilter</artifactId>
-            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
@@ -167,7 +159,7 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>postgresql</groupId>
+            <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>

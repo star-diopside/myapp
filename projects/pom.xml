@@ -16,10 +16,11 @@
     </parent>
 
     <modules>
-        <module>myapp-batch</module>
         <module>myapp-core</module>
         <module>myapp-dao</module>
         <module>myapp-service</module>
+        <module>myapp-batch</module>
+        <module>myapp-controller</module>
         <module>myapp-webservice-interface</module>
         <module>myapp-webservice-implement</module>
         <module>myapp-test-utils</module>

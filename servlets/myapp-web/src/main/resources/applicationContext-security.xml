@@ -13,9 +13,10 @@
         <intercept-url pattern="/captcha.jpg" access="IS_AUTHENTICATED_ANONYMOUSLY" />
         <intercept-url pattern="/**" access="ROLE_USER" />
         <form-login login-page="/auth/AA01S010Action.action" authentication-failure-handler-ref="authenticationFailureHandler" />
+        <logout success-handler-ref="logoutSuccessHandler" />
     </http>
 
-    <beans:bean id="authenticationFailureHandler" class="jp.myapp.controller.auth.handler.UsernamePasswordAuthenticationFailureHandler">
+    <beans:bean id="authenticationFailureHandler" class="jp.myapp.controller.auth.handler.LoginFailureHandler">
         <beans:property name="defaultFailureUrl" value="/auth/AA01S010Action.action" />
     </beans:bean>
 
@@ -30,7 +31,7 @@
     <beans:bean id="userDetailsManager" class="jp.myapp.service.auth.LoginUserDetailsManager">
         <beans:property name="dataSource" ref="dataSource" />
         <beans:property name="usersByUsernameQuery"
-            value="select user_id, username, password, password_updated_datetime, enabled, provisional_registration, last_login, register_datetime, register_user_id, updated_datetime, updated_user_id, version from users where user_id = ?" />
+            value="select user_id, username, password, password_updated_datetime, enabled, provisional_registration, login_error_count, last_login_datetime, logout_datetime, register_datetime, register_user_id, updated_datetime, updated_user_id, version from users where user_id = ?" />
         <beans:property name="authoritiesByUsernameQuery"
             value="select user_id as username, authority, register_datetime, register_user_id, updated_datetime, updated_user_id, version from authorities where user_id = ?" />
     </beans:bean>
@@ -38,9 +39,5 @@
     <beans:bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
         <beans:constructor-arg value="256" />
     </beans:bean>
-
-    <!-- イベントリスナーの登録 -->
-    <beans:bean class="jp.myapp.controller.auth.event.AuthenticationSuccessEventListener" />
-    <beans:bean class="jp.myapp.controller.auth.event.AuthenticationFailureBadCredentialsEventListener" />
 
 </beans:beans>

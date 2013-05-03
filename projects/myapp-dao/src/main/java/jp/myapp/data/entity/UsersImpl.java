@@ -23,16 +23,18 @@ public class UsersImpl extends EntityBaseImpl<String> implements Users, Loggable
     private Timestamp passwordUpdatedDatetime;
     private Boolean enabled;
     private Boolean provisionalRegistration;
-    private Timestamp lastLogin;
+    private Integer loginErrorCount;
+    private Timestamp lastLoginDatetime;
+    private Timestamp logoutDatetime;
 
     @Override
     public String getPK() {
-        return this.getUserId();
+        return this.userId;
     }
 
     @Override
     public void setPK(String pk) {
-        this.setUserId(pk);
+        this.userId = pk;
     }
 
     @Override
@@ -96,13 +98,33 @@ public class UsersImpl extends EntityBaseImpl<String> implements Users, Loggable
     }
 
     @Override
-    public Timestamp getLastLogin() {
-        return this.lastLogin;
+    public Integer getLoginErrorCount() {
+        return this.loginErrorCount;
     }
 
     @Override
-    public void setLastLogin(Timestamp lastLogin) {
-        this.lastLogin = lastLogin;
+    public void setLoginErrorCount(Integer loginErrorCount) {
+        this.loginErrorCount = loginErrorCount;
+    }
+
+    @Override
+    public Timestamp getLastLoginDatetime() {
+        return this.lastLoginDatetime;
+    }
+
+    @Override
+    public void setLastLoginDatetime(Timestamp lastLoginDatetime) {
+        this.lastLoginDatetime = lastLoginDatetime;
+    }
+
+    @Override
+    public Timestamp getLogoutDatetime() {
+        return this.logoutDatetime;
+    }
+
+    @Override
+    public void setLogoutDatetime(Timestamp logoutDatetime) {
+        this.logoutDatetime = logoutDatetime;
     }
 
     @Override
@@ -116,7 +138,9 @@ public class UsersImpl extends EntityBaseImpl<String> implements Users, Loggable
         LoggableUtil.addLog(log, this.passwordUpdatedDatetime, "passwordUpdatedDatetime");
         LoggableUtil.addLog(log, this.enabled, "enabled");
         LoggableUtil.addLog(log, this.provisionalRegistration, "provisionalRegistration");
-        LoggableUtil.addLog(log, this.lastLogin, "lastLogin");
+        LoggableUtil.addLog(log, this.loginErrorCount, "loginErrorCount");
+        LoggableUtil.addLog(log, this.lastLoginDatetime, "lastLoginDatetime");
+        LoggableUtil.addLog(log, this.logoutDatetime, "logoutDatetime");
         log.addAll(super.toLogText());
 
         return log;

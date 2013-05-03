@@ -30,8 +30,16 @@ public interface Users extends EntityBase<String> {
 
     void setProvisionalRegistration(Boolean provisionalRegistration);
 
-    Timestamp getLastLogin();
+    Integer getLoginErrorCount();
 
-    void setLastLogin(Timestamp lastLogin);
+    void setLoginErrorCount(Integer loginErrorCount);
+
+    Timestamp getLastLoginDatetime();
+
+    void setLastLoginDatetime(Timestamp lastLoginDatetime);
+
+    Timestamp getLogoutDatetime();
+
+    void setLogoutDatetime(Timestamp logoutDatetime);
 
 }

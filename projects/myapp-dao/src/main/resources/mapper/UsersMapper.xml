@@ -10,7 +10,9 @@
         <result column="PASSWORD_UPDATED_DATETIME" property="passwordUpdatedDatetime" />
         <result column="ENABLED" property="enabled" />
         <result column="PROVISIONAL_REGISTRATION" property="provisionalRegistration" />
-        <result column="LAST_LOGIN" property="lastLogin" />
+        <result column="LOGIN_ERROR_COUNT" property="loginErrorCount" />
+        <result column="LAST_LOGIN_DATETIME" property="lastLoginDatetime" />
+        <result column="LOGOUT_DATETIME" property="logoutDatetime" />
         <result column="REGISTER_DATETIME" property="registerDatetime" />
         <result column="REGISTER_USER_ID" property="registerUserId" />
         <result column="UPDATED_DATETIME" property="updatedDatetime" />
@@ -33,9 +35,9 @@
     <insert id="insert" parameterType="jp.myapp.data.entity.Users">
         <![CDATA[
             INSERT INTO USERS
-            ( USER_ID, USERNAME, PASSWORD, PASSWORD_UPDATED_DATETIME, ENABLED, PROVISIONAL_REGISTRATION, LAST_LOGIN, REGISTER_DATETIME, REGISTER_USER_ID, UPDATED_DATETIME, UPDATED_USER_ID, VERSION )
+            ( USER_ID, USERNAME, PASSWORD, PASSWORD_UPDATED_DATETIME, ENABLED, PROVISIONAL_REGISTRATION, LOGIN_ERROR_COUNT, LAST_LOGIN_DATETIME, LOGOUT_DATETIME, REGISTER_DATETIME, REGISTER_USER_ID, UPDATED_DATETIME, UPDATED_USER_ID, VERSION )
             VALUES
-            ( #{userId}, #{username}, #{password}, #{passwordUpdatedDatetime,jdbcType=TIMESTAMP}, #{enabled}, #{provisionalRegistration}, #{lastLogin,jdbcType=TIMESTAMP}, #{registerDatetime,jdbcType=TIMESTAMP}, #{registerUserId}, #{updatedDatetime,jdbcType=TIMESTAMP}, #{updatedUserId}, #{version} )
+            ( #{userId}, #{username}, #{password}, #{passwordUpdatedDatetime,jdbcType=TIMESTAMP}, #{enabled}, #{provisionalRegistration}, #{loginErrorCount}, #{lastLoginDatetime,jdbcType=TIMESTAMP}, #{logoutDatetime,jdbcType=TIMESTAMP}, #{registerDatetime,jdbcType=TIMESTAMP}, #{registerUserId}, #{updatedDatetime,jdbcType=TIMESTAMP}, #{updatedUserId}, #{version} )
         ]]>
     </insert>
 
@@ -47,7 +49,9 @@
                 PASSWORD_UPDATED_DATETIME = #{passwordUpdatedDatetime,jdbcType=TIMESTAMP},
                 ENABLED = #{enabled},
                 PROVISIONAL_REGISTRATION = #{provisionalRegistration},
-                LAST_LOGIN = #{lastLogin,jdbcType=TIMESTAMP},
+                LOGIN_ERROR_COUNT = #{loginErrorCount},
+                LAST_LOGIN_DATETIME = #{lastLoginDatetime,jdbcType=TIMESTAMP},
+                LOGOUT_DATETIME = #{logoutDatetime,jdbcType=TIMESTAMP},
                 REGISTER_DATETIME = #{registerDatetime,jdbcType=TIMESTAMP},
                 REGISTER_USER_ID = #{registerUserId},
                 UPDATED_DATETIME = #{updatedDatetime,jdbcType=TIMESTAMP},

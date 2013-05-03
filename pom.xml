@@ -33,6 +33,16 @@
         <jackson.version>2.1.4</jackson.version>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>google-maven-repository</id>
+            <url>https://m2repos.googlecode.com/svn/nexus/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <build>
         <pluginManagement>
             <plugins>
@@ -75,12 +85,6 @@
 
             <dependency>
                 <groupId>jp.myapp.project.projects</groupId>
-                <artifactId>myapp-batch</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>jp.myapp.project.projects</groupId>
                 <artifactId>myapp-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -99,13 +103,25 @@
 
             <dependency>
                 <groupId>jp.myapp.project.projects</groupId>
-                <artifactId>myapp-webservice-implement</artifactId>
+                <artifactId>myapp-batch</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>jp.myapp.project.projects</groupId>
+                <artifactId>myapp-controller</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>jp.myapp.project.projects</groupId>
                 <artifactId>myapp-webservice-interface</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>jp.myapp.project.projects</groupId>
+                <artifactId>myapp-webservice-implement</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -327,15 +343,9 @@
             </dependency>
 
             <dependency>
-                <groupId>com.google.code.kaptcha</groupId>
+                <groupId>com.google.code</groupId>
                 <artifactId>kaptcha</artifactId>
                 <version>2.3.2</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.tuckey</groupId>
-                <artifactId>urlrewritefilter</artifactId>
-                <version>4.0.4</version>
             </dependency>
 
             <dependency>
@@ -357,9 +367,9 @@
             </dependency>
 
             <dependency>
-                <groupId>postgresql</groupId>
+                <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
-                <version>9.2-1002.jdbc4</version>
+                <version>9.2-1002-jdbc4</version>
             </dependency>
 
             <dependency>

@@ -11,7 +11,9 @@
         <property name="passwordUpdatedDatetime" column="PASSWORD_UPDATED_DATETIME" not-null="true" type="timestamp" />
         <property name="enabled" column="ENABLED" not-null="true" type="boolean" />
         <property name="provisionalRegistration" column="PROVISIONAL_REGISTRATION" not-null="true" type="boolean" />
-        <property name="lastLogin" column="LAST_LOGIN" not-null="false" type="timestamp" />
+        <property name="loginErrorCount" column="LOGIN_ERROR_COUNT" not-null="true" type="integer" />
+        <property name="lastLoginDatetime" column="LAST_LOGIN_DATETIME" not-null="false" type="timestamp" />
+        <property name="logoutDatetime" column="LOGOUT_DATETIME" not-null="false" type="timestamp" />
         <property name="registerDatetime" column="REGISTER_DATETIME" not-null="true" type="timestamp" />
         <property name="registerUserId" column="REGISTER_USER_ID" not-null="true" type="string" />
         <property name="updatedDatetime" column="UPDATED_DATETIME" not-null="true" type="timestamp" />

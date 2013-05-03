@@ -8,8 +8,6 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <import resource="classpath:applicationContext-dao.xml" />
-
     <context:component-scan base-package="jp.myapp" />
 
     <!-- プロパティファイル読み込み -->
@@ -25,6 +23,24 @@
                 <property name="password" value="${test.jdbc.password}" />
             </bean>
         </constructor-arg>
+    </bean>
+
+    <!-- MyBatis定義 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="classpath:mybatis-config.xml" />
+        <property name="mapperLocations" value="classpath:mapper/**/*.xml" />
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="jp.myapp.data.mapper" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+    </bean>
+
+    <!-- Hibernate定義 -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="classpath:hibernate.cfg.xml" />
     </bean>
 
     <!-- トランザクションマネージャ定義 -->

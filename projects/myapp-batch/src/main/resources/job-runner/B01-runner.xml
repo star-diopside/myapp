@@ -6,7 +6,6 @@
 
     <import resource="classpath:applicationContext.xml" />
     <import resource="classpath:applicationContext-tx.xml" />
-    <import resource="classpath:applicationContext-dao.xml" />
     <import resource="classpath:simple-job-launcher-context.xml" />
     <import resource="classpath:job/B01-context.xml" />
 

@@ -52,13 +52,6 @@
         </plugins>
     </build>
 
-    <repositories>
-        <repository>
-            <id>local.repository</id>
-            <url>file:${project.basedir}/../../resources/repository</url>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>jp.myapp.project.projects</groupId>
@@ -97,7 +90,7 @@
             <artifactId>spring-batch-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>postgresql</groupId>
+            <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
