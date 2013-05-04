@@ -3,7 +3,6 @@ package jp.myapp.service.auth;
 import java.util.ArrayList;
 import java.util.List;
 
-import jp.myapp.bean.UserInfo;
 import jp.myapp.bean.userdetails.LoginUserImpl;
 import jp.myapp.data.entity.Users;
 import jp.myapp.data.jdbc.mapper.UsersRowMapper;
@@ -22,10 +21,7 @@ public class LoginUserDetailsManager extends JdbcUserDetailsManager {
         List<UserDetails> userDetailsList = new ArrayList<>(usersList.size());
 
         for (Users users : usersList) {
-            UserInfo info = new UserInfo(users);
-            if (info.isValid()) {
-                userDetailsList.add(new LoginUserImpl(info));
-            }
+            userDetailsList.add(new LoginUserImpl(users));
         }
 
         return userDetailsList;

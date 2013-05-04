@@ -5,9 +5,9 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>jp.myapp.project.projects</groupId>
-    <artifactId>myapp-controller</artifactId>
+    <artifactId>myapp-web-support</artifactId>
     <packaging>jar</packaging>
-    <name>myapp-controller</name>
+    <name>myapp-web-support</name>
 
     <parent>
         <groupId>jp.myapp.project</groupId>
@@ -17,25 +17,17 @@
 
     <dependencies>
         <dependency>
-            <groupId>jp.myapp.project.projects</groupId>
-            <artifactId>myapp-dao</artifactId>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>jp.myapp.project.projects</groupId>
-            <artifactId>myapp-service</artifactId>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.struts</groupId>
-            <artifactId>struts2-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.google.code</groupId>
-            <artifactId>kaptcha</artifactId>
         </dependency>
     </dependencies>
 

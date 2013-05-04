@@ -12,9 +12,7 @@ import jp.myapp.service.auth.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
-import org.springframework.stereotype.Controller;
 
-@Controller
 public class LogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler {
 
     @Autowired
@@ -24,7 +22,7 @@ public class LogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler {
             throws IOException, ServletException {
 
         LoginUser user = (LoginUser) authentication.getPrincipal();
-        this.userManager.logout(user.getUsername());
+        this.userManager.logout(user);
 
         super.onLogoutSuccess(request, response, authentication);
     }

@@ -5,6 +5,7 @@ import jp.myapp.service.auth.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.security.authentication.event.AuthenticationFailureBadCredentialsEvent;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -19,6 +20,11 @@ public class AuthenticationFailureBadCredentialsEventListener implements
 
     @Override
     public void onApplicationEvent(AuthenticationFailureBadCredentialsEvent event) {
+
+        // ユーザが存在しない場合、何も処理しない。
+        if (event.getException() instanceof UsernameNotFoundException) {
+            return;
+        }
 
         // 認証エラー処理を行う。
         String userId = event.getAuthentication().getName();

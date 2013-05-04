@@ -10,6 +10,7 @@ import jp.myapp.logging.LoggableUtil;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.springframework.security.core.AuthenticationException;
 
 public class AA01S010FormImpl implements AA01S010Form, Loggable, Serializable {
 
@@ -19,8 +20,8 @@ public class AA01S010FormImpl implements AA01S010Form, Loggable, Serializable {
     private String userId;
     /** パスワード */
     private String password;
-    /** ログインエラーかどうかを示す値 */
-    private Boolean loginError;
+    /** 認証エラー時の例外情報 */
+    private AuthenticationException exception;
 
     /**
      * ユーザIDを取得する。
@@ -63,23 +64,23 @@ public class AA01S010FormImpl implements AA01S010Form, Loggable, Serializable {
     }
 
     /**
-     * ログインエラーかどうかを示す値を取得する。
+     * 認証エラー時の例外情報を取得する。
      * 
-     * @return ログインエラーの場合にtrue、それ以外の場合はnullまたはfalse。
+     * @return 認証成功時はnull、認証失敗時はエラー原因を示す例外情報。
      */
     @Override
-    public Boolean getLoginError() {
-        return this.loginError;
+    public AuthenticationException getException() {
+        return this.exception;
     }
 
     /**
-     * ログインエラーかどうかを示す値を設定する。
+     * 認証エラー時の例外情報を設定する。
      * 
-     * @param loginError ログインエラーの場合にtrue、それ以外の場合はnullまたはfalse。
+     * @param exception 認証成功時はnull、認証失敗時はエラー原因を示す例外情報。
      */
     @Override
-    public void setLoginError(Boolean loginError) {
-        this.loginError = loginError;
+    public void setException(AuthenticationException exception) {
+        this.exception = exception;
     }
 
     @Override
@@ -89,7 +90,7 @@ public class AA01S010FormImpl implements AA01S010Form, Loggable, Serializable {
 
         LoggableUtil.addLog(list, this.userId, "userId");
         LoggableUtil.addLog(list, this.password, "password");
-        LoggableUtil.addLog(list, this.loginError, "loginError");
+        LoggableUtil.addLog(list, this.exception, "exception");
 
         return list;
     }

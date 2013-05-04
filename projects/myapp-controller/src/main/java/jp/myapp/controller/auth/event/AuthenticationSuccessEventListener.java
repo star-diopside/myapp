@@ -22,6 +22,6 @@ public class AuthenticationSuccessEventListener implements ApplicationListener<A
 
         // ログイン成功時の処理を行う。
         LoginUser user = (LoginUser) event.getAuthentication().getPrincipal();
-        this.userManager.loginSuccess(user.getUsername());
+        this.userManager.loginSuccess(user);
     }
 }

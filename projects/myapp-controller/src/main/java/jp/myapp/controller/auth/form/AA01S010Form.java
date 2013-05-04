@@ -1,5 +1,7 @@
 package jp.myapp.controller.auth.form;
 
+import org.springframework.security.core.AuthenticationException;
+
 public interface AA01S010Form {
 
     String getUserId();
@@ -10,7 +12,8 @@ public interface AA01S010Form {
 
     void setPassword(String password);
 
-    Boolean getLoginError();
+    AuthenticationException getException();
 
-    void setLoginError(Boolean loginError);
+    void setException(AuthenticationException exception);
+
 }

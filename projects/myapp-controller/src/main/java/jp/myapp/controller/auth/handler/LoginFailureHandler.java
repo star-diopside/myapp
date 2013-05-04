@@ -28,7 +28,7 @@ public class LoginFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 
         AA01S010Form form = new AA01S010FormImpl();
         form.setUserId(request.getParameter(this.usernameParameter));
-        form.setLoginError(Boolean.TRUE);
+        form.setException(exception);
         (new SessionUtils(request)).setForm(form);
 
         super.onAuthenticationFailure(request, response, exception);
