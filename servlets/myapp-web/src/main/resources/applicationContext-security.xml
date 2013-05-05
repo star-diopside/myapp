@@ -14,6 +14,7 @@
         <intercept-url pattern="/**" access="ROLE_USER" />
         <form-login login-page="/auth/AA01S010Action.action" authentication-failure-handler-ref="authenticationFailureHandler" />
         <logout success-handler-ref="logoutSuccessHandler" />
+        <custom-filter position="LAST" ref="dualLoginCheckFilter" />
     </http>
 
     <beans:bean id="authenticationFailureHandler" class="jp.myapp.controller.auth.handler.LoginFailureHandler">
@@ -21,6 +22,8 @@
     </beans:bean>
 
     <beans:bean id="logoutSuccessHandler" class="jp.myapp.controller.auth.handler.LogoutSuccessHandler" />
+
+    <beans:bean id="dualLoginCheckFilter" class="jp.myapp.controller.auth.filter.DualLoginCheckFilter" />
 
     <authentication-manager>
         <authentication-provider ref="authenticationProvider" />
@@ -37,19 +40,12 @@
             </beans:bean>
         </beans:property>
         <beans:property name="passwordEncoder" ref="passwordEncoder" />
-        <beans:property name="saltSource">
-            <beans:bean class="org.springframework.security.authentication.dao.ReflectionSaltSource">
-                <beans:property name="userPropertyToUse" value="salt" />
-            </beans:bean>
-        </beans:property>
         <beans:property name="hideUserNotFoundExceptions" value="false" />
         <beans:property name="preAuthenticationChecks">
             <beans:bean class="jp.myapp.controller.auth.checker.BeforeLoginUserChecker" />
         </beans:property>
     </beans:bean>
 
-    <beans:bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
-        <beans:constructor-arg value="256" />
-    </beans:bean>
+    <beans:bean id="passwordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder" />
 
 </beans:beans>

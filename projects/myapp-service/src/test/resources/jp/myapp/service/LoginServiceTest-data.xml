@@ -3,7 +3,7 @@
 
     <USERS USER_ID="InvalidUser01"
            USERNAME="無効ユーザ０１"
-           PASSWORD="7df66186426c6ec83191ac99e491ecf590745762eb3789ed6219e97b6826d216"
+           PASSWORD="1f958359376eab43fefc67e7f1d321c8ec9ff650a060d7f37b42b7d5a32a2bb738b3cf8167282fc6"
            PASSWORD_UPDATED_DATETIME="1970-01-01 00:00:00.0"
            ENABLED="true"
            PROVISIONAL_REGISTRATION="true"
@@ -26,7 +26,7 @@
 
     <USERS USER_ID="ValidUser01"
            USERNAME="有効ユーザ０１"
-           PASSWORD="3d48f9c2418da6b8aaa29ee8fcc38e83ccbb2655875d2889bb0141ef9cfc26c6"
+           PASSWORD="fec25a38a66db04dee7a135a0cb3d2e2198a753daab756bfbcaf7b10bd561a2981e7b45763251b4e"
            PASSWORD_UPDATED_DATETIME="1970-01-01 00:00:00.0"
            ENABLED="true"
            PROVISIONAL_REGISTRATION="true"

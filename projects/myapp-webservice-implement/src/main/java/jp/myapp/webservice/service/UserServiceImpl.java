@@ -7,7 +7,7 @@ import java.util.List;
 import javax.jws.WebService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.encoding.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService {
 
         entity.setUserId(user.getUserId());
         entity.setUsername(user.getUsername());
-        entity.setPassword(this.passwordEncoder.encodePassword(user.getUserId(), current));
+        entity.setPassword(this.passwordEncoder.encode(user.getUserId()));
         entity.setPasswordUpdatedDatetime(current);
         entity.setEnabled(Boolean.TRUE);
         entity.setProvisionalRegistration(Boolean.TRUE);

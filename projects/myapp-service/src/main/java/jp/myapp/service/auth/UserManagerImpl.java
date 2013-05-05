@@ -11,7 +11,9 @@ import jp.myapp.data.entity.Users;
 import jp.myapp.data.mapper.AuthoritiesMapper;
 import jp.myapp.data.mapper.UsersMapper;
 import jp.myapp.data.support.OptimisticLockControl;
+import jp.myapp.exception.auth.DualLoginException;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.security.authentication.AccountExpiredException;
@@ -36,15 +38,17 @@ public class UserManagerImpl implements UserManager {
 
     @Override
     @Transactional(noRollbackFor = AuthenticationException.class)
-    public void checkValid(LoginUser user) throws AuthenticationException {
+    public void checkValid(LoginUser loginUser) throws AuthenticationException {
 
-        String userId = user.getUsername();
-        UserInfo userInfo = new UserInfo(this.usersMapper.selectForUpdate(userId));
+        Users user = loginUser.getUser();
+        UserInfo userInfo = new UserInfo(user);
 
         // ユーザの有効チェックを行う
         if (!userInfo.isValid()) {
             // 無効ユーザの削除を行う
-            this.authoritiesMapper.deleteByUserId(userId);
+            OptimisticLockControl<Users, String> usersLockCtrl = new OptimisticLockControl<>(this.usersMapper);
+            usersLockCtrl.lock(user);
+            this.authoritiesMapper.deleteByUserId(user.getUserId());
             (new OptimisticLockControl<>(this.usersMapper)).delete(userInfo);
             throw new AccountExpiredException(this.messages.getMessage("Error.UserInvalid"));
         }
@@ -52,19 +56,18 @@ public class UserManagerImpl implements UserManager {
 
     @Override
     @Transactional
-    public void loginSuccess(LoginUser user) {
+    public void loginSuccess(LoginUser loginUser) {
 
-        String userId = user.getUsername();
-        Users users = this.usersDao.load(userId);
+        Users user = loginUser.getUser();
         Timestamp current = new Timestamp(System.currentTimeMillis());
 
-        users.setLoginErrorCount(0);
-        users.setLastLoginDatetime(current);
-        users.setLogoutDatetime(null);
-        users.setUpdatedDatetime(current);
-        users.setUpdatedUserId(userId);
+        user.setLoginErrorCount(0);
+        user.setLastLoginDatetime(current);
+        user.setLogoutDatetime(null);
+        user.setUpdatedDatetime(current);
+        user.setUpdatedUserId(user.getUserId());
 
-        this.usersDao.update(users);
+        (new OptimisticLockControl<>(this.usersMapper)).update(user);
     }
 
     @Override
@@ -83,16 +86,30 @@ public class UserManagerImpl implements UserManager {
 
     @Override
     @Transactional
-    public void logout(LoginUser user) {
+    public void logout(LoginUser loginUser) {
 
-        String userId = user.getUsername();
-        Users users = this.usersDao.load(userId);
+        String userId = loginUser.getUser().getUserId();
+        Users user = this.usersDao.load(userId);
         Timestamp current = new Timestamp(System.currentTimeMillis());
 
-        users.setLogoutDatetime(current);
-        users.setUpdatedDatetime(current);
-        users.setUpdatedUserId(userId);
+        user.setLogoutDatetime(current);
+        user.setUpdatedDatetime(current);
+        user.setUpdatedUserId(userId);
 
-        this.usersDao.update(users);
+        this.usersDao.update(user);
+    }
+
+    @Override
+    @Transactional
+    public void checkDualLogin(LoginUser loginUser) throws AuthenticationException {
+
+        Users sourceUser = loginUser.getUser();
+        Users user = this.usersDao.load(sourceUser.getUserId());
+
+        // 最終ログイン日時、ログアウト日時の不変チェックを行う。
+        if (ObjectUtils.notEqual(sourceUser.getLastLoginDatetime(), user.getLastLoginDatetime())
+                || ObjectUtils.notEqual(sourceUser.getLogoutDatetime(), user.getLogoutDatetime())) {
+            throw new DualLoginException();
+        }
     }
 }

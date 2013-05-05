@@ -12,7 +12,7 @@ import jp.myapp.exception.ApplicationException;
 import jp.myapp.exception.BusinessException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.encoding.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,8 +42,7 @@ public class LoginServiceImpl implements LoginService {
         UserInfo userInfo = new UserInfo(source);
 
         // パスワードのハッシュ値との一致チェックを行う
-        boolean passwordValid = this.passwordEncoder.isPasswordValid(
-                userInfo.getPassword(), password, userInfo.getSalt());
+        boolean passwordValid = this.passwordEncoder.matches(password, userInfo.getPassword());
         if (!passwordValid) {
             throw new BusinessException("Error.NotMatchUserIdOrPassword", true);
         }
@@ -72,6 +71,7 @@ public class LoginServiceImpl implements LoginService {
 
         usersEntity.setUserId(userId);
         usersEntity.setUsername(userName);
+        usersEntity.setPassword(this.passwordEncoder.encode(password));
         usersEntity.setPasswordUpdatedDatetime(current);
         usersEntity.setEnabled(Boolean.TRUE);
         usersEntity.setProvisionalRegistration(Boolean.TRUE);
@@ -83,7 +83,6 @@ public class LoginServiceImpl implements LoginService {
         usersEntity.setUpdatedDatetime(current);
         usersEntity.setUpdatedUserId(userId);
         usersEntity.setVersion(0);
-        usersEntity.setPassword(this.passwordEncoder.encodePassword(password, usersEntity.getSalt()));
 
         this.usersMapper.insert(usersEntity);
 

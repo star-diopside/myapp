@@ -23,6 +23,7 @@
         <module>myapp-controller</module>
         <module>myapp-webservice-interface</module>
         <module>myapp-webservice-implement</module>
+        <module>myapp-support</module>
         <module>myapp-web-support</module>
         <module>myapp-test-utils</module>
     </modules>

@@ -34,8 +34,6 @@ public class LoginUserDetailsManager extends JdbcUserDetailsManager {
         LoginUserImpl loginUser = (LoginUserImpl) userFromUserQuery;
         UserDetails returnUserDetails = super.createUserDetails(username, userFromUserQuery, combinedAuthorities);
 
-        return new LoginUserImpl(returnUserDetails, loginUser.getDisplayName(), loginUser.getPasswordUpdatedDatetime(),
-                loginUser.isProvisionalRegistration(), loginUser.getLoginErrorCount(),
-                loginUser.getLastLoginDatetime(), loginUser.getLogoutDatetime(), loginUser.getVersion());
+        return new LoginUserImpl(returnUserDetails, loginUser);
     }
 }

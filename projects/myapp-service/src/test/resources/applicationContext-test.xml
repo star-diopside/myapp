@@ -26,8 +26,6 @@
     <import resource="classpath:applicationContext-message.xml" />
 
     <!-- パスワードエンコーダー -->
-    <bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
-        <constructor-arg value="256" />
-    </bean>
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder" />
 
 </beans>

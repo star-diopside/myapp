@@ -8,6 +8,7 @@ import jp.myapp.controller.auth.form.AA01S010Form;
 import jp.myapp.controller.auth.model.AA01S010Model;
 import jp.myapp.controller.auth.model.AA01S010ModelImpl;
 import jp.myapp.controller.util.SessionUtils;
+import jp.myapp.exception.auth.DualLoginException;
 
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.context.annotation.Scope;
@@ -36,6 +37,7 @@ public class AA01S010Action extends ActionSupport implements ModelDriven<AA01S01
         map.put(BadCredentialsException.class.getName(), "Error.NotMatchUserIdOrPassword");
         map.put(UsernameNotFoundException.class.getName(), "Error.NotMatchUserIdOrPassword");
         map.put(AccountExpiredException.class.getName(), "Error.UserInvalid");
+        map.put(DualLoginException.class.getName(), "Error.DualLogin");
         EXCEPTION_MAP = Collections.unmodifiableMap(map);
     }
 
@@ -64,6 +66,7 @@ public class AA01S010Action extends ActionSupport implements ModelDriven<AA01S01
 
         if (exception != null) {
             this.addActionError(this.getText(EXCEPTION_MAP.get(exception.getClass().getName())));
+            outForm.setException(null);
         }
 
         return SUCCESS;

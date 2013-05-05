@@ -211,15 +211,6 @@ public class UserInfo implements Users, Loggable, Serializable {
         }
     }
 
-    /**
-     * パスワードハッシュのソルトを取得する。
-     * 
-     * @return ソルト
-     */
-    public Object getSalt() {
-        return this.getPasswordUpdatedDatetime();
-    }
-
     @Override
     public Collection<String> toLogText() {
 

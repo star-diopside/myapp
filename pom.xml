@@ -21,16 +21,16 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <slf4j.version>1.7.5</slf4j.version>
-        <logback.version>1.0.11</logback.version>
+        <logback.version>1.0.12</logback.version>
         <spring.version>3.2.2.RELEASE</spring.version>
-        <spring-security.version>3.1.3.RELEASE</spring-security.version>
+        <spring-security.version>3.1.4.RELEASE</spring-security.version>
         <spring-batch.version>2.1.9.RELEASE</spring-batch.version>
         <hibernate.version>4.2.1.Final</hibernate.version>
-        <mybatis.version>3.2.1</mybatis.version>
+        <mybatis.version>3.2.2</mybatis.version>
         <mybatis-spring.version>1.2.0</mybatis-spring.version>
-        <struts2.version>2.3.12</struts2.version>
+        <struts2.version>2.3.14</struts2.version>
         <cxf.version>2.7.4</cxf.version>
-        <jackson.version>2.1.4</jackson.version>
+        <jackson.version>2.2.0</jackson.version>
     </properties>
 
     <repositories>
@@ -127,6 +127,12 @@
 
             <dependency>
                 <groupId>jp.myapp.project.projects</groupId>
+                <artifactId>myapp-support</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>jp.myapp.project.projects</groupId>
                 <artifactId>myapp-web-support</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -171,7 +177,7 @@
             <dependency>
                 <groupId>commons-codec</groupId>
                 <artifactId>commons-codec</artifactId>
-                <version>1.7</version>
+                <version>1.8</version>
             </dependency>
 
             <dependency>
@@ -327,7 +333,7 @@
             <dependency>
                 <groupId>javax.servlet.jsp</groupId>
                 <artifactId>javax.servlet.jsp-api</artifactId>
-                <version>2.3.0</version>
+                <version>2.3.1</version>
             </dependency>
 
             <dependency>
