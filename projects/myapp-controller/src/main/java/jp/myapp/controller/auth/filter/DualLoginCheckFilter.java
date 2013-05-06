@@ -42,7 +42,7 @@ public class DualLoginCheckFilter extends OncePerRequestFilter {
             } catch (AuthenticationException e) {
                 // 認証エラーが発生した場合、例外情報をセッションに格納する。
                 AA01S010Form form = new AA01S010FormImpl();
-                form.setUserId(request.getParameter(user.getUser().getUserId()));
+                form.setUserId(user.getUser().getUserId());
                 form.setException(e);
                 (new SessionUtils(request)).setForm(form);
 
