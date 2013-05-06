@@ -37,8 +37,8 @@
     </filter>
 
     <filter>
-        <filter-name>ServletObjectObtainFilter</filter-name>
-        <filter-class>jp.myapp.servlet.filter.ServletObjectObtainFilter</filter-class>
+        <filter-name>ServletContextHoldingFilter</filter-name>
+        <filter-class>jp.myapp.servlet.filter.ServletContextHoldingFilter</filter-class>
     </filter>
 
     <filter>
@@ -67,7 +67,7 @@
     </filter-mapping>
 
     <filter-mapping>
-        <filter-name>ServletObjectObtainFilter</filter-name>
+        <filter-name>ServletContextHoldingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 

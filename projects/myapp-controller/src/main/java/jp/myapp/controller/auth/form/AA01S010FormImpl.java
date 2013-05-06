@@ -10,7 +10,6 @@ import jp.myapp.logging.LoggableUtil;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.springframework.security.core.AuthenticationException;
 
 public class AA01S010FormImpl implements AA01S010Form, Loggable, Serializable {
 
@@ -20,8 +19,6 @@ public class AA01S010FormImpl implements AA01S010Form, Loggable, Serializable {
     private String userId;
     /** パスワード */
     private String password;
-    /** 認証エラー時の例外情報 */
-    private AuthenticationException exception;
 
     /**
      * ユーザIDを取得する。
@@ -63,26 +60,6 @@ public class AA01S010FormImpl implements AA01S010Form, Loggable, Serializable {
         this.password = password;
     }
 
-    /**
-     * 認証エラー時の例外情報を取得する。
-     * 
-     * @return 認証成功時はnull、認証失敗時はエラー原因を示す例外情報。
-     */
-    @Override
-    public AuthenticationException getException() {
-        return this.exception;
-    }
-
-    /**
-     * 認証エラー時の例外情報を設定する。
-     * 
-     * @param exception 認証成功時はnull、認証失敗時はエラー原因を示す例外情報。
-     */
-    @Override
-    public void setException(AuthenticationException exception) {
-        this.exception = exception;
-    }
-
     @Override
     public Collection<String> toLogText() {
 
@@ -90,7 +67,6 @@ public class AA01S010FormImpl implements AA01S010Form, Loggable, Serializable {
 
         LoggableUtil.addLog(list, this.userId, "userId");
         LoggableUtil.addLog(list, this.password, "password");
-        LoggableUtil.addLog(list, this.exception, "exception");
 
         return list;
     }

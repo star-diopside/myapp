@@ -1,17 +1,17 @@
 package jp.myapp.util;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class ServletContextHolder {
 
-    private static ThreadLocal<ServletContextHolder> HOLDER = new ThreadLocal<>();
+    private static final ThreadLocal<ServletContextHolder> HOLDER = new ThreadLocal<>();
     private ServletContext context;
-    private ServletRequest request;
-    private ServletResponse response;
+    private HttpServletRequest request;
+    private HttpServletResponse response;
 
-    private ServletContextHolder(ServletRequest request, ServletResponse response) {
+    private ServletContextHolder(HttpServletRequest request, HttpServletResponse response) {
         this.context = request.getServletContext();
         this.request = request;
         this.response = response;
@@ -21,15 +21,15 @@ public class ServletContextHolder {
         return context;
     }
 
-    public ServletRequest getRequest() {
+    public HttpServletRequest getRequest() {
         return request;
     }
 
-    public ServletResponse getResponse() {
+    public HttpServletResponse getResponse() {
         return response;
     }
 
-    public static void set(ServletRequest request, ServletResponse response) {
+    public static void set(HttpServletRequest request, HttpServletResponse response) {
         HOLDER.set(new ServletContextHolder(request, response));
     }
 

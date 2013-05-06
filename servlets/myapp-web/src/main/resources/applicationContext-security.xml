@@ -12,16 +12,19 @@
         <intercept-url pattern="/service/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
         <intercept-url pattern="/captcha.jpg" access="IS_AUTHENTICATED_ANONYMOUSLY" />
         <intercept-url pattern="/**" access="ROLE_USER" />
-        <form-login login-page="/auth/AA01S010Action.action" authentication-failure-handler-ref="authenticationFailureHandler" />
+        <form-login login-page="/auth/AA01S010Action.action" authentication-failure-handler-ref="loginFailureHandler" />
         <logout success-handler-ref="logoutSuccessHandler" />
-        <custom-filter position="LAST" ref="dualLoginCheckFilter" />
+        <custom-filter after="EXCEPTION_TRANSLATION_FILTER" ref="saveExceptionFilter" />
+        <custom-filter after="LAST" ref="dualLoginCheckFilter" />
     </http>
 
-    <beans:bean id="authenticationFailureHandler" class="jp.myapp.controller.auth.handler.LoginFailureHandler">
+    <beans:bean id="loginFailureHandler" class="jp.myapp.controller.auth.handler.LoginFailureHandler">
         <beans:property name="defaultFailureUrl" value="/auth/AA01S010Action.action" />
     </beans:bean>
 
     <beans:bean id="logoutSuccessHandler" class="jp.myapp.controller.auth.handler.LogoutSuccessHandler" />
+
+    <beans:bean id="saveExceptionFilter" class="jp.myapp.controller.auth.filter.SaveExceptionFilter" />
 
     <beans:bean id="dualLoginCheckFilter" class="jp.myapp.controller.auth.filter.DualLoginCheckFilter" />
 

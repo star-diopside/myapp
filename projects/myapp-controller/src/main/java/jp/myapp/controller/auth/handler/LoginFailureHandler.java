@@ -6,31 +6,18 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import jp.myapp.controller.auth.form.AA01S010Form;
-import jp.myapp.controller.auth.form.AA01S010FormImpl;
-import jp.myapp.controller.util.SessionUtils;
+import jp.myapp.controller.util.SaveExceptionUtils;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 public class LoginFailureHandler extends SimpleUrlAuthenticationFailureHandler {
-
-    private String usernameParameter = UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY;
-
-    public void setUsernameParameter(String usernameParameter) {
-        this.usernameParameter = usernameParameter;
-    }
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
             AuthenticationException exception) throws IOException, ServletException {
 
-        AA01S010Form form = new AA01S010FormImpl();
-        form.setUserId(request.getParameter(this.usernameParameter));
-        form.setException(exception);
-        (new SessionUtils(request)).setForm(form);
-
+        SaveExceptionUtils.setSession(request.getSession(), exception);
         super.onAuthenticationFailure(request, response, exception);
     }
 }
