@@ -3,12 +3,11 @@ package jp.myapp.controller.util;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.security.core.AuthenticationException;
-
 public final class SaveExceptionUtils {
 
-    private static final String SAVE_EXCEPTION_REQUEST_KEY = SaveExceptionUtils.class.getName() + ".REQUEST_KEY";
-    private static final String SAVE_EXCEPTION_SESSION_KEY = SaveExceptionUtils.class.getName() + ".SESSION_KEY";
+    private static final String KEY_PREFIX = SaveExceptionUtils.class.getName();
+    private static final String SAVE_EXCEPTION_REQUEST_KEY = KEY_PREFIX + ".request.LAST_EXCEPTION";
+    private static final String SAVE_EXCEPTION_SESSION_KEY = KEY_PREFIX + ".session.LAST_EXCEPTION";
 
     /**
      * リクエストから例外情報を取得する。
@@ -16,12 +15,12 @@ public final class SaveExceptionUtils {
      * @param request リクエスト
      * @return 例外情報
      */
-    public static AuthenticationException getRequest(HttpServletRequest request) {
+    public static Exception getRequest(HttpServletRequest request) {
 
         Object exception = request.getAttribute(SAVE_EXCEPTION_REQUEST_KEY);
 
-        if (exception instanceof AuthenticationException) {
-            return (AuthenticationException) exception;
+        if (exception instanceof Exception) {
+            return (Exception) exception;
         } else {
             return null;
         }
@@ -33,7 +32,7 @@ public final class SaveExceptionUtils {
      * @param request リクエスト
      * @param e 例外情報
      */
-    public static void setRequest(HttpServletRequest request, AuthenticationException e) {
+    public static void setRequest(HttpServletRequest request, Exception e) {
         request.setAttribute(SAVE_EXCEPTION_REQUEST_KEY, e);
     }
 
@@ -52,12 +51,12 @@ public final class SaveExceptionUtils {
      * @param session セッション
      * @return 例外情報
      */
-    public static AuthenticationException getSession(HttpSession session) {
+    public static Exception getSession(HttpSession session) {
 
         Object exception = session.getAttribute(SAVE_EXCEPTION_SESSION_KEY);
 
-        if (exception instanceof AuthenticationException) {
-            return (AuthenticationException) exception;
+        if (exception instanceof Exception) {
+            return (Exception) exception;
         } else {
             return null;
         }
@@ -69,7 +68,7 @@ public final class SaveExceptionUtils {
      * @param session セッション
      * @param e 例外情報
      */
-    public static void setSession(HttpSession session, AuthenticationException e) {
+    public static void setSession(HttpSession session, Exception e) {
         session.setAttribute(SAVE_EXCEPTION_SESSION_KEY, e);
     }
 

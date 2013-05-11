@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 
 import jp.myapp.controller.util.SaveExceptionUtils;
 
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 public class SaveExceptionFilter extends OncePerRequestFilter {
@@ -21,7 +20,7 @@ public class SaveExceptionFilter extends OncePerRequestFilter {
         HttpSession session = request.getSession();
 
         try {
-            AuthenticationException exception = SaveExceptionUtils.getSession(session);
+            Exception exception = SaveExceptionUtils.getSession(session);
 
             // セッションに例外情報が格納されている場合
             if (exception != null) {
@@ -33,7 +32,7 @@ public class SaveExceptionFilter extends OncePerRequestFilter {
             // 後続の処理を続行する。
             filterChain.doFilter(request, response);
 
-        } catch (AuthenticationException e) {
+        } catch (Exception e) {
             // 例外情報をセッションに格納する。
             SaveExceptionUtils.setSession(session, e);
 

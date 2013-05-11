@@ -18,7 +18,6 @@ import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.authentication.AccountExpiredException;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.context.request.RequestAttributes;
@@ -28,7 +27,8 @@ import com.opensymphony.xwork2.ModelDriven;
 
 @Controller
 @Scope(RequestAttributes.REFERENCE_REQUEST)
-public class AA01S010Action extends ActionSupport implements ModelDriven<AA01S010Model>, SessionAware, ServletRequestAware {
+public class AA01S010Action extends ActionSupport implements ModelDriven<AA01S010Model>, SessionAware,
+        ServletRequestAware {
 
     private static final long serialVersionUID = 1L;
 
@@ -74,8 +74,11 @@ public class AA01S010Action extends ActionSupport implements ModelDriven<AA01S01
 
         Object exception = SaveExceptionUtils.getRequest(request);
 
-        if (exception instanceof AuthenticationException) {
-            this.addActionError(this.getText(EXCEPTION_MAP.get(exception.getClass().getName())));
+        if (exception != null) {
+            String msgKey = EXCEPTION_MAP.get(exception.getClass().getName());
+            if (msgKey != null) {
+                this.addActionError(this.getText(msgKey));
+            }
         }
 
         return SUCCESS;
