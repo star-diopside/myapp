@@ -40,16 +40,15 @@ public class UserManagerImpl implements UserManager {
     @Transactional(noRollbackFor = AuthenticationException.class)
     public void checkValid(LoginUser loginUser) throws AuthenticationException {
 
-        Users user = loginUser.getUser();
+        Users user = (new OptimisticLockControl<>(this.usersMapper))
+                .lock(loginUser.getUserId(), loginUser.getVersion());
         UserInfo userInfo = new UserInfo(user);
 
         // ユーザの有効チェックを行う
         if (!userInfo.isValid()) {
             // 無効ユーザの削除を行う
-            OptimisticLockControl<Users, String> usersLockCtrl = new OptimisticLockControl<>(this.usersMapper);
-            usersLockCtrl.lock(user);
             this.authoritiesMapper.deleteByUserId(user.getUserId());
-            (new OptimisticLockControl<>(this.usersMapper)).delete(userInfo);
+            this.usersMapper.delete(user.getPK());
             throw new AccountExpiredException(this.messages.getMessage("Error.UserInvalid"));
         }
     }
@@ -58,7 +57,8 @@ public class UserManagerImpl implements UserManager {
     @Transactional
     public void loginSuccess(LoginUser loginUser) {
 
-        Users user = loginUser.getUser();
+        Users user = (new OptimisticLockControl<>(this.usersMapper))
+                .lock(loginUser.getUserId(), loginUser.getVersion());
         Timestamp current = new Timestamp(System.currentTimeMillis());
 
         user.setLoginErrorCount(0);
@@ -67,7 +67,11 @@ public class UserManagerImpl implements UserManager {
         user.setUpdatedDatetime(current);
         user.setUpdatedUserId(user.getUserId());
 
-        (new OptimisticLockControl<>(this.usersMapper)).update(user);
+        this.usersMapper.update(user);
+
+        // 最終ログイン日時、ログアウト日時を更新する。
+        loginUser.setLastLoginDatetime(user.getLastLoginDatetime());
+        loginUser.setLogoutDatetime(user.getLogoutDatetime());
     }
 
     @Override
@@ -88,7 +92,7 @@ public class UserManagerImpl implements UserManager {
     @Transactional
     public void logout(LoginUser loginUser) {
 
-        String userId = loginUser.getUser().getUserId();
+        String userId = loginUser.getUserId();
         Users user = this.usersDao.load(userId);
         Timestamp current = new Timestamp(System.currentTimeMillis());
 
@@ -103,12 +107,11 @@ public class UserManagerImpl implements UserManager {
     @Transactional
     public void checkDualLogin(LoginUser loginUser) throws AuthenticationException {
 
-        Users sourceUser = loginUser.getUser();
-        Users user = this.usersDao.load(sourceUser.getUserId());
+        Users user = this.usersDao.load(loginUser.getUserId());
 
         // 最終ログイン日時、ログアウト日時の不変チェックを行う。
-        if (ObjectUtils.notEqual(sourceUser.getLastLoginDatetime(), user.getLastLoginDatetime())
-                || ObjectUtils.notEqual(sourceUser.getLogoutDatetime(), user.getLogoutDatetime())) {
+        if (ObjectUtils.notEqual(loginUser.getLastLoginDatetime(), user.getLastLoginDatetime())
+                || ObjectUtils.notEqual(loginUser.getLogoutDatetime(), user.getLogoutDatetime())) {
             throw new DualLoginException();
         }
     }

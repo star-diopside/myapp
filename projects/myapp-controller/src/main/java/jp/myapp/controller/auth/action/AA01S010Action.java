@@ -72,7 +72,7 @@ public class AA01S010Action extends ActionSupport implements ModelDriven<AA01S01
             this.model.setAA01S010Form(outForm);
         }
 
-        Object exception = SaveExceptionUtils.getRequest(request);
+        Exception exception = SaveExceptionUtils.getRequest(request);
 
         if (exception != null) {
             String msgKey = EXCEPTION_MAP.get(exception.getClass().getName());
