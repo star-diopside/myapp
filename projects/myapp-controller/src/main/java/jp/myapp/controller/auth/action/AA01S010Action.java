@@ -6,12 +6,13 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import jp.myapp.constant.FlashScopeKeys;
 import jp.myapp.controller.auth.form.AA01S010Form;
 import jp.myapp.controller.auth.model.AA01S010Model;
 import jp.myapp.controller.auth.model.AA01S010ModelImpl;
-import jp.myapp.controller.util.SaveExceptionUtils;
 import jp.myapp.controller.util.SessionUtils;
 import jp.myapp.exception.auth.DualLoginException;
+import jp.myapp.servlet.support.FlashScopeUtils;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
@@ -72,12 +73,18 @@ public class AA01S010Action extends ActionSupport implements ModelDriven<AA01S01
             this.model.setAA01S010Form(outForm);
         }
 
-        Exception exception = SaveExceptionUtils.getRequest(request);
+        // フラッシュスコープを取得する。
+        Map<String, Object> inputFlashMap = FlashScopeUtils.getInputFlashMap(request);
 
-        if (exception != null) {
-            String msgKey = EXCEPTION_MAP.get(exception.getClass().getName());
-            if (msgKey != null) {
-                this.addActionError(this.getText(msgKey));
+        if (inputFlashMap != null) {
+            // フラッシュスコープから例外情報を取得する。
+            Object exception = inputFlashMap.get(FlashScopeKeys.LAST_EXCEPTION);
+
+            if (exception instanceof Exception) {
+                String msgKey = EXCEPTION_MAP.get(exception.getClass().getName());
+                if (msgKey != null) {
+                    this.addActionError(this.getText(msgKey));
+                }
             }
         }
 

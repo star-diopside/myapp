@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:security="http://www.springframework.org/schema/security"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
+        <constructor-arg>
+            <list>
+                <security:filter-chain pattern="/**"
+                    filters="servletContextHoldingFilter,loggingConfigFilter,noCacheFilter,flashScopeFilter" />
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="servletContextHoldingFilter" class="jp.myapp.servlet.filter.ServletContextHoldingFilter" />
+
+    <bean id="loggingConfigFilter" class="jp.myapp.servlet.filter.LoggingConfigFilter" />
+
+    <bean id="noCacheFilter" class="jp.myapp.servlet.filter.NoCacheFilter" />
+
+    <bean id="flashScopeFilter" class="jp.myapp.servlet.filter.FlashScopeFilter" />
+
+</beans>

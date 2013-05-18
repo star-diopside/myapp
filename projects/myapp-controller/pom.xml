@@ -25,6 +25,10 @@
             <artifactId>myapp-service</artifactId>
         </dependency>
         <dependency>
+            <groupId>jp.myapp.project.projects</groupId>
+            <artifactId>myapp-web-support</artifactId>
+        </dependency>
+        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <scope>provided</scope>

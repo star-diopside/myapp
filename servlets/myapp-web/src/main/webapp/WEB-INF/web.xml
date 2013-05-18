@@ -8,8 +8,9 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>
             classpath:applicationContext.xml
-            classpath:applicationContext-tx.xml
+            classpath:applicationContext-filter.xml
             classpath:applicationContext-security.xml
+            classpath:applicationContext-tx.xml
             classpath:applicationContext-webservice.xml
             classpath:applicationContext-message.xml
         </param-value>
@@ -37,18 +38,8 @@
     </filter>
 
     <filter>
-        <filter-name>ServletContextHoldingFilter</filter-name>
-        <filter-class>jp.myapp.servlet.filter.ServletContextHoldingFilter</filter-class>
-    </filter>
-
-    <filter>
-        <filter-name>LoggingConfigFilter</filter-name>
-        <filter-class>jp.myapp.servlet.filter.LoggingConfigFilter</filter-class>
-    </filter>
-
-    <filter>
-        <filter-name>NoCacheFilter</filter-name>
-        <filter-class>jp.myapp.servlet.filter.NoCacheFilter</filter-class>
+        <filter-name>filterChainProxy</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
     </filter>
 
     <filter>
@@ -67,17 +58,7 @@
     </filter-mapping>
 
     <filter-mapping>
-        <filter-name>ServletContextHoldingFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
-    <filter-mapping>
-        <filter-name>LoggingConfigFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
-    <filter-mapping>
-        <filter-name>NoCacheFilter</filter-name>
+        <filter-name>filterChainProxy</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
