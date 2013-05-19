@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import jp.myapp.servlet.filter.FlashScopeFilter;
 
 import org.springframework.web.servlet.FlashMap;
-import org.springframework.web.servlet.FlashMapManager;
 
 public class FlashScopeUtils {
 
@@ -18,9 +17,5 @@ public class FlashScopeUtils {
 
     public static FlashMap getOutputFlashMap(HttpServletRequest request) {
         return (FlashMap) request.getAttribute(FlashScopeFilter.OUTPUT_FLASH_MAP_ATTRIBUTE);
-    }
-
-    public static FlashMapManager getFlashMapManager(HttpServletRequest request) {
-        return (FlashMapManager) request.getAttribute(FlashScopeFilter.FLASH_MAP_MANAGER_ATTRIBUTE);
     }
 }
