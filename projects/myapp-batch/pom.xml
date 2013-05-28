@@ -28,17 +28,9 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>appassembler-maven-plugin</artifactId>
-                <version>1.2.2</version>
                 <executions>
                     <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>assemble</goal>
-                        </goals>
                         <configuration>
-                            <copyConfigurationDirectory>true</copyConfigurationDirectory>
-                            <repositoryLayout>flat</repositoryLayout>
-                            <repositoryName>lib</repositoryName>
                             <programs>
                                 <program>
                                     <mainClass>org.springframework.batch.core.launch.support.CommandLineJobRunner</mainClass>
