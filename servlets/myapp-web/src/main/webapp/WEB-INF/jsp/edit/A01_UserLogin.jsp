@@ -8,6 +8,7 @@
   <title><s:text name="A01.Title" /></title>
 </head>
 <body>
+<p><s:a namespace="admin" action="BA01S010">管理者メニュー</s:a></p>
 <s:fielderror />
 <s:actionerror />
 <s:debug />

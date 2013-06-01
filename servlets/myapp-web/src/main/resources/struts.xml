@@ -45,6 +45,7 @@
     </package>
 
     <include file="struts-auth.xml" />
+    <include file="struts-admin.xml" />
     <include file="struts-edit.xml" />
 
 </struts>
