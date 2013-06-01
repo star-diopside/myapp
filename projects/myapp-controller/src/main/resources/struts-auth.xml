@@ -7,6 +7,10 @@
 
     <package name="auth" namespace="/auth" extends="base">
 
+        <action name="invalid-session" class="invalidSessionActionImpl">
+            <result type="redirectAction">AA01S010Action</result>
+        </action>
+
         <action name="AA01S010Action" class="AA01S010Action">
             <result>/WEB-INF/jsp/auth/AA01S010_Login.jsp</result>
         </action>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-    <property name="LOG_DIR" value="E:/log/webservice-client" />
+    <property name="LOG_DIR" value="${user.home}/log/webservice-client" />
 
     <!-- Error Interceptor Log Appender -->
     <appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">

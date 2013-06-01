@@ -20,6 +20,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <slf4j.version>1.7.5</slf4j.version>
         <logback.version>1.0.12</logback.version>
         <spring.version>3.2.2.RELEASE</spring.version>
@@ -51,13 +52,6 @@
                     <configuration>
                         <source>1.7</source>
                         <target>1.7</target>
-                        <encoding>UTF-8</encoding>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <configuration>
-                        <encoding>UTF-8</encoding>
                     </configuration>
                 </plugin>
                 <plugin>

@@ -86,6 +86,11 @@ public class AA01S010Action extends ActionSupport implements ModelDriven<AA01S01
                     this.addActionError(this.getText(msgKey));
                 }
             }
+
+            // セッションタイムアウト後の遷移かどうかチェックする。
+            if (Boolean.TRUE.equals(inputFlashMap.get(FlashScopeKeys.INVALID_SESSION_FLAG))) {
+                this.addActionError(this.getText("Error.InvalidSession"));
+            }
         }
 
         return SUCCESS;

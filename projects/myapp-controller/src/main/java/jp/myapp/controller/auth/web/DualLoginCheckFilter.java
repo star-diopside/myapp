@@ -1,4 +1,4 @@
-package jp.myapp.controller.auth.filter;
+package jp.myapp.controller.auth.web;
 
 import java.io.IOException;
 
