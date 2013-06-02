@@ -21,10 +21,12 @@
                 <plugin>
                     <artifactId>maven-ear-plugin</artifactId>
                     <configuration>
+                        <version>6</version>
                         <modules>
                             <webModule>
                                 <groupId>jp.myapp.project.servlets</groupId>
                                 <artifactId>myapp-web</artifactId>
+                                <bundleFileName>myapp-web.war</bundleFileName>
                                 <contextRoot>/myapp-web</contextRoot>
                             </webModule>
                         </modules>
