@@ -3,6 +3,7 @@ package jp.myapp.data.dao;
 import jp.myapp.data.entity.Users;
 import jp.myapp.data.entity.UsersImpl;
 
+import org.hibernate.LockOptions;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -24,6 +25,12 @@ public class UsersDaoImpl implements UsersDao {
     @Transactional
     public UsersImpl load(String userId) {
         return (UsersImpl) this.sessionFactory.getCurrentSession().load(UsersImpl.class, userId);
+    }
+
+    @Override
+    @Transactional
+    public UsersImpl loadForUpdate(String userId) {
+        return (UsersImpl) this.sessionFactory.getCurrentSession().load(UsersImpl.class, userId, LockOptions.UPGRADE);
     }
 
     @Override

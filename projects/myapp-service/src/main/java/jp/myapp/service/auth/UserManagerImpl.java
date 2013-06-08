@@ -93,14 +93,16 @@ public class UserManagerImpl implements UserManager {
     public void logout(LoginUser loginUser) {
 
         String userId = loginUser.getUserId();
-        Users user = this.usersDao.load(userId);
-        Timestamp current = new Timestamp(System.currentTimeMillis());
+        Users user = this.usersDao.loadForUpdate(userId);
 
-        user.setLogoutDatetime(current);
-        user.setUpdatedDatetime(current);
-        user.setUpdatedUserId(userId);
-
-        this.usersDao.update(user);
+        // ログイン情報が更新されていない場合、ログアウト処理を行う。
+        if (!checkLoginInfo(loginUser, user)) {
+            Timestamp current = new Timestamp(System.currentTimeMillis());
+            user.setLogoutDatetime(current);
+            user.setUpdatedDatetime(current);
+            user.setUpdatedUserId(userId);
+            this.usersDao.update(user);
+        }
     }
 
     @Override
@@ -109,10 +111,23 @@ public class UserManagerImpl implements UserManager {
 
         Users user = this.usersDao.load(loginUser.getUserId());
 
-        // 最終ログイン日時、ログアウト日時の不変チェックを行う。
-        if (ObjectUtils.notEqual(loginUser.getLastLoginDatetime(), user.getLastLoginDatetime())
-                || ObjectUtils.notEqual(loginUser.getLogoutDatetime(), user.getLogoutDatetime())) {
+        // ログイン情報が更新されている場合、二重ログイン例外をスローする。
+        if (checkLoginInfo(loginUser, user)) {
             throw new DualLoginException();
         }
+    }
+
+    /**
+     * ログイン情報の不変チェックを行う。
+     * 
+     * @param loginUser ログインユーザ情報
+     * @param user ユーザテーブルから取得したユーザ情報
+     * @return ログイン後にログイン情報が更新されている場合はtrue、それ以外の場合はfalse。
+     */
+    private boolean checkLoginInfo(LoginUser loginUser, Users user) {
+
+        // 最終ログイン日時、ログアウト日時の判定を行う。
+        return ObjectUtils.notEqual(loginUser.getLastLoginDatetime(), user.getLastLoginDatetime())
+                || ObjectUtils.notEqual(loginUser.getLogoutDatetime(), user.getLogoutDatetime());
     }
 }
