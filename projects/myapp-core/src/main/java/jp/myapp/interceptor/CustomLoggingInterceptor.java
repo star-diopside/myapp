@@ -20,7 +20,7 @@ public class CustomLoggingInterceptor extends LoggingInterceptor {
         // MDCにメソッド呼び出し情報をセットする。
         String beforeClassName = MDC.get(MDC_CLASS_NAME);
         String beforeMethodName = MDC.get(MDC_METHOD_NAME);
-        MDC.put(MDC_CLASS_NAME, getClassForLogging(invocation.getThis()).getSimpleName());
+        MDC.put(MDC_CLASS_NAME, getClassForLogging(invocation.getThis()).getName());
         MDC.put(MDC_METHOD_NAME, invocation.getMethod().getName());
 
         try {
