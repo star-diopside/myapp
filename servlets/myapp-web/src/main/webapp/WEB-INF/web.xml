@@ -119,25 +119,25 @@
     </jsp-config>
 
     <resource-ref>
-        <res-ref-name>jdbc/DataSource01</res-ref-name>
+        <res-ref-name>jdbc/Management</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>
     </resource-ref>
 
     <resource-ref>
-        <res-ref-name>jdbc/DataSource02</res-ref-name>
+        <res-ref-name>jdbc/Application</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>
     </resource-ref>
 
     <resource-ref>
-        <res-ref-name>jdbc/XADataSource01</res-ref-name>
+        <res-ref-name>jdbc/XAManagement</res-ref-name>
         <res-type>javax.sql.XADataSource</res-type>
         <res-auth>Container</res-auth>
     </resource-ref>
 
     <resource-ref>
-        <res-ref-name>jdbc/XADataSource02</res-ref-name>
+        <res-ref-name>jdbc/XAApplication</res-ref-name>
         <res-type>javax.sql.XADataSource</res-type>
         <res-auth>Container</res-auth>
     </resource-ref>

@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jboss-web>
     <resource-ref>
-        <res-ref-name>jdbc/DataSource01</res-ref-name>
+        <res-ref-name>jdbc/Management</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
-        <jndi-name>java:jboss/datasources/DataSource01</jndi-name>
+        <jndi-name>java:jboss/datasources/Management</jndi-name>
     </resource-ref>
     <resource-ref>
-        <res-ref-name>jdbc/DataSource02</res-ref-name>
+        <res-ref-name>jdbc/Application</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
-        <jndi-name>java:jboss/datasources/DataSource02</jndi-name>
+        <jndi-name>java:jboss/datasources/Application</jndi-name>
     </resource-ref>
     <resource-ref>
-        <res-ref-name>jdbc/XADataSource01</res-ref-name>
+        <res-ref-name>jdbc/XAManagement</res-ref-name>
         <res-type>javax.sql.XADataSource</res-type>
-        <jndi-name>java:jboss/datasources/XADataSource01</jndi-name>
+        <jndi-name>java:jboss/datasources/XAManagement</jndi-name>
     </resource-ref>
     <resource-ref>
-        <res-ref-name>jdbc/XADataSource02</res-ref-name>
+        <res-ref-name>jdbc/XAApplication</res-ref-name>
         <res-type>javax.sql.XADataSource</res-type>
-        <jndi-name>java:jboss/datasources/XADataSource02</jndi-name>
+        <jndi-name>java:jboss/datasources/XAApplication</jndi-name>
     </resource-ref>
     <resource-ref>
         <res-ref-name>UserTransaction</res-ref-name>

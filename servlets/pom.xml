@@ -17,6 +17,7 @@
 
     <modules>
         <module>myapp-web</module>
+        <module>webservice-cxf</module>
     </modules>
 
     <build>

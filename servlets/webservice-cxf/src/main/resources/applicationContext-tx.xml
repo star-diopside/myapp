@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:jee="http://www.springframework.org/schema/jee"
     xmlns:tx="http://www.springframework.org/schema/tx"
     xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!-- データソース定義 -->
-    <jee:jndi-lookup id="managementDataSource" jndi-name="java:comp/env/jdbc/Management" />
-    <jee:jndi-lookup id="applicationDataSource" jndi-name="java:comp/env/jdbc/Application" />
-    <jee:jndi-lookup id="managementXADataSource" jndi-name="java:comp/env/jdbc/XAManagement" />
-    <jee:jndi-lookup id="applicationXADataSource" jndi-name="java:comp/env/jdbc/XAApplication" />
-    <alias name="applicationDataSource" alias="dataSource" />
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="org.postgresql.Driver" />
+        <property name="url" value="jdbc:postgresql://dev-srv:5432/user" />
+        <property name="username" value="user" />
+        <property name="password" value="user" />
+    </bean>
 
     <!-- MyBatis定義 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -30,12 +29,13 @@
     <!-- Hibernate定義 -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="jtaTransactionManager" ref="transactionManager" />
         <property name="configLocation" value="classpath:hibernate.cfg.xml" />
     </bean>
 
     <!-- トランザクションマネージャ定義 -->
-    <tx:jta-transaction-manager />
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
 
     <!-- トランザクションアノテーションの有効化 -->
     <tx:annotation-driven />
