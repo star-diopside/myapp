@@ -5,6 +5,9 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL82Dialect</property>
-        <mapping resource="hibernate-mapping/Users.hbm.xml" />
+        <mapping resource="hibernate/management/Users.hbm.xml" />
+        <mapping resource="hibernate/management/Authorities.hbm.xml" />
+        <mapping resource="hibernate/application/UserAttribute.hbm.xml" />
+        <mapping resource="hibernate/application/SequentialNumberManage.hbm.xml" />
     </session-factory>
 </hibernate-configuration>

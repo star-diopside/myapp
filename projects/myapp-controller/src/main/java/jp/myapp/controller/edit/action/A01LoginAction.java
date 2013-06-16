@@ -8,7 +8,7 @@ import jp.myapp.controller.edit.model.A01LoginModel;
 import jp.myapp.controller.edit.model.A01LoginModelImpl;
 import jp.myapp.controller.edit.validation.A01Validation;
 import jp.myapp.controller.util.SessionUtils;
-import jp.myapp.data.mapper.UsersMapper;
+import jp.myapp.data.mapper.management.UsersMapper;
 import jp.myapp.service.LoginService;
 
 import org.apache.struts2.interceptor.SessionAware;

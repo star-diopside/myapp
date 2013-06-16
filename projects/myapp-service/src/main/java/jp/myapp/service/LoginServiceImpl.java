@@ -2,11 +2,11 @@ package jp.myapp.service;
 
 import java.sql.Timestamp;
 
-import jp.myapp.bean.UserInfo;
-import jp.myapp.data.entity.AuthoritiesImpl;
-import jp.myapp.data.entity.Users;
-import jp.myapp.data.mapper.AuthoritiesMapper;
-import jp.myapp.data.mapper.UsersMapper;
+import jp.myapp.bean.UserInfoUtil;
+import jp.myapp.data.entity.management.Authorities;
+import jp.myapp.data.entity.management.Users;
+import jp.myapp.data.mapper.management.AuthoritiesMapper;
+import jp.myapp.data.mapper.management.UsersMapper;
 import jp.myapp.data.support.OptimisticLockControl;
 import jp.myapp.exception.ApplicationException;
 import jp.myapp.exception.BusinessException;
@@ -30,32 +30,30 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     @Transactional
-    public UserInfo loginUser(String userId, String password) throws ApplicationException {
+    public Users loginUser(String userId, String password) throws ApplicationException {
 
         // ユーザ情報データを取得する
-        Users source = this.usersMapper.selectForUpdate(userId);
+        Users user = this.usersMapper.selectForUpdate(userId);
 
-        if (source == null || source.getPassword() == null) {
+        if (user == null || user.getPassword() == null) {
             throw new BusinessException("Error.NotMatchUserIdOrPassword", true);
         }
 
-        UserInfo userInfo = new UserInfo(source);
-
         // パスワードのハッシュ値との一致チェックを行う
-        boolean passwordValid = this.passwordEncoder.matches(password, userInfo.getPassword());
+        boolean passwordValid = this.passwordEncoder.matches(password, user.getPassword());
         if (!passwordValid) {
             throw new BusinessException("Error.NotMatchUserIdOrPassword", true);
         }
 
         // ユーザの有効チェックを行う
-        if (!userInfo.isValid()) {
+        if (!UserInfoUtil.isValid(user)) {
             // 無効ユーザの削除を行う
-            this.authoritiesMapper.deleteByUserId(source.getUserId());
-            (new OptimisticLockControl<>(this.usersMapper)).delete(source);
+            this.authoritiesMapper.deleteByUserId(user.getUserId());
+            (new OptimisticLockControl<>(this.usersMapper)).delete(user);
             throw new ApplicationException("Error.UserInvalid", true);
         }
 
-        return userInfo;
+        return user;
     }
 
     @Override
@@ -66,33 +64,34 @@ public class LoginServiceImpl implements LoginService {
             throw new BusinessException("Error.UserExists", true);
         }
 
-        UserInfo usersEntity = new UserInfo();
+        Users usersEntity = new Users();
         Timestamp current = new Timestamp(System.currentTimeMillis());
 
         usersEntity.setUserId(userId);
         usersEntity.setUsername(userName);
         usersEntity.setPassword(this.passwordEncoder.encode(password));
-        usersEntity.setPasswordUpdatedDatetime(current);
+        usersEntity.setPasswordUpdatedTimestamp(current);
         usersEntity.setEnabled(Boolean.TRUE);
-        usersEntity.setProvisionalRegistration(Boolean.TRUE);
+        usersEntity.setInterimRegister(Boolean.TRUE);
         usersEntity.setLoginErrorCount(0);
-        usersEntity.setLastLoginDatetime(null);
-        usersEntity.setLogoutDatetime(null);
-        usersEntity.setRegisterDatetime(current);
+        usersEntity.setLockoutTimestamp(null);
+        usersEntity.setLastLoginTimestamp(null);
+        usersEntity.setLogoutTimestamp(null);
+        usersEntity.setRegisterTimestamp(current);
         usersEntity.setRegisterUserId(userId);
-        usersEntity.setUpdatedDatetime(current);
+        usersEntity.setUpdatedTimestamp(current);
         usersEntity.setUpdatedUserId(userId);
         usersEntity.setVersion(0);
 
         this.usersMapper.insert(usersEntity);
 
-        AuthoritiesImpl authoritiesEntity = new AuthoritiesImpl();
+        Authorities authoritiesEntity = new Authorities();
 
         authoritiesEntity.setUserId(userId);
         authoritiesEntity.setAuthority("ROLE_USER");
-        authoritiesEntity.setRegisterDatetime(current);
+        authoritiesEntity.setRegisterTimestamp(current);
         authoritiesEntity.setRegisterUserId(userId);
-        authoritiesEntity.setUpdatedDatetime(current);
+        authoritiesEntity.setUpdatedTimestamp(current);
         authoritiesEntity.setUpdatedUserId(userId);
         authoritiesEntity.setVersion(0);
 

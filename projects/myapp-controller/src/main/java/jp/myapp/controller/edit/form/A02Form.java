@@ -2,7 +2,7 @@ package jp.myapp.controller.edit.form;
 
 import java.util.List;
 
-import jp.myapp.data.entity.Users;
+import jp.myapp.data.entity.management.Users;
 
 public interface A02Form {
 

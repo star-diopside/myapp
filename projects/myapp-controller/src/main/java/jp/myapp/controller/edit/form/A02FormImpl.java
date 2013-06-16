@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import jp.myapp.data.entity.Users;
-import jp.myapp.data.entity.UsersImpl;
+import jp.myapp.data.entity.management.Users;
 import jp.myapp.logging.Loggable;
 import jp.myapp.logging.LoggableUtil;
 
@@ -66,7 +65,7 @@ public class A02FormImpl implements A02Form, Loggable, Serializable {
     }
 
     @Override
-    @Element(UsersImpl.class)
+    @Element(Users.class)
     public List<Users> getUserInfoList() {
         return this.tUserInfoList;
     }

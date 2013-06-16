@@ -57,18 +57,13 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
+            <groupId>com.atomikos</groupId>
+            <artifactId>transactions-osgi</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derbyLocale_ja_JP</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

@@ -11,11 +11,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import jp.myapp.data.entity.Users;
-import jp.myapp.data.entity.UsersImpl;
-import jp.myapp.data.mapper.AuthoritiesMapper;
-import jp.myapp.data.mapper.UserAttributeMapper;
-import jp.myapp.data.mapper.UsersMapper;
+import jp.myapp.data.entity.management.Users;
+import jp.myapp.data.mapper.management.AuthoritiesMapper;
+import jp.myapp.data.mapper.management.UsersMapper;
 import jp.myapp.data.support.OptimisticLockControl;
 import jp.myapp.webservice.bean.User;
 
@@ -28,9 +26,6 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private AuthoritiesMapper authoritiesMapper;
-
-    @Autowired
-    private UserAttributeMapper userAttributeMapper;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -70,21 +65,22 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User createUser(User user) {
 
-        UsersImpl entity = new UsersImpl();
+        Users entity = new Users();
         Timestamp current = new Timestamp(System.currentTimeMillis());
 
         entity.setUserId(user.getUserId());
         entity.setUsername(user.getUsername());
         entity.setPassword(this.passwordEncoder.encode(user.getUserId()));
-        entity.setPasswordUpdatedDatetime(current);
+        entity.setPasswordUpdatedTimestamp(current);
         entity.setEnabled(Boolean.TRUE);
-        entity.setProvisionalRegistration(Boolean.TRUE);
+        entity.setInterimRegister(Boolean.TRUE);
         entity.setLoginErrorCount(0);
-        entity.setLastLoginDatetime(null);
-        entity.setLogoutDatetime(null);
-        entity.setRegisterDatetime(current);
+        entity.setLockoutTimestamp(null);
+        entity.setLastLoginTimestamp(null);
+        entity.setLogoutTimestamp(null);
+        entity.setRegisterTimestamp(current);
         entity.setRegisterUserId(user.getUserId());
-        entity.setUpdatedDatetime(current);
+        entity.setUpdatedTimestamp(current);
         entity.setUpdatedUserId(user.getUserId());
         entity.setVersion(0);
 
@@ -102,7 +98,7 @@ public class UserServiceImpl implements UserService {
         Timestamp current = new Timestamp(System.currentTimeMillis());
 
         entity.setUsername(user.getUsername());
-        entity.setUpdatedDatetime(current);
+        entity.setUpdatedTimestamp(current);
         entity.setUpdatedUserId(user.getUserId());
         entity.setVersion(user.getVersion());
 
@@ -118,7 +114,6 @@ public class UserServiceImpl implements UserService {
 
         (new OptimisticLockControl<>(this.usersMapper)).lock(userId, version);
         this.authoritiesMapper.deleteByUserId(userId);
-        this.userAttributeMapper.delete(userId);
         this.usersMapper.delete(userId);
     }
 }

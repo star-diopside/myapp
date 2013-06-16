@@ -4,6 +4,12 @@
     xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <!-- データソース定義 -->
+    <alias name="applicationDataSource" alias="jobDataSource" />
+    <alias name="transactionManager" alias="jobTransactionManager" />
+    <alias name="transactionManager" alias="managementTransactionManager" />
+    <alias name="transactionManager" alias="applicationTransactionManager" />
+
     <!-- バッチ設定 -->
     <bean class="org.springframework.batch.core.launch.support.SimpleJobOperator">
         <property name="jobLauncher" ref="jobLauncher" />
@@ -13,7 +19,7 @@
     </bean>
 
     <bean id="jobExplorer" class="org.springframework.batch.core.explore.support.JobExplorerFactoryBean">
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="jobDataSource" />
     </bean>
 
     <bean id="jobRegistry" class="org.springframework.batch.core.configuration.support.MapJobRegistry" />
@@ -27,15 +33,20 @@
     </bean>
 
     <bean id="jobRepository" class="org.springframework.batch.core.repository.support.JobRepositoryFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="transactionManager" ref="transactionManager" />
+        <property name="dataSource" ref="jobDataSource" />
+        <property name="transactionManager" ref="jobTransactionManager" />
     </bean>
 
     <bean id="jobParametersIncrementer" class="org.springframework.batch.core.launch.support.RunIdIncrementer" />
 
-    <bean id="simpleStep" class="org.springframework.batch.core.step.item.SimpleStepFactoryBean" abstract="true">
-        <property name="transactionManager" ref="transactionManager" />
+    <bean id="managementSimpleStep" class="org.springframework.batch.core.step.factory.SimpleStepFactoryBean" abstract="true">
         <property name="jobRepository" ref="jobRepository" />
+        <property name="transactionManager" ref="managementTransactionManager" />
+    </bean>
+
+    <bean id="applicationSimpleStep" class="org.springframework.batch.core.step.factory.SimpleStepFactoryBean" abstract="true">
+        <property name="jobRepository" ref="jobRepository" />
+        <property name="transactionManager" ref="applicationTransactionManager" />
     </bean>
 
 </beans>

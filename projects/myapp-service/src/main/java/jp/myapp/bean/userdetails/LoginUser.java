@@ -26,28 +26,28 @@ public interface LoginUser {
      * 
      * @return 最終ログイン日時
      */
-    Timestamp getLastLoginDatetime();
+    Timestamp getLastLoginTimestamp();
 
     /**
      * 最終ログイン日時を設定する。
      * 
      * @param lastLoginDatetime 最終ログイン日時
      */
-    void setLastLoginDatetime(Timestamp lastLoginDatetime);
+    void setLastLoginTimestamp(Timestamp lastLoginTimestamp);
 
     /**
      * ログアウト日時を取得する。
      * 
      * @return ログアウト日時
      */
-    Timestamp getLogoutDatetime();
+    Timestamp getLogoutTimestamp();
 
     /**
      * ログアウト日時を設定する。
      * 
      * @param logoutDatetime ログアウト日時
      */
-    void setLogoutDatetime(Timestamp logoutDatetime);
+    void setLogoutTimestamp(Timestamp logoutTimestamp);
 
     /**
      * バージョンを取得する。

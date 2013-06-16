@@ -4,12 +4,12 @@ import java.sql.Timestamp;
 
 import javax.annotation.Resource;
 
-import jp.myapp.bean.UserInfo;
+import jp.myapp.bean.UserInfoUtil;
 import jp.myapp.bean.userdetails.LoginUser;
-import jp.myapp.data.dao.UsersDao;
-import jp.myapp.data.entity.Users;
-import jp.myapp.data.mapper.AuthoritiesMapper;
-import jp.myapp.data.mapper.UsersMapper;
+import jp.myapp.data.dao.management.UsersDao;
+import jp.myapp.data.entity.management.Users;
+import jp.myapp.data.mapper.management.AuthoritiesMapper;
+import jp.myapp.data.mapper.management.UsersMapper;
 import jp.myapp.data.support.OptimisticLockControl;
 import jp.myapp.exception.auth.DualLoginException;
 
@@ -42,10 +42,9 @@ public class UserManagerImpl implements UserManager {
 
         Users user = (new OptimisticLockControl<>(this.usersMapper))
                 .lock(loginUser.getUserId(), loginUser.getVersion());
-        UserInfo userInfo = new UserInfo(user);
 
         // ユーザの有効チェックを行う
-        if (!userInfo.isValid()) {
+        if (!UserInfoUtil.isValid(user)) {
             // 無効ユーザの削除を行う
             this.authoritiesMapper.deleteByUserId(user.getUserId());
             this.usersMapper.delete(user.getPK());
@@ -62,16 +61,16 @@ public class UserManagerImpl implements UserManager {
         Timestamp current = new Timestamp(System.currentTimeMillis());
 
         user.setLoginErrorCount(0);
-        user.setLastLoginDatetime(current);
-        user.setLogoutDatetime(null);
-        user.setUpdatedDatetime(current);
+        user.setLastLoginTimestamp(current);
+        user.setLogoutTimestamp(null);
+        user.setUpdatedTimestamp(current);
         user.setUpdatedUserId(user.getUserId());
 
         this.usersMapper.update(user);
 
         // 最終ログイン日時、ログアウト日時を更新する。
-        loginUser.setLastLoginDatetime(user.getLastLoginDatetime());
-        loginUser.setLogoutDatetime(user.getLogoutDatetime());
+        loginUser.setLastLoginTimestamp(user.getLastLoginTimestamp());
+        loginUser.setLogoutTimestamp(user.getLogoutTimestamp());
     }
 
     @Override
@@ -82,7 +81,7 @@ public class UserManagerImpl implements UserManager {
         Timestamp current = new Timestamp(System.currentTimeMillis());
 
         users.setLoginErrorCount(users.getLoginErrorCount() + 1);
-        users.setUpdatedDatetime(current);
+        users.setUpdatedTimestamp(current);
         users.setUpdatedUserId(userId);
 
         this.usersDao.update(users);
@@ -98,8 +97,8 @@ public class UserManagerImpl implements UserManager {
         // ログイン情報が更新されていない場合、ログアウト処理を行う。
         if (!checkLoginInfo(loginUser, user)) {
             Timestamp current = new Timestamp(System.currentTimeMillis());
-            user.setLogoutDatetime(current);
-            user.setUpdatedDatetime(current);
+            user.setLogoutTimestamp(current);
+            user.setUpdatedTimestamp(current);
             user.setUpdatedUserId(userId);
             this.usersDao.update(user);
         }
@@ -127,7 +126,7 @@ public class UserManagerImpl implements UserManager {
     private boolean checkLoginInfo(LoginUser loginUser, Users user) {
 
         // 最終ログイン日時、ログアウト日時の判定を行う。
-        return ObjectUtils.notEqual(loginUser.getLastLoginDatetime(), user.getLastLoginDatetime())
-                || ObjectUtils.notEqual(loginUser.getLogoutDatetime(), user.getLogoutDatetime());
+        return ObjectUtils.notEqual(loginUser.getLastLoginTimestamp(), user.getLastLoginTimestamp())
+                || ObjectUtils.notEqual(loginUser.getLogoutTimestamp(), user.getLogoutTimestamp());
     }
 }

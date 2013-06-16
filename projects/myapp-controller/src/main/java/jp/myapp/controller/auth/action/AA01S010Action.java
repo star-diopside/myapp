@@ -78,12 +78,14 @@ public class AA01S010Action extends ActionSupport implements ModelDriven<AA01S01
 
         if (inputFlashMap != null) {
             // フラッシュスコープから例外情報を取得する。
-            Object exception = inputFlashMap.get(FlashScopeKeys.LAST_EXCEPTION);
+            Exception exception = (Exception) inputFlashMap.get(FlashScopeKeys.LAST_EXCEPTION);
 
-            if (exception instanceof Exception) {
+            if (exception != null) {
                 String msgKey = EXCEPTION_MAP.get(exception.getClass().getName());
                 if (msgKey != null) {
                     this.addActionError(this.getText(msgKey));
+                } else {
+                    LOG.debug(exception.getMessage(), exception);
                 }
             }
 

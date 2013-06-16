@@ -2,9 +2,9 @@ package jp.myapp.batch;
 
 import java.util.List;
 
-import jp.myapp.data.entity.Users;
-import jp.myapp.data.mapper.AuthoritiesMapper;
-import jp.myapp.data.mapper.UsersMapper;
+import jp.myapp.data.entity.management.Users;
+import jp.myapp.data.mapper.management.AuthoritiesMapper;
+import jp.myapp.data.mapper.management.UsersMapper;
 import jp.myapp.data.support.OptimisticLockControl;
 import jp.myapp.exception.ExclusiveException;
 

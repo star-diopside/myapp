@@ -5,8 +5,8 @@ import java.util.List;
 
 import jp.myapp.bean.userdetails.LoginUser;
 import jp.myapp.bean.userdetails.LoginUserImpl;
-import jp.myapp.data.entity.Users;
-import jp.myapp.data.jdbc.mapper.UsersRowMapper;
+import jp.myapp.data.entity.management.Users;
+import jp.myapp.data.jdbc.mapper.management.UsersRowMapper;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

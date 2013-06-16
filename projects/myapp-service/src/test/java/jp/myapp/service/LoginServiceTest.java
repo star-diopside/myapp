@@ -9,7 +9,8 @@ import java.sql.Timestamp;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 
-import jp.myapp.bean.UserInfo;
+import jp.myapp.bean.UserInfoUtil;
+import jp.myapp.data.entity.management.Users;
 import jp.myapp.exception.ApplicationException;
 
 import org.dbunit.DataSourceDatabaseTester;
@@ -34,7 +35,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class LoginServiceTest {
 
     @Resource
-    private DataSource dataSource;
+    private DataSource managementDataSource;
 
     @Autowired
     private LoginService loginService;
@@ -54,7 +55,7 @@ public class LoginServiceTest {
 
             rds.addReplacementObject("[NOW_DATETIME]", new Timestamp(System.currentTimeMillis()));
 
-            this.databaseTester = new DataSourceDatabaseTester(this.dataSource);
+            this.databaseTester = new DataSourceDatabaseTester(this.managementDataSource);
             this.databaseTester.setDataSet(rds);
             this.databaseTester.onSetup();
         }
@@ -70,8 +71,8 @@ public class LoginServiceTest {
      */
     @Test
     public void testLoginValidInterim() throws ApplicationException {
-        UserInfo userInfo = this.loginService.loginUser("ValidUser01", "ValidUser01_Password");
-        assertThat(userInfo.isValid(), is(true));
+        Users user = this.loginService.loginUser("ValidUser01", "ValidUser01_Password");
+        assertThat(UserInfoUtil.isValid(user), is(true));
     }
 
     /**

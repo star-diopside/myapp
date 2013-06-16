@@ -30,6 +30,9 @@
     <!-- ファイルアップロード設定 -->
     <constant name="struts.multipart.maxSize" value="2097152" />
 
+    <!-- 例外ハンドリング設定 -->
+    <constant name="struts.handle.exception" value="false" />
+
     <package name="base" extends="struts-default" abstract="true">
 
         <interceptors>

@@ -2,8 +2,7 @@ package jp.myapp.batch.mapping;
 
 import java.sql.Timestamp;
 
-import jp.myapp.data.entity.Users;
-import jp.myapp.data.entity.UsersImpl;
+import jp.myapp.data.entity.management.Users;
 
 import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.batch.item.file.transform.FieldSet;
@@ -18,20 +17,21 @@ public class UsersFieldSetMapper implements FieldSetMapper<Users> {
             return null;
         }
 
-        Users userEntity = new UsersImpl();
+        Users userEntity = new Users();
 
         userEntity.setUserId(fieldSet.readString("userId"));
         userEntity.setUsername(fieldSet.readString("username"));
         userEntity.setPassword(fieldSet.readString("password"));
-        userEntity.setPasswordUpdatedDatetime(new Timestamp(fieldSet.readDate("passwordUpdatedDatetime").getTime()));
+        userEntity.setPasswordUpdatedTimestamp(Timestamp.valueOf(fieldSet.readString("passwordUpdatedTimestamp")));
         userEntity.setEnabled(fieldSet.readBoolean("enabled"));
-        userEntity.setProvisionalRegistration(fieldSet.readBoolean("provisionalRegistration"));
+        userEntity.setInterimRegister(fieldSet.readBoolean("interimRegister"));
         userEntity.setLoginErrorCount(fieldSet.readInt("loginErrorCount"));
-        userEntity.setLastLoginDatetime(new Timestamp(fieldSet.readDate("lastLoginDatetime").getTime()));
-        userEntity.setLogoutDatetime(new Timestamp(fieldSet.readDate("logoutDatetime").getTime()));
-        userEntity.setRegisterDatetime(new Timestamp(fieldSet.readDate("registerDatetime").getTime()));
+        userEntity.setLockoutTimestamp(Timestamp.valueOf(fieldSet.readString("lockoutTimestamp")));
+        userEntity.setLastLoginTimestamp(Timestamp.valueOf(fieldSet.readString("lastLoginTimestamp")));
+        userEntity.setLogoutTimestamp(Timestamp.valueOf(fieldSet.readString("logoutTimestamp")));
+        userEntity.setRegisterTimestamp(Timestamp.valueOf(fieldSet.readString("registerTimestamp")));
         userEntity.setRegisterUserId(fieldSet.readString("registerUserId"));
-        userEntity.setUpdatedDatetime(new Timestamp(fieldSet.readDate("updatedDatetime").getTime()));
+        userEntity.setUpdatedTimestamp(Timestamp.valueOf(fieldSet.readString("updatedTimestamp")));
         userEntity.setUpdatedUserId(fieldSet.readString("updatedUserId"));
         userEntity.setVersion(fieldSet.readInt("version"));
 

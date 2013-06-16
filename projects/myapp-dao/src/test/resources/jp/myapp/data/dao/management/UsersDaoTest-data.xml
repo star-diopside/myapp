@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+
+    <USERS USER_ID="user01"
+           USERNAME="テストユーザ０１"
+           PASSWORD="7df66186426c6ec83191ac99e491ecf590745762eb3789ed6219e97b6826d216"
+           PASSWORD_UPDATED_TIMESTAMP="1970-01-01 00:00:00.0"
+           ENABLED="true"
+           INTERIM_REGISTER="true"
+           LOGIN_ERROR_COUNT="0"
+           LOCKOUT_TIMESTAMP="1970-01-01 00:00:00.0"
+           LAST_LOGIN_TIMESTAMP="1970-01-01 00:00:00.0"
+           LOGOUT_TIMESTAMP="1970-01-01 00:00:00.0"
+           REGISTER_TIMESTAMP="1970-01-01 00:00:00.0"
+           REGISTER_USER_ID="TEST-DATA"
+           UPDATED_TIMESTAMP="1970-01-01 00:00:00.0"
+           UPDATED_USER_ID="TEST-DATA"
+           VERSION="0" />
+
+    <AUTHORITIES />
+
+</dataset>

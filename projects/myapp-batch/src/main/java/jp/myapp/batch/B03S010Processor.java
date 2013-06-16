@@ -1,7 +1,7 @@
 package jp.myapp.batch;
 
-import jp.myapp.bean.UserInfo;
-import jp.myapp.data.entity.Users;
+import jp.myapp.bean.UserInfoUtil;
+import jp.myapp.data.entity.management.Users;
 
 import org.springframework.batch.item.ItemProcessor;
 
@@ -11,7 +11,7 @@ public class B03S010Processor implements ItemProcessor<Users, Users> {
     public Users process(Users item) throws Exception {
 
         // 無効ユーザの場合に処理対象とする。
-        if ((new UserInfo(item)).isValid()) {
+        if (UserInfoUtil.isValid(item)) {
             return null;
         }
 

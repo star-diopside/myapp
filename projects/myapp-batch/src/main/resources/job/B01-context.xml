@@ -6,7 +6,7 @@
         http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd">
 
     <job id="B01" incrementer="jobParametersIncrementer" xmlns="http://www.springframework.org/schema/batch">
-        <step id="B01S010" parent="simpleStep">
+        <step id="B01S010" parent="managementSimpleStep">
             <tasklet>
                 <chunk reader="reader" processor="processor" writer="writer" />
             </tasklet>
@@ -20,7 +20,7 @@
             <bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
                 <property name="lineTokenizer">
                     <bean class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
-                        <property name="names" value="userId,username,password,passwordUpdatedDatetime,enabled,provisionalRegistration,loginErrorCount,lastLoginDatetime,logoutDatetime,registerDatetime,registerUserId,updatedDatetime,updatedUserId,version" />
+                        <property name="names" value="userId,username,password,passwordUpdatedTimestamp,enabled,interimRegister,loginErrorCount,lockoutTimestamp,lastLoginTimestamp,logoutTimestamp,registerTimestamp,registerUserId,updatedTimestamp,updatedUserId,version" />
                     </bean>
                 </property>
                 <property name="fieldSetMapper">
@@ -39,7 +39,7 @@
             <bean class="org.springframework.batch.item.file.transform.DelimitedLineAggregator">
                 <property name="fieldExtractor">
                     <bean class="org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor">
-                        <property name="names" value="userId,username,password,passwordUpdatedDatetime,enabled,provisionalRegistration,loginErrorCount,lastLoginDatetime,logoutDatetime,registerDatetime,registerUserId,updatedDatetime,updatedUserId,version" />
+                        <property name="names" value="userId,username,password,passwordUpdatedTimestamp,enabled,interimRegister,loginErrorCount,lockoutTimestamp,lastLoginTimestamp,logoutTimestamp,registerTimestamp,registerUserId,updatedTimestamp,updatedUserId,version" />
                     </bean>
                 </property>
             </bean>

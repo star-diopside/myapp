@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.myapp.data.mapper.application.SequentialNumberManageMapper">
+
+    <resultMap type="jp.myapp.data.entity.application.SequentialNumberManage" id="sequentialNumberManage">
+        <id column="SEQUENTIAL_NUMBER_MANAGE" property="sequentialClassId" />
+        <result column="SEQUENTIAL_VALUE" property="sequentialValue" />
+        <result column="DIGITS" property="digits" />
+        <result column="PREFIX" property="prefix" />
+        <result column="SUFFIX" property="suffix" />
+        <result column="GENERATE_PATTERN" property="generatePattern" />
+        <result column="REGISTER_TIMESTAMP" property="registerTimestamp" />
+        <result column="REGISTER_USER_ID" property="registerUserId" />
+        <result column="UPDATED_TIMESTAMP" property="updatedTimestamp" />
+        <result column="UPDATED_USER_ID" property="updatedUserId" />
+        <result column="VERSION" property="version" />
+    </resultMap>
+
+    <select id="select" parameterType="string" resultMap="sequentialNumberManage">
+        <![CDATA[
+            SELECT SEQUENTIAL_CLASS_ID, SEQUENTIAL_VALUE, DIGITS, PREFIX, SUFFIX, GENERATE_PATTERN, REGISTER_TIMESTAMP, REGISTER_USER_ID, UPDATED_TIMESTAMP, UPDATED_USER_ID, VERSION FROM SEQUENTIAL_NUMBER_MANAGE WHERE SEQUENTIAL_NUMBER_MANAGE = #{sequentialClassId}
+        ]]>
+    </select>
+
+    <select id="selectForUpdate" parameterType="string" resultMap="sequentialNumberManage">
+        <![CDATA[
+            SELECT SEQUENTIAL_CLASS_ID, SEQUENTIAL_VALUE, DIGITS, PREFIX, SUFFIX, GENERATE_PATTERN, REGISTER_TIMESTAMP, REGISTER_USER_ID, UPDATED_TIMESTAMP, UPDATED_USER_ID, VERSION FROM SEQUENTIAL_NUMBER_MANAGE WHERE SEQUENTIAL_NUMBER_MANAGE = #{sequentialClassId} FOR UPDATE
+        ]]>
+    </select>
+
+    <insert id="insert" parameterType="jp.myapp.data.entity.application.SequentialNumberManage">
+        <![CDATA[
+            INSERT INTO SEQUENTIAL_NUMBER_MANAGE
+            ( SEQUENTIAL_CLASS_ID, SEQUENTIAL_VALUE, DIGITS, PREFIX, SUFFIX, GENERATE_PATTERN, REGISTER_TIMESTAMP, REGISTER_USER_ID, UPDATED_TIMESTAMP, UPDATED_USER_ID, VERSION )
+            VALUES
+            ( #{sequentialClassId}, #{sequentialValue}, #{digits}, #{prefix}, #{suffix}, #{generatePattern}, #{registerTimestamp,jdbcType=TIMESTAMP}, #{registerUserId}, #{updatedTimestamp,jdbcType=TIMESTAMP}, #{updatedUserId}, #{version} )
+        ]]>
+    </insert>
+
+    <update id="update" parameterType="jp.myapp.data.entity.application.SequentialNumberManage">
+        <![CDATA[
+            UPDATE SEQUENTIAL_NUMBER_MANAGE
+            SET SEQUENTIAL_VALUE = #{sequentialValue},
+                DIGITS = #{digits},
+                PREFIX = #{prefix},
+                SUFFIX = #{suffix},
+                GENERATE_PATTERN = #{generatePattern},
+                REGISTER_TIMESTAMP = #{registerTimestamp,jdbcType=TIMESTAMP},
+                REGISTER_USER_ID = #{registerUserId},
+                UPDATED_TIMESTAMP = #{updatedTimestamp,jdbcType=TIMESTAMP},
+                UPDATED_USER_ID = #{updatedUserId},
+                VERSION = #{version}
+            WHERE SEQUENTIAL_CLASS_ID = #{sequentialClassId}
+        ]]>
+    </update>
+
+    <delete id="delete" parameterType="string">
+        <![CDATA[
+            DELETE FROM SEQUENTIAL_NUMBER_MANAGE WHERE SEQUENTIAL_CLASS_ID = #{sequentialClassId}
+        ]]>
+    </delete>
+
+</mapper>

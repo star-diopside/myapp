@@ -16,12 +16,4 @@
         <aop:advisor advice-ref="logging" pointcut="execution(public * jp.myapp..*(..))" />
     </aop:config>
 
-    <beans profile="default">
-        <context:property-placeholder location="classpath:database.properties" />
-    </beans>
-
-    <beans profile="test">
-        <context:property-placeholder location="classpath:database-test.properties" />
-    </beans>
-
 </beans>
