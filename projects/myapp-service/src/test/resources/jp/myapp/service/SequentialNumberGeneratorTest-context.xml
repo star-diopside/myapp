@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="classpath:applicationContext-test.xml" />
+
+    <bean id="setupDataSource" class="org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy">
+        <constructor-arg>
+            <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+                <property name="driverClassName" value="org.postgresql.Driver" />
+                <property name="url" value="jdbc:postgresql://dev-srv:5432/application" />
+                <property name="username" value="application" />
+                <property name="password" value="application" />
+            </bean>
+        </constructor-arg>
+    </bean>
+
+    <bean id="setupTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="setupDataSource" />
+    </bean>
+
+    <bean id="applicationDatabaseDumper" class="jp.myapp.test.support.DatabaseDumperImpl">
+        <property name="transactionManager" ref="setupTransactionManager" />
+        <property name="dataSource" ref="setupDataSource" />
+    </bean>
+
+</beans>

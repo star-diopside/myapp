@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+
+    <SEQUENTIAL_NUMBER_MANAGE SEQUENTIAL_CLASS_ID="0001"
+                              SEQUENTIAL_VALUE="1"
+                              DIGITS="8"
+                              PREFIX="ID"
+                              SUFFIX="N"
+                              GENERATE_PATTERN=""
+                              REGISTER_TIMESTAMP="1970-01-01 00:00:00.0"
+                              REGISTER_USER_ID="TESTDATA"
+                              UPDATED_TIMESTAMP="1970-01-01 00:00:00.0"
+                              UPDATED_USER_ID="TESTDATA"
+                              VERSION="0" />
+
+</dataset>

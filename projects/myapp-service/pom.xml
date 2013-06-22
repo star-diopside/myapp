@@ -42,6 +42,11 @@
             <artifactId>spring-security-core</artifactId>
         </dependency>
         <dependency>
+            <groupId>jp.myapp.project.projects</groupId>
+            <artifactId>myapp-test-support</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
