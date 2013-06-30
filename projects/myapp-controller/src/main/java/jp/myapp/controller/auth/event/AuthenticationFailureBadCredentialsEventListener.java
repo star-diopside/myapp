@@ -1,5 +1,6 @@
 package jp.myapp.controller.auth.event;
 
+import jp.myapp.controller.auth.support.UserAuthenticationProxy;
 import jp.myapp.service.auth.UserManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,10 @@ public class AuthenticationFailureBadCredentialsEventListener implements
             return;
         }
 
-        // 認証エラー処理を行う。
-        String userId = event.getAuthentication().getName();
-        this.userManager.loginFailure(userId);
+        if (event.getAuthentication() instanceof UserAuthenticationProxy) {
+            // 認証エラー処理を行う。
+            String userId = event.getAuthentication().getName();
+            this.userManager.loginFailure(userId);
+        }
     }
 }

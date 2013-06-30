@@ -25,16 +25,23 @@
         <logback.version>1.0.13</logback.version>
         <spring.version>3.2.3.RELEASE</spring.version>
         <spring-security.version>3.1.4.RELEASE</spring-security.version>
+        <spring-security-oauth.version>1.0.5.RELEASE</spring-security-oauth.version>
         <spring-batch.version>2.2.0.RELEASE</spring-batch.version>
         <hibernate.version>4.2.2.Final</hibernate.version>
         <mybatis.version>3.2.2</mybatis.version>
         <mybatis-spring.version>1.2.0</mybatis-spring.version>
         <struts2.version>2.3.14.3</struts2.version>
         <cxf.version>2.7.5</cxf.version>
-        <jackson.version>2.1.5</jackson.version>
+        <jackson1.version>1.9.12</jackson1.version>
+        <jackson2.version>2.1.5</jackson2.version>
     </properties>
 
     <repositories>
+        <repository>
+            <id>spring-release</id>
+            <name>Spring Framework Release Repository</name>
+            <url>http://maven.springframework.org/release</url>
+        </repository>
         <repository>
             <id>google-maven-repository</id>
             <url>https://m2repos.googlecode.com/svn/nexus/</url>
@@ -386,6 +393,12 @@
             </dependency>
 
             <dependency>
+                <groupId>org.springframework.security.oauth</groupId>
+                <artifactId>spring-security-oauth2</artifactId>
+                <version>${spring-security-oauth.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.springframework.batch</groupId>
                 <artifactId>spring-batch-core</artifactId>
                 <version>${spring-batch.version}</version>
@@ -452,9 +465,15 @@
             </dependency>
 
             <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-mapper-asl</artifactId>
+                <version>${jackson1.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>com.fasterxml.jackson.jaxrs</groupId>
                 <artifactId>jackson-jaxrs-json-provider</artifactId>
-                <version>${jackson.version}</version>
+                <version>${jackson2.version}</version>
             </dependency>
 
             <dependency>

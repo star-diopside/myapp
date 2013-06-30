@@ -1,6 +1,7 @@
 package jp.myapp.controller.auth.event;
 
 import jp.myapp.bean.userdetails.LoginUser;
+import jp.myapp.controller.auth.support.UserAuthenticationProxy;
 import jp.myapp.service.auth.UserManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,10 @@ public class AuthenticationSuccessEventListener implements ApplicationListener<A
     @Override
     public void onApplicationEvent(AuthenticationSuccessEvent event) {
 
-        // ログイン成功時の処理を行う。
-        LoginUser user = (LoginUser) event.getAuthentication().getPrincipal();
-        this.userManager.loginSuccess(user);
+        if (event.getAuthentication() instanceof UserAuthenticationProxy) {
+            // ログイン成功時の処理を行う。
+            LoginUser user = (LoginUser) event.getAuthentication().getPrincipal();
+            this.userManager.loginSuccess(user);
+        }
     }
 }
