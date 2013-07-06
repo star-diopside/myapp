@@ -31,7 +31,7 @@ public interface LoginUser {
     /**
      * 最終ログイン日時を設定する。
      * 
-     * @param lastLoginDatetime 最終ログイン日時
+     * @param lastLoginTimestamp 最終ログイン日時
      */
     void setLastLoginTimestamp(Timestamp lastLoginTimestamp);
 
@@ -45,7 +45,7 @@ public interface LoginUser {
     /**
      * ログアウト日時を設定する。
      * 
-     * @param logoutDatetime ログアウト日時
+     * @param logoutTimestamp ログアウト日時
      */
     void setLogoutTimestamp(Timestamp logoutTimestamp);
 
