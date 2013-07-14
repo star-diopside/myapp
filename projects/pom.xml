@@ -26,7 +26,6 @@
         <module>myapp-support</module>
         <module>myapp-web-support</module>
         <module>myapp-test-support</module>
-        <module>myapp-test-utils</module>
     </modules>
 
 </project>

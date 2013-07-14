@@ -12,14 +12,11 @@
     <context:component-scan base-package="jp.myapp" />
 
     <!-- ログ出力インターセプター -->
-    <bean id="logging" class="jp.myapp.interceptor.CustomLoggingInterceptor" />
+    <bean id="logging" class="org.springframework.aop.interceptor.CustomizableTraceInterceptor" />
 
     <!-- AOP定義 -->
     <aop:config>
         <aop:advisor advice-ref="logging" pointcut="execution(public * jp.myapp..*(..))" />
     </aop:config>
-
-    <!-- パスワードエンコーダー -->
-    <bean id="passwordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder" />
 
 </beans>
