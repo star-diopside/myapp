@@ -10,7 +10,7 @@
         <constructor-arg>
             <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource">
                 <property name="driverClassName" value="org.postgresql.Driver" />
-                <property name="url" value="jdbc:postgresql://dev-srv:5432/application" />
+                <property name="url" value="jdbc:postgresql://${database-server}:5432/application" />
                 <property name="username" value="application" />
                 <property name="password" value="application" />
             </bean>

@@ -19,9 +19,11 @@
         <testResources>
             <testResource>
                 <directory>src/test/resources</directory>
+                <filtering>true</filtering>
             </testResource>
             <testResource>
                 <directory>src/main/config</directory>
+                <filtering>true</filtering>
             </testResource>
         </testResources>
         <plugins>

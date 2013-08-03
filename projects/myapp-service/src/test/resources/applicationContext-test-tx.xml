@@ -24,7 +24,7 @@
                     </bean>
                 </property>
                 <property name="driverClassName" value="org.postgresql.Driver" />
-                <property name="url" value="jdbc:postgresql://dev-srv:5432/management" />
+                <property name="url" value="jdbc:postgresql://${database-server}:5432/management" />
                 <property name="user" value="management" />
                 <property name="password" value="management" />
             </bean>
@@ -40,7 +40,7 @@
                     </bean>
                 </property>
                 <property name="driverClassName" value="org.postgresql.Driver" />
-                <property name="url" value="jdbc:postgresql://dev-srv:5432/application" />
+                <property name="url" value="jdbc:postgresql://${database-server}:5432/application" />
                 <property name="user" value="application" />
                 <property name="password" value="application" />
             </bean>
@@ -58,7 +58,7 @@
                 <property name="xaDataSourceClassName" value="org.postgresql.xa.PGXADataSource" />
                 <property name="xaProperties">
                     <props>
-                        <prop key="serverName">dev-srv</prop>
+                        <prop key="serverName">${database-server}</prop>
                         <prop key="portNumber">5432</prop>
                         <prop key="databaseName">management</prop>
                         <prop key="user">management</prop>
@@ -80,7 +80,7 @@
                 <property name="xaDataSourceClassName" value="org.postgresql.xa.PGXADataSource" />
                 <property name="xaProperties">
                     <props>
-                        <prop key="serverName">dev-srv</prop>
+                        <prop key="serverName">${database-server}</prop>
                         <prop key="portNumber">5432</prop>
                         <prop key="databaseName">application</prop>
                         <prop key="user">application</prop>

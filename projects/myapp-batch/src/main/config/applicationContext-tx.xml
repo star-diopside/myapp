@@ -7,14 +7,14 @@
     <!-- データソース定義 -->
     <bean id="managementDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="org.postgresql.Driver" />
-        <property name="url" value="jdbc:postgresql://dev-srv:5432/management" />
+        <property name="url" value="jdbc:postgresql://${database-server}:5432/management" />
         <property name="username" value="management" />
         <property name="password" value="management" />
     </bean>
 
     <bean id="applicationDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="org.postgresql.Driver" />
-        <property name="url" value="jdbc:postgresql://dev-srv:5432/application" />
+        <property name="url" value="jdbc:postgresql://${database-server}:5432/application" />
         <property name="username" value="application" />
         <property name="password" value="application" />
     </bean>

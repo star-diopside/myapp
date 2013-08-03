@@ -37,6 +37,24 @@
         <jackson2.version>2.1.5</jackson2.version>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <database-server>dev-srv</database-server>
+            </properties>
+        </profile>
+        <profile>
+            <id>dev-local</id>
+            <properties>
+                <database-server>localhost</database-server>
+            </properties>
+        </profile>
+    </profiles>
+
     <repositories>
         <repository>
             <id>spring-release</id>
@@ -53,6 +71,18 @@
     </repositories>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
         <pluginManagement>
             <plugins>
                 <plugin>
