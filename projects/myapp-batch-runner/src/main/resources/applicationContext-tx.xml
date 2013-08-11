@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- データソース定義 -->
+    <bean id="managementDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="org.postgresql.Driver" />
+        <property name="url" value="jdbc:postgresql://${database-server}:5432/management" />
+        <property name="username" value="management" />
+        <property name="password" value="management" />
+    </bean>
+
+    <bean id="applicationDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="org.postgresql.Driver" />
+        <property name="url" value="jdbc:postgresql://${database-server}:5432/application" />
+        <property name="username" value="application" />
+        <property name="password" value="application" />
+    </bean>
+
+    <!-- MyBatis定義 -->
+    <bean id="managementSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="managementDataSource" />
+        <property name="configLocation" value="classpath:mybatis-config.xml" />
+        <property name="mapperLocations" value="classpath:mybatis/management/**/*.xml" />
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="jp.myapp.data.mapper.management" />
+        <property name="sqlSessionFactoryBeanName" value="managementSqlSessionFactory" />
+    </bean>
+
+    <bean id="applicationSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="applicationDataSource" />
+        <property name="configLocation" value="classpath:mybatis-config.xml" />
+        <property name="mapperLocations" value="classpath:mybatis/application/**/*.xml" />
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="jp.myapp.data.mapper.application" />
+        <property name="sqlSessionFactoryBeanName" value="applicationSqlSessionFactory" />
+    </bean>
+
+    <!-- Hibernate定義 -->
+    <bean id="managementSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="managementDataSource" />
+        <property name="configLocation" value="classpath:hibernate.cfg.xml" />
+    </bean>
+
+    <bean id="applicationSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="applicationDataSource" />
+        <property name="configLocation" value="classpath:hibernate.cfg.xml" />
+    </bean>
+
+    <!-- トランザクションマネージャ定義 -->
+    <bean id="managementTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="managementDataSource" />
+    </bean>
+
+    <bean id="applicationTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="applicationDataSource" />
+    </bean>
+
+</beans>

@@ -4,14 +4,14 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>jp.myapp.project</groupId>
-    <artifactId>projects</artifactId>
+    <groupId>jp.myapp.project.projects</groupId>
+    <artifactId>projects-parent</artifactId>
     <packaging>pom</packaging>
-    <name>sub projects</name>
+    <name>sub projects parent</name>
 
     <parent>
-        <groupId>jp.myapp</groupId>
-        <artifactId>project</artifactId>
+        <groupId>jp.myapp.project</groupId>
+        <artifactId>project-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
@@ -19,7 +19,8 @@
         <module>myapp-core</module>
         <module>myapp-dao</module>
         <module>myapp-service</module>
-        <module>myapp-batch</module>
+        <module>myapp-batch-core</module>
+        <module>myapp-batch-runner</module>
         <module>myapp-controller</module>
         <module>myapp-webservice-interface</module>
         <module>myapp-webservice-implement</module>

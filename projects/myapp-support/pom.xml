@@ -4,14 +4,12 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>jp.myapp.project.projects</groupId>
     <artifactId>myapp-support</artifactId>
-    <packaging>jar</packaging>
     <name>myapp-support</name>
 
     <parent>
-        <groupId>jp.myapp.project</groupId>
-        <artifactId>projects</artifactId>
+        <groupId>jp.myapp.project.projects</groupId>
+        <artifactId>projects-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
