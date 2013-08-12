@@ -24,9 +24,9 @@
                     </bean>
                 </property>
                 <property name="driverClassName" value="org.postgresql.Driver" />
-                <property name="url" value="jdbc:postgresql://${database-server}:5432/management" />
-                <property name="user" value="management" />
-                <property name="password" value="management" />
+                <property name="url" value="jdbc:postgresql://${test-datasource.management.server}:${test-datasource.management.port}/${test-datasource.management.database}" />
+                <property name="user" value="${test-datasource.management.username}" />
+                <property name="password" value="${test-datasource.management.password}" />
             </bean>
         </constructor-arg>
     </bean>
@@ -40,9 +40,9 @@
                     </bean>
                 </property>
                 <property name="driverClassName" value="org.postgresql.Driver" />
-                <property name="url" value="jdbc:postgresql://${database-server}:5432/application" />
-                <property name="user" value="application" />
-                <property name="password" value="application" />
+                <property name="url" value="jdbc:postgresql://${test-datasource.application.server}:${test-datasource.application.port}/${test-datasource.application.database}" />
+                <property name="user" value="${test-datasource.application.username}" />
+                <property name="password" value="${test-datasource.application.password}" />
             </bean>
         </constructor-arg>
     </bean>
@@ -58,11 +58,11 @@
                 <property name="xaDataSourceClassName" value="org.postgresql.xa.PGXADataSource" />
                 <property name="xaProperties">
                     <props>
-                        <prop key="serverName">${database-server}</prop>
-                        <prop key="portNumber">5432</prop>
-                        <prop key="databaseName">management</prop>
-                        <prop key="user">management</prop>
-                        <prop key="password">management</prop>
+                        <prop key="serverName">${test-datasource.management.server}</prop>
+                        <prop key="portNumber">${test-datasource.management.port}</prop>
+                        <prop key="databaseName">${test-datasource.management.database}</prop>
+                        <prop key="user">${test-datasource.management.username}</prop>
+                        <prop key="password">${test-datasource.management.password}</prop>
                     </props>
                 </property>
             </bean>
@@ -80,11 +80,11 @@
                 <property name="xaDataSourceClassName" value="org.postgresql.xa.PGXADataSource" />
                 <property name="xaProperties">
                     <props>
-                        <prop key="serverName">${database-server}</prop>
-                        <prop key="portNumber">5432</prop>
-                        <prop key="databaseName">application</prop>
-                        <prop key="user">application</prop>
-                        <prop key="password">application</prop>
+                        <prop key="serverName">${test-datasource.application.server}</prop>
+                        <prop key="portNumber">${test-datasource.application.port}</prop>
+                        <prop key="databaseName">${test-datasource.application.database}</prop>
+                        <prop key="user">${test-datasource.application.username}</prop>
+                        <prop key="password">${test-datasource.application.password}</prop>
                     </props>
                 </property>
             </bean>

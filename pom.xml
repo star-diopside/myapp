@@ -23,12 +23,12 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <slf4j.version>1.7.5</slf4j.version>
         <logback.version>1.0.13</logback.version>
-        <spring.version>3.2.3.RELEASE</spring.version>
+        <spring.version>3.2.4.RELEASE</spring.version>
         <spring-security.version>3.1.4.RELEASE</spring-security.version>
         <spring-security-oauth.version>1.0.5.RELEASE</spring-security-oauth.version>
-        <spring-batch.version>2.2.0.RELEASE</spring-batch.version>
-        <hibernate.version>4.2.3.Final</hibernate.version>
-        <hibernate-validator.version>4.3.1.Final</hibernate-validator.version>
+        <spring-batch.version>2.2.1.RELEASE</spring-batch.version>
+        <hibernate.version>4.2.4.Final</hibernate.version>
+        <hibernate-validator.version>5.0.1.Final</hibernate-validator.version>
         <mybatis.version>3.2.2</mybatis.version>
         <mybatis-spring.version>1.2.0</mybatis-spring.version>
         <struts2.version>2.3.15.1</struts2.version>
@@ -44,13 +44,51 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <database-server>dev-srv</database-server>
+                <datasource.management.server>dev-srv</datasource.management.server>
+                <datasource.management.port>5432</datasource.management.port>
+                <datasource.management.database>management</datasource.management.database>
+                <datasource.management.username>management</datasource.management.username>
+                <datasource.management.password>management</datasource.management.password>
+                <datasource.application.server>dev-srv</datasource.application.server>
+                <datasource.application.port>5432</datasource.application.port>
+                <datasource.application.database>application</datasource.application.database>
+                <datasource.application.username>application</datasource.application.username>
+                <datasource.application.password>application</datasource.application.password>
+                <test-datasource.management.server>dev-srv</test-datasource.management.server>
+                <test-datasource.management.port>5432</test-datasource.management.port>
+                <test-datasource.management.database>management</test-datasource.management.database>
+                <test-datasource.management.username>management</test-datasource.management.username>
+                <test-datasource.management.password>management</test-datasource.management.password>
+                <test-datasource.application.server>dev-srv</test-datasource.application.server>
+                <test-datasource.application.port>5432</test-datasource.application.port>
+                <test-datasource.application.database>application</test-datasource.application.database>
+                <test-datasource.application.username>application</test-datasource.application.username>
+                <test-datasource.application.password>application</test-datasource.application.password>
             </properties>
         </profile>
         <profile>
             <id>dev-local</id>
             <properties>
-                <database-server>localhost</database-server>
+                <datasource.management.server>localhost</datasource.management.server>
+                <datasource.management.port>5432</datasource.management.port>
+                <datasource.management.database>management</datasource.management.database>
+                <datasource.management.username>management</datasource.management.username>
+                <datasource.management.password>management</datasource.management.password>
+                <datasource.application.server>localhost</datasource.application.server>
+                <datasource.application.port>5432</datasource.application.port>
+                <datasource.application.database>application</datasource.application.database>
+                <datasource.application.username>application</datasource.application.username>
+                <datasource.application.password>application</datasource.application.password>
+                <test-datasource.management.server>localhost</test-datasource.management.server>
+                <test-datasource.management.port>5432</test-datasource.management.port>
+                <test-datasource.management.database>management</test-datasource.management.database>
+                <test-datasource.management.username>management</test-datasource.management.username>
+                <test-datasource.management.password>management</test-datasource.management.password>
+                <test-datasource.application.server>localhost</test-datasource.application.server>
+                <test-datasource.application.port>5432</test-datasource.application.port>
+                <test-datasource.application.database>application</test-datasource.application.database>
+                <test-datasource.application.username>application</test-datasource.application.username>
+                <test-datasource.application.password>application</test-datasource.application.password>
             </properties>
         </profile>
     </profiles>
@@ -119,7 +157,7 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>appassembler-maven-plugin</artifactId>
-                    <version>1.3.1</version>
+                    <version>1.4</version>
                     <executions>
                         <execution>
                             <phase>package</phase>
@@ -324,7 +362,7 @@
             <dependency>
                 <groupId>org.aspectj</groupId>
                 <artifactId>aspectjweaver</artifactId>
-                <version>1.7.2</version>
+                <version>1.7.3</version>
             </dependency>
 
             <dependency>
@@ -522,7 +560,7 @@
             <dependency>
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
-                <version>9.2-1002-jdbc4</version>
+                <version>9.2-1003-jdbc4</version>
             </dependency>
 
             <dependency>

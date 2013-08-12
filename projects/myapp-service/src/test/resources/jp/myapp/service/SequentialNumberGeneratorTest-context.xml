@@ -10,9 +10,9 @@
         <constructor-arg>
             <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource">
                 <property name="driverClassName" value="org.postgresql.Driver" />
-                <property name="url" value="jdbc:postgresql://${database-server}:5432/application" />
-                <property name="username" value="application" />
-                <property name="password" value="application" />
+                <property name="url" value="jdbc:postgresql://${test-datasource.application.server}:${test-datasource.application.port}/${test-datasource.application.database}" />
+                <property name="username" value="${test-datasource.application.username}" />
+                <property name="password" value="${test-datasource.application.password}" />
             </bean>
         </constructor-arg>
     </bean>
