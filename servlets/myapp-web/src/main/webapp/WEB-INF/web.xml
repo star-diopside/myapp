@@ -153,16 +153,4 @@
         <res-auth>Container</res-auth>
     </resource-ref>
 
-    <resource-ref>
-        <res-ref-name>UserTransaction</res-ref-name>
-        <res-type>javax.transaction.UserTransaction</res-type>
-        <res-auth>Container</res-auth>
-    </resource-ref>
-
-    <resource-ref>
-        <res-ref-name>TransactionSynchronizationRegistry</res-ref-name>
-        <res-type>javax.transaction.TransactionSynchronizationRegistry</res-type>
-        <res-auth>Container</res-auth>
-    </resource-ref>
-
 </web-app>
