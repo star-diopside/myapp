@@ -19,4 +19,8 @@
         <module>myapp</module>
     </modules>
 
+    <properties>
+        <project.rootdir>${project.basedir}/..</project.rootdir>
+    </properties>
+
 </project>

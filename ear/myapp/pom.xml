@@ -14,10 +14,15 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
+    <properties>
+        <project.rootdir>${project.basedir}/../..</project.rootdir>
+    </properties>
+
     <build>
         <pluginManagement>
             <plugins>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-ear-plugin</artifactId>
                     <configuration>
                         <version>6</version>

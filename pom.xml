@@ -20,29 +20,9 @@
 
     <properties>
 
+        <project.rootdir>${project.basedir}</project.rootdir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-        <datasource.management.server>dev-srv</datasource.management.server>
-        <datasource.management.port>5432</datasource.management.port>
-        <datasource.management.database>management</datasource.management.database>
-        <datasource.management.username>management</datasource.management.username>
-        <datasource.management.password>management</datasource.management.password>
-        <datasource.application.server>dev-srv</datasource.application.server>
-        <datasource.application.port>5432</datasource.application.port>
-        <datasource.application.database>application</datasource.application.database>
-        <datasource.application.username>application</datasource.application.username>
-        <datasource.application.password>application</datasource.application.password>
-        <test-datasource.management.server>dev-srv</test-datasource.management.server>
-        <test-datasource.management.port>5432</test-datasource.management.port>
-        <test-datasource.management.database>management</test-datasource.management.database>
-        <test-datasource.management.username>management</test-datasource.management.username>
-        <test-datasource.management.password>management</test-datasource.management.password>
-        <test-datasource.application.server>dev-srv</test-datasource.application.server>
-        <test-datasource.application.port>5432</test-datasource.application.port>
-        <test-datasource.application.database>application</test-datasource.application.database>
-        <test-datasource.application.username>application</test-datasource.application.username>
-        <test-datasource.application.password>application</test-datasource.application.password>
 
         <jacoco.version>0.6.3.201306030806</jacoco.version>
 
@@ -70,16 +50,20 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
+            <build>
+                <filters>
+                    <filter>${project.rootdir}/build-config/filters/dev.properties</filter>
+                </filters>
+            </build>
         </profile>
 
         <profile>
             <id>dev-local</id>
-            <properties>
-                <datasource.management.server>localhost</datasource.management.server>
-                <datasource.application.server>localhost</datasource.application.server>
-                <test-datasource.management.server>localhost</test-datasource.management.server>
-                <test-datasource.application.server>localhost</test-datasource.application.server>
-            </properties>
+            <build>
+                <filters>
+                    <filter>${project.rootdir}/build-config/filters/dev-local.properties</filter>
+                </filters>
+            </build>
         </profile>
 
     </profiles>
@@ -115,6 +99,7 @@
         <pluginManagement>
             <plugins>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <configuration>
                         <source>1.7</source>
@@ -122,6 +107,7 @@
                     </configuration>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <configuration>
                         <includes>
@@ -130,6 +116,7 @@
                     </configuration>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-eclipse-plugin</artifactId>
                     <configuration>
                         <additionalConfig>
@@ -162,7 +149,6 @@
                             <configuration>
                                 <copyConfigurationDirectory>true</copyConfigurationDirectory>
                                 <repositoryLayout>flat</repositoryLayout>
-                                <repositoryName>lib</repositoryName>
                             </configuration>
                         </execution>
                     </executions>
@@ -233,6 +219,9 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>2.10</version>
+                <configuration>
+                    <configLocation>${project.rootdir}/build-config/checkstyle/checks.xml</configLocation>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
