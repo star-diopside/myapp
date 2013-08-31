@@ -4,9 +4,9 @@
     xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <import resource="classpath:applicationContext-test.xml" />
-    <import resource="classpath:applicationContext-test-tx.xml" />
-    <import resource="classpath:job-data-source-context-test.xml" />
+    <import resource="classpath:applicationContext.xml" />
+    <import resource="classpath:applicationContext-tx.xml" />
+    <import resource="classpath:job-data-source-context.xml" />
     <import resource="classpath:simple-job-launcher-context.xml" />
     <import resource="classpath:jobs/B03-context.xml" />
 

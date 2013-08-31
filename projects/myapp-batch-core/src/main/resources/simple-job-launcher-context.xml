@@ -4,12 +4,7 @@
     xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!-- データソース定義 -->
-    <alias name="applicationDataSource" alias="jobDataSource" />
-    <alias name="applicationTransactionManager" alias="jobTransactionManager" />
-
-    <!-- バッチ設定 -->
-    <bean class="org.springframework.batch.core.launch.support.SimpleJobOperator">
+    <bean id="jobOperator" class="org.springframework.batch.core.launch.support.SimpleJobOperator">
         <property name="jobLauncher" ref="jobLauncher" />
         <property name="jobExplorer" ref="jobExplorer" />
         <property name="jobRepository" ref="jobRepository" />
@@ -37,14 +32,10 @@
 
     <bean id="jobParametersIncrementer" class="org.springframework.batch.core.launch.support.RunIdIncrementer" />
 
-    <bean id="managementSimpleStep" class="org.springframework.batch.core.step.factory.SimpleStepFactoryBean" abstract="true">
-        <property name="jobRepository" ref="jobRepository" />
-        <property name="transactionManager" ref="managementTransactionManager" />
-    </bean>
+    <bean id="resourcelessTransactionManager" class="org.springframework.batch.support.transaction.ResourcelessTransactionManager" />
 
-    <bean id="applicationSimpleStep" class="org.springframework.batch.core.step.factory.SimpleStepFactoryBean" abstract="true">
+    <bean id="simpleStep" class="org.springframework.batch.core.step.factory.SimpleStepFactoryBean" abstract="true">
         <property name="jobRepository" ref="jobRepository" />
-        <property name="transactionManager" ref="applicationTransactionManager" />
     </bean>
 
 </beans>

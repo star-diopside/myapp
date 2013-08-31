@@ -8,8 +8,8 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <job id="b02" incrementer="jobParametersIncrementer" xmlns="http://www.springframework.org/schema/batch">
-        <step id="step1" parent="managementSimpleStep">
-            <tasklet ref="taskletAdapter" />
+        <step id="step1" parent="simpleStep">
+            <tasklet ref="taskletAdapter" transaction-manager="resourcelessTransactionManager" />
         </step>
     </job>
 

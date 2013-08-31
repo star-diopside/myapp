@@ -6,8 +6,8 @@
         http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd">
 
     <job id="B01" incrementer="jobParametersIncrementer" xmlns="http://www.springframework.org/schema/batch">
-        <step id="B01S010" parent="managementSimpleStep">
-            <tasklet>
+        <step id="B01S010" parent="simpleStep">
+            <tasklet transaction-manager="managementTransactionManager">
                 <chunk reader="reader" processor="processor" writer="writer" />
             </tasklet>
         </step>

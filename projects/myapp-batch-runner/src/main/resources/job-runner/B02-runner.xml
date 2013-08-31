@@ -6,7 +6,8 @@
 
     <import resource="classpath:applicationContext.xml" />
     <import resource="classpath:applicationContext-tx.xml" />
+    <import resource="classpath:job-data-source-context.xml" />
     <import resource="classpath:simple-job-launcher-context.xml" />
-    <import resource="classpath:job/B03-context.xml" />
+    <import resource="classpath:jobs/B02-context.xml" />
 
 </beans>
