@@ -8,6 +8,7 @@
         <file>${LOG_DIR}/error.log</file>
         <append>true</append>
         <encoder>
+            <charset>UTF-8</charset>
             <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS},%mdc{sessionId},%mdc{remoteAddr},%level,%thread,%logger,%mdc{className},%mdc{methodName},%message%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -26,6 +27,7 @@
         <file>${LOG_DIR}/trace.log</file>
         <append>true</append>
         <encoder>
+            <charset>UTF-8</charset>
             <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS},%mdc{sessionId},%mdc{remoteAddr},%level,%thread,%logger,%mdc{className},%mdc{methodName},%message%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">

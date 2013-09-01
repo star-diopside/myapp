@@ -54,8 +54,6 @@
     </bean>
 
     <!-- トランザクションマネージャ定義 -->
-    <bean id="resourcelessTransactionManager" class="org.springframework.batch.support.transaction.ResourcelessTransactionManager" />
-
     <bean id="managementTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="managementDataSource" />
     </bean>

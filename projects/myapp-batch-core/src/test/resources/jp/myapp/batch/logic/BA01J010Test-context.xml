@@ -8,10 +8,10 @@
     <import resource="classpath:applicationContext-test-tx.xml" />
     <import resource="classpath:job-data-source-context-test.xml" />
     <import resource="classpath:simple-job-launcher-context.xml" />
-    <import resource="classpath:jobs/B03-context.xml" />
+    <import resource="classpath:jobs/BA01J010-context.xml" />
 
     <bean class="org.springframework.batch.test.JobLauncherTestUtils">
-        <property name="job" ref="B03" />
+        <property name="job" ref="BA01J010" />
     </bean>
 
 </beans>

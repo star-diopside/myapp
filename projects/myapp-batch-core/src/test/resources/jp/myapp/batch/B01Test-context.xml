@@ -18,4 +18,8 @@
         <constructor-arg value="file:test-data/out/B01-OUT.txt" />
     </bean>
 
+    <bean class="org.springframework.batch.test.JobLauncherTestUtils">
+        <property name="job" ref="B01" />
+    </bean>
+
 </beans>

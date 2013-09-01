@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd">
+
+    <job id="BA01J010" incrementer="jobParametersIncrementer" xmlns="http://www.springframework.org/schema/batch">
+
+        <listeners>
+            <listener ref="BA01J010.listener.temporaryFile" />
+        </listeners>
+
+        <step id="BA01J010S01" parent="simpleStep">
+            <tasklet ref="BA01J010S01.tasklet" method="execute" transaction-manager="resourcelessTransactionManager" />
+        </step>
+
+    </job>
+
+    <bean id="BA01J010.listener.temporaryFile" class="jp.myapp.batch.support.TemporaryFileJobExecutionListener">
+        <property name="key" value="zipcode.tmpfile" />
+        <property name="prefix" value="zipcode" />
+        <property name="suffix" value=".zip" />
+        <property name="directory" value="#{systemProperties['user.home']}/temp/BA01J010" />
+    </bean>
+
+    <bean id="BA01J010S01.tasklet" class="jp.myapp.batch.logic.BA01J010S01Impl" scope="step">
+        <property name="uri" value="#{jobParameters['uri']}" />
+        <property name="saveFile" value="file:#{jobExecutionContext['zipcode.tmpfile']}" />
+    </bean>
+
+</beans>

@@ -16,7 +16,4 @@
         <aop:advisor advice-ref="logging" pointcut="execution(public * jp.myapp..*(..))" />
     </aop:config>
 
-    <!-- テストランチャー定義 -->
-    <bean class="org.springframework.batch.test.JobLauncherTestUtils" />
-
 </beans>
