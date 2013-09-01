@@ -8,7 +8,10 @@ import jp.myapp.servlet.filter.FlashScopeFilter;
 
 import org.springframework.web.servlet.FlashMap;
 
-public class FlashScopeUtils {
+public final class FlashScopeUtils {
+
+    private FlashScopeUtils() {
+    }
 
     @SuppressWarnings("unchecked")
     public static Map<String, Object> getInputFlashMap(HttpServletRequest request) {

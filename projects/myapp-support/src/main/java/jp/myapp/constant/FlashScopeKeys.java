@@ -3,7 +3,7 @@ package jp.myapp.constant;
 /**
  * フラッシュスコープに使用するキー定数
  */
-public class FlashScopeKeys {
+public final class FlashScopeKeys {
 
     private FlashScopeKeys() {
     }

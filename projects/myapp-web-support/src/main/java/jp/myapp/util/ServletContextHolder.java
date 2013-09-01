@@ -4,7 +4,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ServletContextHolder {
+public final class ServletContextHolder {
 
     private static final ThreadLocal<ServletContextHolder> HOLDER = new ThreadLocal<>();
     private ServletContext context;

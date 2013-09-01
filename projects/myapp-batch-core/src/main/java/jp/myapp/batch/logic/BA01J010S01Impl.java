@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ResourceBundle;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
@@ -64,7 +63,6 @@ public class BA01J010S01Impl implements BA01J010S01, InitializingBean {
         HttpEntity entity = response.getEntity();
 
         File file = saveFile.getFile();
-        FileUtils.forceMkdir(file.getParentFile());
 
         try (InputStream content = entity.getContent();
                 OutputStream out = new FileOutputStream(file)) {

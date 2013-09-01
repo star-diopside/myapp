@@ -10,7 +10,10 @@ import javax.servlet.ServletContext;
 import org.apache.commons.fileupload.servlet.FileCleanerCleanup;
 import org.apache.commons.io.FileCleaningTracker;
 
-public class FileCleaningUtils {
+public final class FileCleaningUtils {
+
+    private FileCleaningUtils() {
+    }
 
     public static InputStream trackInputStream(Path path) throws IOException {
 

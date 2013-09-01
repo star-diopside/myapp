@@ -2,7 +2,7 @@ package jp.myapp.logging;
 
 import java.util.Collection;
 
-public class LoggableUtil {
+public final class LoggableUtil {
 
     private LoggableUtil() {
     }

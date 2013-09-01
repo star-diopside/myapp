@@ -11,6 +11,6 @@ public interface SequentialNumberGenerator {
      * @param sequentialClassId 連番区分ID
      * @return 生成した連番文字列
      */
-    public String generate(String sequentialClassId);
+    String generate(String sequentialClassId);
 
 }

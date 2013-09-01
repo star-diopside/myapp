@@ -45,7 +45,7 @@ public class TemporaryFileJobExecutionListener implements JobExecutionListener {
      * 
      * @param prefix 一時ファイル名の接頭辞文字列。
      *            {@link File#createTempFile(String, String, File)} のパラメータ
-     *            <code>prefix</code> に仕様に従う。
+     *            <code>prefix</code> の仕様に従う。
      */
     public void setPrefix(String prefix) {
         this.prefix = prefix;
@@ -56,7 +56,7 @@ public class TemporaryFileJobExecutionListener implements JobExecutionListener {
      * 
      * @param suffix 一時ファイル名の接尾辞文字列
      *            {@link File#createTempFile(String, String, File)} のパラメータ
-     *            <code>suffix</code> に仕様に従う。
+     *            <code>suffix</code> の仕様に従う。
      */
     public void setSuffix(String suffix) {
         this.suffix = suffix;
@@ -67,7 +67,7 @@ public class TemporaryFileJobExecutionListener implements JobExecutionListener {
      * 
      * @param directory 一時ファイルが生成されるディレクトリ
      *            {@link File#createTempFile(String, String, File)} のパラメータ
-     *            <code>directory</code> に仕様に従う。
+     *            <code>directory</code> の仕様に従う。
      */
     public void setDirectory(String directory) {
         this.directory = directory;

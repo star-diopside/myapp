@@ -7,7 +7,10 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class Launcher {
+public final class Launcher {
+
+    private Launcher() {
+    }
 
     public static void main(String[] args) {
 

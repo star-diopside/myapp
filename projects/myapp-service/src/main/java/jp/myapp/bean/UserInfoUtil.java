@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import jp.myapp.data.entity.management.Users;
 
-public class UserInfoUtil {
+public final class UserInfoUtil {
 
     private UserInfoUtil() {
     }
@@ -23,12 +23,7 @@ public class UserInfoUtil {
         } else {
             // 仮登録中の場合、登録後１日経過すると無効ユーザとする。
             long duration = System.currentTimeMillis() - user.getRegisterTimestamp().getTime();
-
-            if (duration <= TimeUnit.DAYS.toMillis(1)) {
-                return true;
-            } else {
-                return false;
-            }
+            return (duration <= TimeUnit.DAYS.toMillis(1));
         }
     }
 }
