@@ -37,7 +37,7 @@ public class BA01J010S01Impl implements BA01J010S01, InitializingBean {
     }
 
     /**
-     * 保存先ファイル
+     * 保存先ファイルを設定する。
      * 
      * @param saveFile 保存先ファイル
      */
@@ -62,10 +62,8 @@ public class BA01J010S01Impl implements BA01J010S01, InitializingBean {
         HttpResponse response = client.execute(new HttpGet(uri));
         HttpEntity entity = response.getEntity();
 
-        File file = saveFile.getFile();
-
         try (InputStream content = entity.getContent();
-                OutputStream out = new FileOutputStream(file)) {
+                OutputStream out = new FileOutputStream(saveFile.getFile())) {
             IOUtils.copyLarge(content, out);
         }
     }
