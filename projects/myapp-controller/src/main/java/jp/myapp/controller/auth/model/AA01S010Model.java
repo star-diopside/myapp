@@ -8,12 +8,12 @@ public interface AA01S010Model {
 
     void setAA01S010Form(AA01S010Form form);
 
-    String getJ_username();
+    String getUserId();
 
-    void setJ_username(String j_username);
+    void setUserId(String userId);
 
-    String getJ_password();
+    String getPassword();
 
-    void setJ_password(String j_password);
+    void setPassword(String password);
 
 }

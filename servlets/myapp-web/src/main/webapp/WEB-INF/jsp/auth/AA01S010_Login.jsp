@@ -18,11 +18,11 @@
       <table>
         <tr>
           <td class="right"><s:text name="A01.UserId" /></td>
-          <td><s:textfield key="j_username" value="%{AA01S010Form.userId}" /></td>
+          <td><s:textfield key="userId" /></td>
         </tr>
         <tr>
           <td class="right"><s:text name="A01.Password" /></td>
-          <td><s:password key="j_password" /></td>
+          <td><s:password key="password" /></td>
         </tr>
       </table>
     </div>

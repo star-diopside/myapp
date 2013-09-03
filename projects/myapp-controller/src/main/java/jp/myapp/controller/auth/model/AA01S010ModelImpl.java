@@ -30,23 +30,23 @@ public class AA01S010ModelImpl implements AA01S010Model, Loggable, Serializable 
     }
 
     @Override
-    public String getJ_username() {
+    public String getUserId() {
         return this.AA01S010Form.getUserId();
     }
 
     @Override
-    public void setJ_username(String j_username) {
-        this.AA01S010Form.setUserId(j_username);
+    public void setUserId(String userId) {
+        this.AA01S010Form.setUserId(userId);
     }
 
     @Override
-    public String getJ_password() {
+    public String getPassword() {
         return this.AA01S010Form.getPassword();
     }
 
     @Override
-    public void setJ_password(String j_password) {
-        this.AA01S010Form.setPassword(j_password);
+    public void setPassword(String password) {
+        this.AA01S010Form.setPassword(password);
     }
 
     @Override

@@ -32,7 +32,9 @@
         <security:intercept-url pattern="/captcha.jpg" access="IS_AUTHENTICATED_ANONYMOUSLY" />
         <security:intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
         <security:intercept-url pattern="/**" access="IS_AUTHENTICATED_FULLY" />
-        <security:form-login login-page="/auth/AA01S010Action.action" authentication-failure-handler-ref="loginFailureHandler" />
+        <security:form-login login-page="/auth/AA01S010Action.action"
+            username-parameter="userId" password-parameter="password"
+            authentication-failure-handler-ref="loginFailureHandler" />
         <security:logout success-handler-ref="logoutSuccessHandler" delete-cookies="JSESSIONID" />
         <security:session-management invalid-session-url="/auth/invalid-session.action" />
         <security:custom-filter after="EXCEPTION_TRANSLATION_FILTER" ref="saveExceptionFilter" />

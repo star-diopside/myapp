@@ -5,13 +5,13 @@
 
 <validators>
 
-    <field name="j_username">
+    <field name="userId">
         <field-validator type="requiredstring">
             <message key="Error.NotInputUserId" />
         </field-validator>
     </field>
 
-    <field name="j_password">
+    <field name="password">
         <field-validator type="requiredstring">
             <message key="Error.NotInputPassword" />
         </field-validator>
