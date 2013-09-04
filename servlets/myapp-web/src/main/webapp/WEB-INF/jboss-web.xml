@@ -12,12 +12,12 @@
     </resource-ref>
     <resource-ref>
         <res-ref-name>jdbc/XAManagement</res-ref-name>
-        <res-type>javax.sql.XADataSource</res-type>
+        <res-type>javax.sql.DataSource</res-type>
         <jndi-name>java:jboss/datasources/XAManagement</jndi-name>
     </resource-ref>
     <resource-ref>
         <res-ref-name>jdbc/XAApplication</res-ref-name>
-        <res-type>javax.sql.XADataSource</res-type>
+        <res-type>javax.sql.DataSource</res-type>
         <jndi-name>java:jboss/datasources/XAApplication</jndi-name>
     </resource-ref>
 </jboss-web>
