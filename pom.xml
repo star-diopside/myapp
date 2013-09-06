@@ -23,6 +23,7 @@
         <project.rootdir>${project.basedir}</project.rootdir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <app-server.target>jboss-as</app-server.target>
 
         <jacoco.version>0.6.3.201306030806</jacoco.version>
 
@@ -46,23 +47,56 @@
     <profiles>
 
         <profile>
-            <id>dev</id>
+            <id>development</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <build>
                 <filters>
-                    <filter>${project.rootdir}/build-config/filters/dev.properties</filter>
+                    <filter>${project.rootdir}/build-config/filters/development.properties</filter>
                 </filters>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-war-plugin</artifactId>
+                            <configuration>
+                                <webResources>
+                                    <resource>
+                                        <directory>src/main/webcontent</directory>
+                                    </resource>
+                                    <resource>
+                                        <directory>src/main/app-server/${app-server.target}</directory>
+                                    </resource>
+                                </webResources>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
             </build>
         </profile>
 
         <profile>
-            <id>dev-local</id>
+            <id>staging</id>
             <build>
                 <filters>
-                    <filter>${project.rootdir}/build-config/filters/dev-local.properties</filter>
+                    <filter>${project.rootdir}/build-config/filters/staging.properties</filter>
                 </filters>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-war-plugin</artifactId>
+                            <configuration>
+                                <webResources>
+                                    <resource>
+                                        <directory>src/main/app-server/${app-server.target}</directory>
+                                    </resource>
+                                </webResources>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
             </build>
         </profile>
 
@@ -113,6 +147,13 @@
                         <includes>
                             <include>**/*.java</include>
                         </includes>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <configuration>
+                        <packagingExcludes>**/empty</packagingExcludes>
                     </configuration>
                 </plugin>
                 <plugin>
