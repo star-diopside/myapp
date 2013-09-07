@@ -3,8 +3,8 @@
 
     <property name="LOG_DIR" value="${user.home}/log/batch-test" />
 
-    <!-- Error Interceptor Log Appender -->
-    <appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <!-- Error Log Appender -->
+    <appender name="errorLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_DIR}/error.log</file>
         <append>true</append>
         <encoder>
@@ -12,7 +12,7 @@
             <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS},%mdc{sessionId},%mdc{remoteAddr},%level,%thread,%logger,%mdc{className},%mdc{methodName},%message%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_DIR}/error_%d{yyyy-MM-dd}.log.%i</fileNamePattern>
+            <fileNamePattern>${LOG_DIR}/error.log.%d{yyyy-MM-dd}.%i</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>10MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
@@ -22,8 +22,8 @@
         </filter>
     </appender>
 
-    <!-- Trace Interceptor Log Appender -->
-    <appender name="trace" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <!-- Trace Log Appender -->
+    <appender name="traceLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_DIR}/trace.log</file>
         <append>true</append>
         <encoder>
@@ -31,7 +31,23 @@
             <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS},%mdc{sessionId},%mdc{remoteAddr},%level,%thread,%logger,%mdc{className},%mdc{methodName},%message%n</pattern>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_DIR}/trace_%d{yyyy-MM-dd}.log.%i</fileNamePattern>
+            <fileNamePattern>${LOG_DIR}/trace.log.%d{yyyy-MM-dd}.%i</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <!-- Batch Log Appender -->
+    <appender name="batchLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/batch.log</file>
+        <append>true</append>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS},,,%level,%thread,%logger,,,%message%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/batch.log.%d{yyyy-MM-dd}.%i</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>10MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
@@ -40,16 +56,20 @@
 
     <!-- Logger Setting -->
     <logger name="jp.myapp" level="TRACE">
-        <appender-ref ref="trace" />
+        <appender-ref ref="traceLog" />
     </logger>
 
     <logger name="org.hibernate.SQL" level="TRACE">
-        <appender-ref ref="trace" />
+        <appender-ref ref="traceLog" />
+    </logger>
+
+    <logger name="org.springframework.batch" level="INFO">
+        <appender-ref ref="batchLog" />
     </logger>
 
     <!-- Root Logger Setting -->
     <root level="ERROR">
-        <appender-ref ref="error" />
+        <appender-ref ref="errorLog" />
     </root>
 
 </configuration>
