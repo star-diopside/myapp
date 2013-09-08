@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd">
+
+    <job id="BA01J030" incrementer="jobParametersIncrementer" xmlns="http://www.springframework.org/schema/batch">
+
+        <step id="BA01J030S01" parent="simpleStep">
+            <tasklet ref="BA01J030S01.tasklet" transaction-manager="resourcelessTransactionManager" />
+        </step>
+
+    </job>
+
+    <bean id="BA01J030S01.tasklet" class="jp.myapp.batch.logic.BA01J030S01" scope="step">
+        <property name="resource" value="#{jobParameters['infile']}" />
+    </bean>
+
+</beans>

@@ -1,4 +1,4 @@
-package jp.myapp.batch.logic;
+package jp.myapp.batch.job;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
