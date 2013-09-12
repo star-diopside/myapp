@@ -113,6 +113,12 @@
         <url-pattern>/captcha.jpg</url-pattern>
     </servlet-mapping>
 
+    <session-config>
+        <cookie-config>
+            <http-only>true</http-only>
+        </cookie-config>
+    </session-config>
+
     <welcome-file-list>
         <welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>
     </welcome-file-list>
