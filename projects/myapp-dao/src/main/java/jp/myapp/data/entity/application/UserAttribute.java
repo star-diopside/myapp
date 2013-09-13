@@ -4,12 +4,12 @@ import java.sql.SQLXML;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import jp.myapp.core.logging.LoggableUtil;
+import jp.myapp.data.entity.base.EntityBase;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-
-import jp.myapp.data.entity.base.EntityBase;
-import jp.myapp.logging.LoggableUtil;
 
 /**
  * ユーザ属性エンティティクラス

@@ -9,7 +9,7 @@
 
     <tag>
         <name>timeout</name>
-        <tag-class>jp.myapp.view.jsp.SessionTimeoutWarningTag</tag-class>
+        <tag-class>jp.myapp.web.view.jsp.SessionTimeoutWarningTag</tag-class>
         <body-content>empty</body-content>
         <attribute>
             <name>time</name>

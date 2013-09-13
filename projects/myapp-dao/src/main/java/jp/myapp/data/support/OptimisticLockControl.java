@@ -3,8 +3,8 @@ package jp.myapp.data.support;
 import java.io.Serializable;
 
 import jp.myapp.data.entity.base.EntityBase;
+import jp.myapp.data.exception.ExclusiveException;
 import jp.myapp.data.mapper.base.MapperBase;
-import jp.myapp.exception.ExclusiveException;
 
 /**
  * 楽観排他ロックを行うためのラッパークラス

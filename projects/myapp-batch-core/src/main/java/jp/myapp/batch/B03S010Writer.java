@@ -3,10 +3,10 @@ package jp.myapp.batch;
 import java.util.List;
 
 import jp.myapp.data.entity.management.Users;
+import jp.myapp.data.exception.ExclusiveException;
 import jp.myapp.data.mapper.management.AuthoritiesMapper;
 import jp.myapp.data.mapper.management.UsersMapper;
 import jp.myapp.data.support.OptimisticLockControl;
-import jp.myapp.exception.ExclusiveException;
 
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;

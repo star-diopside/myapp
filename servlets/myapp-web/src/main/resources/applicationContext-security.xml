@@ -110,27 +110,27 @@
         <property name="tokenServices" ref="tokenServices" />
     </bean>
 
-    <bean id="loginFailureHandler" class="jp.myapp.controller.auth.handler.LoginFailureHandler">
+    <bean id="loginFailureHandler" class="jp.myapp.web.controller.auth.handler.LoginFailureHandler">
         <property name="defaultFailureUrl" value="/auth/AA01S010Action.action" />
     </bean>
 
-    <bean id="logoutSuccessHandler" class="jp.myapp.controller.auth.handler.LogoutSuccessHandler" />
+    <bean id="logoutSuccessHandler" class="jp.myapp.web.controller.auth.handler.LogoutSuccessHandler" />
 
-    <bean id="saveExceptionFilter" class="jp.myapp.controller.auth.web.SaveExceptionFilter" />
+    <bean id="saveExceptionFilter" class="jp.myapp.web.controller.auth.web.SaveExceptionFilter" />
 
-    <bean id="dualLoginCheckFilter" class="jp.myapp.controller.auth.web.DualLoginCheckFilter" />
+    <bean id="dualLoginCheckFilter" class="jp.myapp.web.controller.auth.web.DualLoginCheckFilter" />
 
     <security:authentication-manager alias="userAuthenticationManager">
         <security:authentication-provider ref="userAuthenticationProvider" />
     </security:authentication-manager>
 
-    <bean id="userAuthenticationManagerProxy" class="jp.myapp.controller.auth.support.UserAuthenticationManagerProxy">
+    <bean id="userAuthenticationManagerProxy" class="jp.myapp.web.controller.auth.support.UserAuthenticationManagerProxy">
         <constructor-arg ref="userAuthenticationManager" />
     </bean>
 
     <bean id="userAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
         <property name="userDetailsService">
-            <bean class="jp.myapp.service.auth.LoginUserDetailsManager">
+            <bean class="jp.myapp.service.logic.auth.LoginUserDetailsManager">
                 <property name="dataSource" ref="managementDataSource" />
                 <property name="usersByUsernameQuery"
                     value="select user_id, username, password, password_updated_timestamp, enabled, interim_register, login_error_count, lockout_timestamp, last_login_timestamp, logout_timestamp, register_timestamp, register_user_id, updated_timestamp, updated_user_id, version from users where user_id = ?" />
@@ -141,7 +141,7 @@
         <property name="passwordEncoder" ref="passwordEncoder" />
         <property name="hideUserNotFoundExceptions" value="false" />
         <property name="preAuthenticationChecks">
-            <bean class="jp.myapp.controller.auth.checker.BeforeLoginUserChecker" />
+            <bean class="jp.myapp.web.controller.auth.checker.BeforeLoginUserChecker" />
         </property>
     </bean>
 

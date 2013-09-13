@@ -5,8 +5,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import jp.myapp.logging.Loggable;
-import jp.myapp.logging.LoggableUtil;
+import jp.myapp.core.logging.Loggable;
+import jp.myapp.core.logging.LoggableUtil;
 
 /**
  * エンティティの基底クラス

@@ -9,7 +9,7 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- ログ出力インターセプター -->
-    <bean id="logging" class="jp.myapp.interceptor.CustomLoggingInterceptor" />
+    <bean id="logging" class="jp.myapp.core.interceptor.CustomLoggingInterceptor" />
 
     <!-- AOP定義 -->
     <aop:config>

@@ -309,7 +309,13 @@
 
             <dependency>
                 <groupId>jp.myapp.project.projects</groupId>
-                <artifactId>myapp-controller</artifactId>
+                <artifactId>myapp-web-controller</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>jp.myapp.project.projects</groupId>
+                <artifactId>myapp-web-support</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -328,12 +334,6 @@
             <dependency>
                 <groupId>jp.myapp.project.projects</groupId>
                 <artifactId>myapp-support</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>jp.myapp.project.projects</groupId>
-                <artifactId>myapp-web-support</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

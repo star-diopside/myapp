@@ -11,7 +11,7 @@
         http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
 
     <!-- ログ出力インターセプター -->
-    <bean id="logging" class="jp.myapp.interceptor.CustomLoggingInterceptor" />
+    <bean id="logging" class="jp.myapp.core.interceptor.CustomLoggingInterceptor" />
 
     <!-- AOP定義 -->
     <aop:config>

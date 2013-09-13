@@ -4,12 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import jp.myapp.core.logging.Loggable;
+import jp.myapp.core.logging.LoggableUtil;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-
-import jp.myapp.logging.Loggable;
-import jp.myapp.logging.LoggableUtil;
 
 /**
  * 権限テーブル主キークラス

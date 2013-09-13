@@ -15,12 +15,12 @@
         </constructor-arg>
     </bean>
 
-    <bean id="servletContextHoldingFilter" class="jp.myapp.servlet.filter.ServletContextHoldingFilter" />
+    <bean id="servletContextHoldingFilter" class="jp.myapp.web.servlet.filter.ServletContextHoldingFilter" />
 
-    <bean id="loggingConfigFilter" class="jp.myapp.servlet.filter.LoggingConfigFilter" />
+    <bean id="loggingConfigFilter" class="jp.myapp.web.servlet.filter.LoggingConfigFilter" />
 
-    <bean id="noCacheFilter" class="jp.myapp.servlet.filter.NoCacheFilter" />
+    <bean id="noCacheFilter" class="jp.myapp.web.servlet.filter.NoCacheFilter" />
 
-    <bean id="flashScopeFilter" class="jp.myapp.servlet.filter.FlashScopeFilter" />
+    <bean id="flashScopeFilter" class="jp.myapp.web.servlet.filter.FlashScopeFilter" />
 
 </beans>
