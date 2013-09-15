@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web:web-app xmlns:web="http://geronimo.apache.org/xml/ns/j2ee/web-2.0.1"
+    xmlns:sys="http://geronimo.apache.org/xml/ns/deployment-1.2">
+
+    <sys:environment>
+        <sys:hidden-classes>
+            <sys:filter>javax.ws.rs</sys:filter>
+            <sys:filter>ch.qos.logback</sys:filter>
+            <sys:filter>com.thoughtworks.xstream</sys:filter>
+            <sys:filter>org.apache.commons.logging</sys:filter>
+            <sys:filter>org.apache.log4j</sys:filter>
+            <sys:filter>org.apache.ws.commons.schema</sys:filter>
+            <sys:filter>org.jboss.logging</sys:filter>
+            <sys:filter>org.slf4j</sys:filter>
+        </sys:hidden-classes>
+    </sys:environment>
+
+</web:web-app>

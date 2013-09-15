@@ -5,6 +5,8 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd">
 
+    <import resource="classpath:simple-step-context.xml" />
+
     <job id="BA01J030" incrementer="jobParametersIncrementer" xmlns="http://www.springframework.org/schema/batch">
 
         <step id="BA01J030S01" parent="simpleStep">

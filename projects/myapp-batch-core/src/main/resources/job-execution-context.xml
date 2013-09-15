@@ -30,12 +30,4 @@
         <property name="transactionManager" ref="jobTransactionManager" />
     </bean>
 
-    <bean id="jobParametersIncrementer" class="org.springframework.batch.core.launch.support.RunIdIncrementer" />
-
-    <bean id="resourcelessTransactionManager" class="org.springframework.batch.support.transaction.ResourcelessTransactionManager" />
-
-    <bean id="simpleStep" class="org.springframework.batch.core.step.factory.SimpleStepFactoryBean" abstract="true">
-        <property name="jobRepository" ref="jobRepository" />
-    </bean>
-
 </beans>

@@ -24,7 +24,7 @@
     <alias name="transactionManager" alias="jobTransactionManager" />
     <alias name="transactionManager" alias="managementTransactionManager" />
     <alias name="transactionManager" alias="applicationTransactionManager" />
-    <import resource="classpath:simple-job-launcher-context.xml" />
+    <import resource="classpath:job-execution-context.xml" />
     <import resource="classpath:jobs/B01-context.xml" />
 
 </beans>

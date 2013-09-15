@@ -5,6 +5,8 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd">
 
+    <import resource="classpath:simple-step-context.xml" />
+
     <job id="B01" incrementer="jobParametersIncrementer" xmlns="http://www.springframework.org/schema/batch">
         <step id="B01S010" parent="simpleStep">
             <tasklet transaction-manager="managementTransactionManager">

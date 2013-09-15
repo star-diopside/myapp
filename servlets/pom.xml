@@ -16,6 +16,7 @@
     </parent>
 
     <modules>
+        <module>myapp-batch-admin</module>
         <module>myapp-web</module>
         <module>webservice-client</module>
     </modules>

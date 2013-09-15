@@ -7,7 +7,7 @@
     <import resource="classpath:applicationContext-test.xml" />
     <import resource="classpath:applicationContext-test-tx.xml" />
     <import resource="classpath:job-data-source-context-test.xml" />
-    <import resource="classpath:simple-job-launcher-context.xml" />
+    <import resource="classpath:job-execution-context.xml" />
     <import resource="classpath:jobs/B01-context.xml" />
 
     <bean id="infile" class="java.lang.String">
