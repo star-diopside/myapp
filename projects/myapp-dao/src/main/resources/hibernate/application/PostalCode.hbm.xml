@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="jp.myapp.data.entity.application">
+    <class name="PostalCode" table="POSTAL_CODE" dynamic-insert="true" dynamic-update="true">
+        <id name="id" column="ID" type="integer" />
+        <version name="version" column="VERSION" type="integer" />
+        <property name="localGovernmentCode" column="LOCAL_GOVERNMENT_CODE" not-null="true" type="string" />
+        <property name="postalCode" column="POSTAL_CODE" not-null="true" type="string" />
+        <property name="kanaPrefectureName" column="KANA_PREFECTURE_NAME" not-null="true" type="string" />
+        <property name="kanaMunicipalityName" column="KANA_MUNICIPALITY_NAME" not-null="true" type="string" />
+        <property name="kanaAreaName" column="KANA_AREA_NAME" not-null="true" type="string" />
+        <property name="kanjiPrefectureName" column="KANJI_PREFECTURE_NAME" not-null="true" type="string" />
+        <property name="kanjiMunicipalityName" column="KANJI_MUNICIPALITY_NAME" not-null="true" type="string" />
+        <property name="kanjiAreaName" column="KANJI_AREA_NAME" not-null="true" type="string" />
+        <property name="registerTimestamp" column="REGISTER_TIMESTAMP" not-null="true" type="timestamp" />
+        <property name="registerUserId" column="REGISTER_USER_ID" not-null="true" type="string" />
+        <property name="updatedTimestamp" column="UPDATED_TIMESTAMP" not-null="true" type="timestamp" />
+        <property name="updatedUserId" column="UPDATED_USER_ID" not-null="true" type="string" />
+    </class>
+</hibernate-mapping>

@@ -9,14 +9,54 @@
 
     <job id="BA01J030" incrementer="jobParametersIncrementer" xmlns="http://www.springframework.org/schema/batch">
 
-        <step id="BA01J030S01" parent="simpleStep">
-            <tasklet ref="BA01J030S01.tasklet" transaction-manager="resourcelessTransactionManager" />
+        <step id="BA01J030S01" parent="simpleStep" next="BA01J030S02">
+            <tasklet ref="BA01J030S01.tasklet" transaction-manager="applicationTransactionManager" />
+        </step>
+
+        <step id="BA01J030S02" parent="simpleStep">
+            <tasklet transaction-manager="applicationHibernateTransactionManager">
+                <chunk reader="BA01J030S02.reader" processor="BA01J030S02.processor" writer="BA01J030S02.writer" commit-interval="100" />
+            </tasklet>
         </step>
 
     </job>
 
-    <bean id="BA01J030S01.tasklet" class="jp.myapp.batch.logic.BA01J030S01" scope="step">
+    <bean id="BA01J030S01.tasklet" class="org.springframework.batch.core.step.tasklet.MethodInvokingTaskletAdapter">
+        <property name="targetObject">
+            <bean class="org.springframework.jdbc.core.JdbcTemplate">
+                <property name="dataSource" ref="applicationDataSource" />
+            </bean>
+        </property>
+        <property name="targetMethod" value="execute" />
+        <property name="arguments">
+            <array>
+                <value type="java.lang.String">TRUNCATE TABLE POSTAL_CODE</value>
+            </array>
+        </property>
+    </bean>
+
+    <bean id="BA01J030S02.reader" class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
         <property name="resource" value="#{jobParameters['infile']}" />
+        <property name="encoding" value="SJIS" />
+        <property name="recordSeparatorPolicy">
+            <bean class="org.springframework.batch.item.file.separator.DefaultRecordSeparatorPolicy" />
+        </property>
+        <property name="lineMapper">
+            <bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+                <property name="lineTokenizer">
+                    <bean class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" />
+                </property>
+                <property name="fieldSetMapper">
+                    <bean class="jp.myapp.batch.logic.BA01J030S02Mapper" />
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="BA01J030S02.processor" class="jp.myapp.batch.logic.BA01J030S02Processor" scope="step" />
+
+    <bean id="BA01J030S02.writer" class="org.springframework.batch.item.database.HibernateItemWriter" scope="step">
+        <property name="sessionFactory" ref="applicationSessionFactory" />
     </bean>
 
 </beans>
