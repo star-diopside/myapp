@@ -11,12 +11,14 @@
             <charset>UTF-8</charset>
             <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS},%mdc{sessionId},%mdc{remoteAddr},%level,%thread,%logger,%mdc{className},%mdc{methodName},%message%n</pattern>
         </encoder>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_DIR}/error.log.%d{yyyy-MM-dd}.%i</fileNamePattern>
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>10MB</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <minIndex>1</minIndex>
+            <maxIndex>9</maxIndex>
+            <fileNamePattern>${LOG_DIR}/error.%i.log</fileNamePattern>
         </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>10MB</maxFileSize>
+        </triggeringPolicy>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>ERROR</level>
         </filter>
@@ -30,12 +32,14 @@
             <charset>UTF-8</charset>
             <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS},%mdc{sessionId},%mdc{remoteAddr},%level,%thread,%logger,%mdc{className},%mdc{methodName},%message%n</pattern>
         </encoder>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_DIR}/trace.log.%d{yyyy-MM-dd}.%i</fileNamePattern>
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>10MB</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <minIndex>1</minIndex>
+            <maxIndex>9</maxIndex>
+            <fileNamePattern>${LOG_DIR}/trace.%i.log</fileNamePattern>
         </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>10MB</maxFileSize>
+        </triggeringPolicy>
     </appender>
 
     <!-- Logger Setting -->
