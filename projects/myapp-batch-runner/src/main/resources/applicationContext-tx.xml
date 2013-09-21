@@ -10,6 +10,8 @@
         <property name="url" value="jdbc:postgresql://${datasource.management.server}:${datasource.management.port}/${datasource.management.database}" />
         <property name="username" value="${datasource.management.username}" />
         <property name="password" value="${datasource.management.password}" />
+        <property name="connectionInitSqls" value="SET statement_timeout = 300000" />
+        <property name="validationQuery" value="SELECT 1" />
     </bean>
 
     <bean id="applicationDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
@@ -17,6 +19,8 @@
         <property name="url" value="jdbc:postgresql://${datasource.application.server}:${datasource.application.port}/${datasource.application.database}" />
         <property name="username" value="${datasource.application.username}" />
         <property name="password" value="${datasource.application.password}" />
+        <property name="connectionInitSqls" value="SET statement_timeout = 300000" />
+        <property name="validationQuery" value="SELECT 1" />
     </bean>
 
     <!-- MyBatis定義 -->
