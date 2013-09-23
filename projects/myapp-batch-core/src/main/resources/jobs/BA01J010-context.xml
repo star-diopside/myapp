@@ -9,45 +9,45 @@
 
     <job id="BA01J010" incrementer="jobParametersIncrementer" xmlns="http://www.springframework.org/schema/batch">
 
-        <step id="BA01J010S01" parent="simpleStep" next="BA01J010S02">
-            <tasklet ref="BA01J010S01.tasklet" method="execute" transaction-manager="resourcelessTransactionManager" />
+        <step id="BA01J010S010" parent="simpleStep" next="BA01J010S020">
+            <tasklet ref="BA01J010S010.tasklet" method="execute" transaction-manager="resourcelessTransactionManager" />
             <listeners>
-                <listener ref="BA01J010S01.listener.createTemporaryFile" />
-                <listener ref="BA01J010S01.listener.executionContextPromotion" />
+                <listener ref="BA01J010S010.listener.createTemporaryFile" />
+                <listener ref="BA01J010S010.listener.executionContextPromotion" />
             </listeners>
         </step>
 
-        <step id="BA01J010S02" next="BA01J010S03">
-            <job ref="BA01J020" job-parameters-extractor="BA01J010S02JobParametersExtractor" />
+        <step id="BA01J010S020" next="BA01J010S030">
+            <job ref="BA01J020" job-parameters-extractor="BA01J010S020JobParametersExtractor" />
         </step>
 
-        <step id="BA01J010S03" parent="simpleStep">
-            <tasklet ref="BA01J010S03.tasklet" method="delete" transaction-manager="resourcelessTransactionManager" />
+        <step id="BA01J010S030" parent="simpleStep">
+            <tasklet ref="BA01J010S030.tasklet" method="delete" transaction-manager="resourcelessTransactionManager" />
         </step>
 
     </job>
 
-    <bean id="BA01J010S01.tasklet" class="jp.myapp.batch.logic.BA01J010S01Impl" scope="step">
+    <bean id="BA01J010S010.tasklet" class="jp.myapp.batch.logic.BA01J010S010Impl" scope="step">
         <property name="uri" value="#{jobParameters['uri']}" />
         <property name="saveFile" value="file:#{stepExecutionContext['zipcode.tmpfile']}" />
     </bean>
 
-    <bean id="BA01J010S01.listener.createTemporaryFile" class="jp.myapp.batch.support.CreateTemporaryFileListener">
+    <bean id="BA01J010S010.listener.createTemporaryFile" class="jp.myapp.batch.support.CreateTemporaryFileListener">
         <property name="key" value="zipcode.tmpfile" />
         <property name="prefix" value="zipcode" />
         <property name="suffix" value=".zip" />
         <property name="directory" value="#{systemProperties['user.home']}/temp/BA01J010" />
     </bean>
 
-    <bean id="BA01J010S01.listener.executionContextPromotion" class="org.springframework.batch.core.listener.ExecutionContextPromotionListener">
+    <bean id="BA01J010S010.listener.executionContextPromotion" class="org.springframework.batch.core.listener.ExecutionContextPromotionListener">
         <property name="keys" value="zipcode.tmpfile" />
     </bean>
 
-    <bean id="BA01J010S02JobParametersExtractor" class="jp.myapp.batch.logic.BA01J010S02JobParametersExtractor" scope="step">
+    <bean id="BA01J010S020JobParametersExtractor" class="jp.myapp.batch.logic.BA01J010S020JobParametersExtractor" scope="step">
         <property name="zipFile" value="file:#{jobExecutionContext['zipcode.tmpfile']}" />
     </bean>
 
-    <bean id="BA01J010S03.tasklet" class="jp.myapp.batch.support.FileDeleterImpl" scope="step">
+    <bean id="BA01J010S030.tasklet" class="jp.myapp.batch.support.FileDeleterImpl" scope="step">
         <property name="resource" value="file:#{jobExecutionContext['zipcode.tmpfile']}" />
     </bean>
 

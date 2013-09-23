@@ -18,7 +18,7 @@ import org.springframework.core.io.Resource;
 /**
  * 郵便番号データダウンロード処理ステップの実装クラス
  */
-public class BA01J010S01Impl implements BA01J010S01, InitializingBean {
+public class BA01J010S010Impl implements BA01J010S010, InitializingBean {
 
     /** 郵便番号データダウンロードURL */
     private String uri;

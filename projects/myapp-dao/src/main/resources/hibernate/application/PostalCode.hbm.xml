@@ -4,7 +4,11 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="jp.myapp.data.entity.application">
     <class name="PostalCode" table="POSTAL_CODE" dynamic-insert="true" dynamic-update="true">
-        <id name="id" column="ID" type="integer" />
+        <id name="id" column="ID" type="integer">
+            <generator class="sequence">
+                <param name="sequence">POSTAL_CODE_ID_SEQ</param>
+            </generator>
+        </id>
         <version name="version" column="VERSION" type="integer" />
         <property name="localGovernmentCode" column="LOCAL_GOVERNMENT_CODE" not-null="true" type="string" />
         <property name="postalCode" column="POSTAL_CODE" not-null="true" type="string" />

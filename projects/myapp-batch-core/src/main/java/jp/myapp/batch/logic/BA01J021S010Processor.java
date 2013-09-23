@@ -10,10 +10,7 @@ import org.springframework.batch.item.ItemProcessor;
 /**
  * 郵便番号データファイルの情報を郵便番号テーブルのエンティティオブジェクトに変換する。
  */
-public class BA01J030S02Processor implements ItemProcessor<PostalCodeAddress, PostalCode> {
-
-    /** 現在の郵便番号テーブルレコードID */
-    private int currentId = 0;
+public class BA01J021S010Processor implements ItemProcessor<PostalCodeAddress, PostalCode> {
 
     @Override
     public PostalCode process(PostalCodeAddress item) throws Exception {
@@ -21,7 +18,6 @@ public class BA01J030S02Processor implements ItemProcessor<PostalCodeAddress, Po
         PostalCode entity = new PostalCode();
         Timestamp current = new Timestamp(System.currentTimeMillis());
 
-        entity.setId(currentId++);
         entity.setLocalGovernmentCode(item.getLocalGovernmentCode());
         entity.setPostalCode(item.getPostalCode());
         entity.setKanaPrefectureName(item.getKanaPrefectureName());

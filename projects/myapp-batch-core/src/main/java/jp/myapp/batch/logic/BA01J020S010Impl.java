@@ -23,7 +23,7 @@ import org.springframework.core.io.Resource;
 /**
  * 郵便番号データZIPファイル解凍処理ステップの実装クラス
  */
-public class BA01J020S01Impl implements BA01J020S01, StepExecutionListener {
+public class BA01J020S010Impl implements BA01J020S010, StepExecutionListener {
 
     /** ジョブ実行オブジェクト */
     private JobExecution jobExecution;
@@ -115,8 +115,8 @@ public class BA01J020S01Impl implements BA01J020S01, StepExecutionListener {
         List<JobParameters> jobParametersList = loopJobParametersListAccessor.getJobParametersList(jobExecution);
 
         for (File file : files) {
-            JobParametersBuilder jpb = new JobParametersBuilder();
-            jpb.addString("infile", "file:" + file.getPath());
+            JobParametersBuilder jpb = new JobParametersBuilder(jobExecution.getJobParameters());
+            jpb.addString("datafile", "file:" + file.getPath());
             jobParametersList.add(jpb.toJobParameters());
         }
     }

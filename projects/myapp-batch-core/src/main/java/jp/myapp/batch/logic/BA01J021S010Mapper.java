@@ -9,7 +9,7 @@ import org.springframework.validation.BindException;
 /**
  * 郵便番号データCSVファイルのマッピングを行う。
  */
-public class BA01J030S02Mapper implements FieldSetMapper<PostalCodeAddress> {
+public class BA01J021S010Mapper implements FieldSetMapper<PostalCodeAddress> {
 
     @Override
     public PostalCodeAddress mapFieldSet(FieldSet fieldSet) throws BindException {

@@ -9,7 +9,7 @@ import org.springframework.batch.core.step.job.DefaultJobParametersExtractor;
 /**
  * 次のジョブに引き渡すジョブパラメータ編集を行う。
  */
-public class BA01J010S02JobParametersExtractor extends DefaultJobParametersExtractor {
+public class BA01J010S020JobParametersExtractor extends DefaultJobParametersExtractor {
 
     /** 郵便番号データファイル */
     private String zipFile;

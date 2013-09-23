@@ -1,9 +1,9 @@
 package jp.myapp.batch.logic;
 
 /**
- * 郵便番号データダウンロード処理ステップのインタフェース
+ * 郵便番号データZIPファイル解凍処理ステップのインタフェース
  */
-public interface BA01J010S01 {
+public interface BA01J020S010 {
 
     /**
      * 処理を実行する。

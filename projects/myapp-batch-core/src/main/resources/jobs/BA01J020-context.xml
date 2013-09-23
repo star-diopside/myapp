@@ -5,31 +5,35 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd">
 
-    <import resource="BA01J030-context.xml" />
+    <import resource="BA01J021-context.xml" />
 
     <job id="BA01J020" incrementer="jobParametersIncrementer" xmlns="http://www.springframework.org/schema/batch">
 
-        <step id="BA01J020S01" parent="simpleStep" next="BA01J020.decision">
-            <tasklet ref="BA01J020S01.tasklet" method="execute" transaction-manager="resourcelessTransactionManager" />
+        <step id="BA01J020S010" parent="simpleStep" next="BA01J020S020">
+            <tasklet ref="BA01J020S010.tasklet" method="execute" transaction-manager="resourcelessTransactionManager" />
             <listeners>
-                <listener ref="BA01J020S01.listener.createTemporaryDirectory" />
-                <listener ref="BA01J020S01.tasklet" />
-                <listener ref="BA01J020S01.listener.executionContextPromotion" />
+                <listener ref="BA01J020S010.listener.createTemporaryDirectory" />
+                <listener ref="BA01J020S010.tasklet" />
+                <listener ref="BA01J020S010.listener.executionContextPromotion" />
             </listeners>
         </step>
 
+        <step id="BA01J020S020" parent="simpleStep" next="BA01J020.decision">
+            <tasklet ref="BA01J020S020.tasklet" transaction-manager="applicationTransactionManager" />
+        </step>
+
         <decision id="BA01J020.decision" decider="BA01J020.zipcode.loopJobController">
-            <next on="CONTINUE" to="BA01J020S02" />
-            <next on="COMPLETED" to="BA01J020S03" />
+            <next on="CONTINUE" to="BA01J020S030" />
+            <next on="COMPLETED" to="BA01J020S040" />
             <fail on="FAILED" />
         </decision>
 
-        <step id="BA01J020S02" next="BA01J020.decision">
-            <job ref="BA01J030" job-parameters-extractor="BA01J020.zipcode.loopJobController" />
+        <step id="BA01J020S030" next="BA01J020.decision">
+            <job ref="BA01J021" job-parameters-extractor="BA01J020.zipcode.loopJobController" />
         </step>
 
-        <step id="BA01J020S03" parent="simpleStep">
-            <tasklet ref="BA01J020S03.tasklet" method="delete" transaction-manager="resourcelessTransactionManager" />
+        <step id="BA01J020S040" parent="simpleStep">
+            <tasklet ref="BA01J020S040.tasklet" method="delete" transaction-manager="resourcelessTransactionManager" />
         </step>
 
         <listeners>
@@ -38,27 +42,44 @@
 
     </job>
 
-    <bean id="BA01J020S01.tasklet" class="jp.myapp.batch.logic.BA01J020S01Impl" scope="step">
+    <bean id="BA01J020.zipcode.loopJobController" class="jp.myapp.batch.support.LoopJobController">
+        <property name="keyPrefix" value="ZIPCODE_" />
+    </bean>
+
+    <bean id="BA01J020S010.tasklet" class="jp.myapp.batch.logic.BA01J020S010Impl" scope="step">
         <property name="resource" value="#{jobParameters['zipFile']}" />
         <property name="charset" value="Windows-31J" />
         <property name="unarchiveDirectory" value="#{stepExecutionContext['zipcode.tmpdir']}" />
         <property name="loopJobParametersListAccessor" ref="BA01J020.zipcode.loopJobController" />
     </bean>
 
-    <bean id="BA01J020S01.listener.createTemporaryDirectory" class="jp.myapp.batch.support.CreateTemporaryDirectoryListener">
+    <bean id="BA01J020S010.listener.createTemporaryDirectory" class="jp.myapp.batch.support.CreateTemporaryDirectoryListener">
         <property name="key" value="zipcode.tmpdir" />
         <property name="directory" value="#{systemProperties['user.home']}/temp/BA01J020" />
     </bean>
 
-    <bean id="BA01J020S01.listener.executionContextPromotion" class="org.springframework.batch.core.listener.ExecutionContextPromotionListener">
+    <bean id="BA01J020S010.listener.executionContextPromotion" class="org.springframework.batch.core.listener.ExecutionContextPromotionListener">
         <property name="keys" value="zipcode.tmpdir" />
     </bean>
 
-    <bean id="BA01J020.zipcode.loopJobController" class="jp.myapp.batch.support.LoopJobController">
-        <property name="keyPrefix" value="ZIPCODE_" />
+    <bean id="BA01J020S020.tasklet" class="org.springframework.batch.core.step.tasklet.MethodInvokingTaskletAdapter">
+        <property name="targetObject">
+            <bean class="org.springframework.jdbc.core.JdbcTemplate">
+                <property name="dataSource" ref="applicationDataSource" />
+            </bean>
+        </property>
+        <property name="targetMethod" value="execute" />
+        <property name="arguments">
+            <array>
+                <value type="java.lang.String">
+                    TRUNCATE TABLE POSTAL_CODE;
+                    SELECT SETVAL('POSTAL_CODE_ID_SEQ', 1, FALSE);
+                </value>
+            </array>
+        </property>
     </bean>
 
-    <bean id="BA01J020S03.tasklet" class="jp.myapp.batch.support.FileDeleterImpl" scope="step">
+    <bean id="BA01J020S040.tasklet" class="jp.myapp.batch.support.FileDeleterImpl" scope="step">
         <property name="resource" value="file:#{jobExecutionContext['zipcode.tmpdir']}" />
     </bean>
 

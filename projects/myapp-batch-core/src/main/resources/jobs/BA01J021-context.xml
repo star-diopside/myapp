@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd">
+
+    <import resource="classpath:simple-step-context.xml" />
+
+    <job id="BA01J021" incrementer="jobParametersIncrementer" xmlns="http://www.springframework.org/schema/batch">
+
+        <step id="BA01J021S010" parent="simpleStep">
+            <tasklet transaction-manager="applicationHibernateTransactionManager">
+                <chunk reader="BA01J021S010.reader" processor="BA01J021S010.processor" writer="BA01J021S010.writer" commit-interval="100" />
+            </tasklet>
+        </step>
+
+    </job>
+
+    <bean id="BA01J021S010.reader" class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
+        <property name="resource" value="#{jobParameters['datafile']}" />
+        <property name="encoding" value="SJIS" />
+        <property name="recordSeparatorPolicy">
+            <bean class="org.springframework.batch.item.file.separator.DefaultRecordSeparatorPolicy" />
+        </property>
+        <property name="lineMapper">
+            <bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+                <property name="lineTokenizer">
+                    <bean class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer" />
+                </property>
+                <property name="fieldSetMapper">
+                    <bean class="jp.myapp.batch.logic.BA01J021S010Mapper" />
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="BA01J021S010.processor" class="jp.myapp.batch.logic.BA01J021S010Processor" scope="step" />
+
+    <bean id="BA01J021S010.writer" class="org.springframework.batch.item.database.HibernateItemWriter" scope="step">
+        <property name="sessionFactory" ref="applicationSessionFactory" />
+    </bean>
+
+</beans>

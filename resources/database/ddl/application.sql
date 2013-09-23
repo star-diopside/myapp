@@ -7,6 +7,18 @@ DROP TABLE IF EXISTS USER_ATTRIBUTE;
 
 
 
+/* Drop Sequences */
+
+DROP SEQUENCE IF EXISTS POSTAL_CODE_ID_SEQ;
+
+
+
+
+/* Create Sequences */
+
+CREATE SEQUENCE POSTAL_CODE_ID_SEQ;
+
+
 
 /* Create Tables */
 
