@@ -1,57 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web:web-app xmlns:web="http://geronimo.apache.org/xml/ns/j2ee/web-2.0.1"
-    xmlns:naming="http://geronimo.apache.org/xml/ns/naming-1.2"
-    xmlns:sys="http://geronimo.apache.org/xml/ns/deployment-1.2">
-
-    <sys:environment>
-        <sys:dependencies>
-            <sys:dependency>
-                <sys:groupId>console.dbpool</sys:groupId>
-                <sys:artifactId>jdbc_Management</sys:artifactId>
-            </sys:dependency>
-            <sys:dependency>
-                <sys:groupId>console.dbpool</sys:groupId>
-                <sys:artifactId>jdbc_Application</sys:artifactId>
-            </sys:dependency>
-            <sys:dependency>
-                <sys:groupId>console.dbpool</sys:groupId>
-                <sys:artifactId>jdbc_XAManagement</sys:artifactId>
-            </sys:dependency>
-            <sys:dependency>
-                <sys:groupId>console.dbpool</sys:groupId>
-                <sys:artifactId>jdbc_XAApplication</sys:artifactId>
-            </sys:dependency>
-        </sys:dependencies>
-        <sys:hidden-classes>
-            <sys:filter>javax.ws.rs</sys:filter>
-            <sys:filter>ch.qos.logback</sys:filter>
-            <sys:filter>com.thoughtworks.xstream</sys:filter>
-            <sys:filter>org.apache.commons.logging</sys:filter>
-            <sys:filter>org.apache.log4j</sys:filter>
-            <sys:filter>org.apache.ws.commons.schema</sys:filter>
-            <sys:filter>org.jboss.logging</sys:filter>
-            <sys:filter>org.slf4j</sys:filter>
-        </sys:hidden-classes>
-    </sys:environment>
-
-    <naming:resource-ref>
-        <naming:ref-name>jdbc/Management</naming:ref-name>
-        <naming:resource-link>jdbc/Management</naming:resource-link>
-    </naming:resource-ref>
-
-    <naming:resource-ref>
-        <naming:ref-name>jdbc/Application</naming:ref-name>
-        <naming:resource-link>jdbc/Application</naming:resource-link>
-    </naming:resource-ref>
-
-    <naming:resource-ref>
-        <naming:ref-name>jdbc/XAManagement</naming:ref-name>
-        <naming:resource-link>jdbc/XAManagement</naming:resource-link>
-    </naming:resource-ref>
-
-    <naming:resource-ref>
-        <naming:ref-name>jdbc/XAApplication</naming:ref-name>
-        <naming:resource-link>jdbc/XAApplication</naming:resource-link>
-    </naming:resource-ref>
-
-</web:web-app>
+<web-app xmlns="http://geronimo.apache.org/xml/ns/j2ee/web-2.0.1">
+    <environment xmlns="http://geronimo.apache.org/xml/ns/deployment-1.2">
+        <moduleId>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>${project.artifactId}</artifactId>
+            <version>${project.version}</version>
+            <type>${project.packaging}</type>
+        </moduleId>
+        <dependencies>
+            <dependency>
+                <groupId>console.dbpool</groupId>
+                <artifactId>jdbc_management</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>console.dbpool</groupId>
+                <artifactId>jdbc_application</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>console.dbpool</groupId>
+                <artifactId>jdbc_management-xa</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>console.dbpool</groupId>
+                <artifactId>jdbc_application-xa</artifactId>
+            </dependency>
+        </dependencies>
+        <hidden-classes>
+            <filter>javax.ws.rs</filter>
+            <filter>ch.qos.logback</filter>
+            <filter>com.thoughtworks.xstream</filter>
+            <filter>org.apache.commons.logging</filter>
+            <filter>org.apache.log4j</filter>
+            <filter>org.apache.ws.commons.schema</filter>
+            <filter>org.jboss.logging</filter>
+            <filter>org.slf4j</filter>
+        </hidden-classes>
+    </environment>
+    <context-root>myapp-web</context-root>
+    <resource-ref xmlns="http://geronimo.apache.org/xml/ns/naming-1.2">
+        <ref-name>jdbc/management</ref-name>
+        <resource-link>jdbc/management</resource-link>
+    </resource-ref>
+    <resource-ref xmlns="http://geronimo.apache.org/xml/ns/naming-1.2">
+        <ref-name>jdbc/application</ref-name>
+        <resource-link>jdbc/application</resource-link>
+    </resource-ref>
+    <resource-ref xmlns="http://geronimo.apache.org/xml/ns/naming-1.2">
+        <ref-name>jdbc/management-xa</ref-name>
+        <resource-link>jdbc/management-xa</resource-link>
+    </resource-ref>
+    <resource-ref xmlns="http://geronimo.apache.org/xml/ns/naming-1.2">
+        <ref-name>jdbc/application-xa</ref-name>
+        <resource-link>jdbc/application-xa</resource-link>
+    </resource-ref>
+</web-app>

@@ -18,5 +18,5 @@
             <filter>org.slf4j</filter>
         </hidden-classes>
     </environment>
-    <context-root>myapp-batch-admin</context-root>
+    <context-root>webservice-client</context-root>
 </web-app>

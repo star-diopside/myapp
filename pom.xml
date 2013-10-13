@@ -23,7 +23,7 @@
         <project.rootdir>${project.basedir}</project.rootdir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <app-server.target>jboss-as</app-server.target>
+        <app-server.target>geronimo</app-server.target>
 
         <jacoco.version>0.6.3.201306030806</jacoco.version>
 
@@ -68,6 +68,7 @@
                                     </resource>
                                     <resource>
                                         <directory>src/main/app-server/${app-server.target}</directory>
+                                        <filtering>true</filtering>
                                     </resource>
                                 </webResources>
                             </configuration>
@@ -92,6 +93,7 @@
                                 <webResources>
                                     <resource>
                                         <directory>src/main/app-server/${app-server.target}</directory>
+                                        <filtering>true</filtering>
                                     </resource>
                                 </webResources>
                             </configuration>
@@ -179,6 +181,11 @@
                     </configuration>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.geronimo.buildsupport</groupId>
+                    <artifactId>geronimo-maven-plugin</artifactId>
+                    <version>3.0.1</version>
+                </plugin>
+                <plugin>
                     <groupId>org.jboss.as.plugins</groupId>
                     <artifactId>jboss-as-maven-plugin</artifactId>
                 </plugin>
@@ -195,6 +202,7 @@
                             <configuration>
                                 <copyConfigurationDirectory>true</copyConfigurationDirectory>
                                 <repositoryLayout>flat</repositoryLayout>
+                                <useWildcardClassPath>true</useWildcardClassPath>
                             </configuration>
                         </execution>
                     </executions>

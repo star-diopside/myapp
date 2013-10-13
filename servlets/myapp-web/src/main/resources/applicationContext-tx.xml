@@ -9,10 +9,10 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!-- データソース定義 -->
-    <jee:jndi-lookup id="managementDataSource" jndi-name="java:comp/env/jdbc/Management" />
-    <jee:jndi-lookup id="applicationDataSource" jndi-name="java:comp/env/jdbc/Application" />
-    <jee:jndi-lookup id="managementXADataSource" jndi-name="java:comp/env/jdbc/XAManagement" />
-    <jee:jndi-lookup id="applicationXADataSource" jndi-name="java:comp/env/jdbc/XAApplication" />
+    <jee:jndi-lookup id="managementDataSource" jndi-name="java:comp/env/jdbc/management" />
+    <jee:jndi-lookup id="applicationDataSource" jndi-name="java:comp/env/jdbc/application" />
+    <jee:jndi-lookup id="managementXADataSource" jndi-name="java:comp/env/jdbc/management-xa" />
+    <jee:jndi-lookup id="applicationXADataSource" jndi-name="java:comp/env/jdbc/application-xa" />
 
     <!-- MyBatis定義 -->
     <bean id="managementSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

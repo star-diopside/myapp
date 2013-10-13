@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jboss-web>
     <resource-ref>
-        <res-ref-name>jdbc/Management</res-ref-name>
+        <res-ref-name>jdbc/management</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <jndi-name>java:jboss/datasources/Management</jndi-name>
     </resource-ref>
     <resource-ref>
-        <res-ref-name>jdbc/Application</res-ref-name>
+        <res-ref-name>jdbc/application</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <jndi-name>java:jboss/datasources/Application</jndi-name>
     </resource-ref>
     <resource-ref>
-        <res-ref-name>jdbc/XAManagement</res-ref-name>
+        <res-ref-name>jdbc/management-xa</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <jndi-name>java:jboss/datasources/XAManagement</jndi-name>
     </resource-ref>
     <resource-ref>
-        <res-ref-name>jdbc/XAApplication</res-ref-name>
+        <res-ref-name>jdbc/application-xa</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <jndi-name>java:jboss/datasources/XAApplication</jndi-name>
     </resource-ref>
