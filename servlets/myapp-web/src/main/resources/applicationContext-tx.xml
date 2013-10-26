@@ -63,25 +63,25 @@
     <bean id="managementSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="managementDataSource" />
         <property name="jtaTransactionManager" ref="transactionManager" />
-        <property name="configLocation" value="classpath:hibernate.cfg.xml" />
+        <property name="configLocation" value="classpath:hibernate-management.cfg.xml" />
     </bean>
 
     <bean id="applicationSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="applicationDataSource" />
         <property name="jtaTransactionManager" ref="transactionManager" />
-        <property name="configLocation" value="classpath:hibernate.cfg.xml" />
+        <property name="configLocation" value="classpath:hibernate-application.cfg.xml" />
     </bean>
 
     <bean id="managementXASessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="managementXADataSource" />
         <property name="jtaTransactionManager" ref="transactionManager" />
-        <property name="configLocation" value="classpath:hibernate.cfg.xml" />
+        <property name="configLocation" value="classpath:hibernate-management.cfg.xml" />
     </bean>
 
     <bean id="applicationXASessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="applicationXADataSource" />
         <property name="jtaTransactionManager" ref="transactionManager" />
-        <property name="configLocation" value="classpath:hibernate.cfg.xml" />
+        <property name="configLocation" value="classpath:hibernate-application.cfg.xml" />
     </bean>
 
     <!-- トランザクションマネージャ定義 -->

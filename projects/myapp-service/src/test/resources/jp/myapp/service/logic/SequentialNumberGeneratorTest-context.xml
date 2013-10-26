@@ -9,8 +9,8 @@
     <bean id="setupDataSource" class="org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy">
         <constructor-arg>
             <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-                <property name="driverClassName" value="org.postgresql.Driver" />
-                <property name="url" value="jdbc:postgresql://${test-datasource.application.server}:${test-datasource.application.port}/${test-datasource.application.database}" />
+                <property name="driverClassName" value="${test-datasource.application.driver}" />
+                <property name="url" value="${test-datasource.application.url}" />
                 <property name="username" value="${test-datasource.application.username}" />
                 <property name="password" value="${test-datasource.application.password}" />
             </bean>

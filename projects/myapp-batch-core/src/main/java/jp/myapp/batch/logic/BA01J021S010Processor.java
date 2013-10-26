@@ -27,9 +27,9 @@ public class BA01J021S010Processor implements ItemProcessor<PostalCodeAddress, P
         entity.setKanjiMunicipalityName(item.getKanjiMunicipalityName());
         entity.setKanjiAreaName(item.getKanjiAreaName());
         entity.setRegisterTimestamp(current);
-        entity.setRegisterUserId("BA01J030");
+        entity.setRegisterUserId("BA01J021");
         entity.setUpdatedTimestamp(current);
-        entity.setUpdatedUserId("BA01J030");
+        entity.setUpdatedUserId("BA01J021");
         entity.setVersion(0);
 
         return entity;

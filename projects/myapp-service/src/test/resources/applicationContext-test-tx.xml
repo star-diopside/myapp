@@ -23,8 +23,8 @@
                         <property name="prefix" value="mgmt" />
                     </bean>
                 </property>
-                <property name="driverClassName" value="org.postgresql.Driver" />
-                <property name="url" value="jdbc:postgresql://${test-datasource.management.server}:${test-datasource.management.port}/${test-datasource.management.database}" />
+                <property name="driverClassName" value="${test-datasource.management.driver}" />
+                <property name="url" value="${test-datasource.management.url}" />
                 <property name="user" value="${test-datasource.management.username}" />
                 <property name="password" value="${test-datasource.management.password}" />
             </bean>
@@ -39,8 +39,8 @@
                         <property name="prefix" value="app" />
                     </bean>
                 </property>
-                <property name="driverClassName" value="org.postgresql.Driver" />
-                <property name="url" value="jdbc:postgresql://${test-datasource.application.server}:${test-datasource.application.port}/${test-datasource.application.database}" />
+                <property name="driverClassName" value="${test-datasource.application.driver}" />
+                <property name="url" value="${test-datasource.application.url}" />
                 <property name="user" value="${test-datasource.application.username}" />
                 <property name="password" value="${test-datasource.application.password}" />
             </bean>
@@ -55,7 +55,7 @@
                         <property name="prefix" value="xaMgmt" />
                     </bean>
                 </property>
-                <property name="xaDataSourceClassName" value="org.postgresql.xa.PGXADataSource" />
+                <property name="xaDataSourceClassName" value="${test-datasource.management.xadatasource}" />
                 <property name="xaProperties">
                     <props>
                         <prop key="serverName">${test-datasource.management.server}</prop>
@@ -77,7 +77,7 @@
                         <property name="prefix" value="xaApp" />
                     </bean>
                 </property>
-                <property name="xaDataSourceClassName" value="org.postgresql.xa.PGXADataSource" />
+                <property name="xaDataSourceClassName" value="${test-datasource.application.xadatasource}" />
                 <property name="xaProperties">
                     <props>
                         <prop key="serverName">${test-datasource.application.server}</prop>
@@ -140,25 +140,25 @@
     <bean id="managementSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="managementDataSource" />
         <property name="jtaTransactionManager" ref="transactionManager" />
-        <property name="configLocation" value="classpath:hibernate.cfg.xml" />
+        <property name="configLocation" value="classpath:hibernate-management.cfg.xml" />
     </bean>
 
     <bean id="applicationSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="applicationDataSource" />
         <property name="jtaTransactionManager" ref="transactionManager" />
-        <property name="configLocation" value="classpath:hibernate.cfg.xml" />
+        <property name="configLocation" value="classpath:hibernate-application.cfg.xml" />
     </bean>
 
     <bean id="managementXASessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="managementXADataSource" />
         <property name="jtaTransactionManager" ref="transactionManager" />
-        <property name="configLocation" value="classpath:hibernate.cfg.xml" />
+        <property name="configLocation" value="classpath:hibernate-management.cfg.xml" />
     </bean>
 
     <bean id="applicationXASessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="applicationXADataSource" />
         <property name="jtaTransactionManager" ref="transactionManager" />
-        <property name="configLocation" value="classpath:hibernate.cfg.xml" />
+        <property name="configLocation" value="classpath:hibernate-application.cfg.xml" />
     </bean>
 
     <!-- トランザクションマネージャ定義 -->

@@ -6,21 +6,21 @@
 
     <!-- データソース定義 -->
     <bean id="managementDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="org.postgresql.Driver" />
-        <property name="url" value="jdbc:postgresql://${datasource.management.server}:${datasource.management.port}/${datasource.management.database}" />
+        <property name="driverClassName" value="${datasource.management.driver}" />
+        <property name="url" value="${datasource.management.url}" />
         <property name="username" value="${datasource.management.username}" />
         <property name="password" value="${datasource.management.password}" />
-        <property name="connectionInitSqls" value="SET statement_timeout = 300000" />
-        <property name="validationQuery" value="SELECT 1" />
+        <property name="connectionInitSqls" value="${datasource.management.batch.connectionInitSqls}" />
+        <property name="validationQuery" value="${datasource.management.batch.validationQuery}" />
     </bean>
 
     <bean id="applicationDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="org.postgresql.Driver" />
-        <property name="url" value="jdbc:postgresql://${datasource.application.server}:${datasource.application.port}/${datasource.application.database}" />
+        <property name="driverClassName" value="${datasource.application.driver}" />
+        <property name="url" value="${datasource.application.url}" />
         <property name="username" value="${datasource.application.username}" />
         <property name="password" value="${datasource.application.password}" />
-        <property name="connectionInitSqls" value="SET statement_timeout = 300000" />
-        <property name="validationQuery" value="SELECT 1" />
+        <property name="connectionInitSqls" value="${datasource.application.batch.connectionInitSqls}" />
+        <property name="validationQuery" value="${datasource.application.batch.validationQuery}" />
     </bean>
 
     <!-- MyBatis定義 -->
@@ -49,12 +49,12 @@
     <!-- Hibernate定義 -->
     <bean id="managementSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="managementDataSource" />
-        <property name="configLocation" value="classpath:hibernate.cfg.xml" />
+        <property name="configLocation" value="classpath:hibernate-management.cfg.xml" />
     </bean>
 
     <bean id="applicationSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="applicationDataSource" />
-        <property name="configLocation" value="classpath:hibernate.cfg.xml" />
+        <property name="configLocation" value="classpath:hibernate-application.cfg.xml" />
     </bean>
 
     <!-- トランザクションマネージャ定義 -->

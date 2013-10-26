@@ -4,9 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL82Dialect</property>
-        <mapping resource="hibernate/management/Users.hbm.xml" />
-        <mapping resource="hibernate/management/Authorities.hbm.xml" />
+        <property name="hibernate.dialect">${hibernate.application.dialect}</property>
         <mapping resource="hibernate/application/UserAttribute.hbm.xml" />
         <mapping resource="hibernate/application/SequentialNumberManage.hbm.xml" />
         <mapping resource="hibernate/application/PostalCode.hbm.xml" />
