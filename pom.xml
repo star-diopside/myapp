@@ -52,6 +52,9 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
+            <properties>
+                <profile.name>development</profile.name>
+            </properties>
             <build>
                 <filters>
                     <filter>${project.rootdir}/build-config/filters/development.properties</filter>
@@ -64,10 +67,10 @@
                             <configuration>
                                 <webResources>
                                     <resource>
-                                        <directory>src/main/webcontent</directory>
+                                        <directory>${project.basedir}/src/main/webcontent</directory>
                                     </resource>
                                     <resource>
-                                        <directory>src/main/app-server/${app-server.target}</directory>
+                                        <directory>${project.basedir}/src/main/app-server/${app-server.target}</directory>
                                         <filtering>true</filtering>
                                     </resource>
                                 </webResources>
@@ -80,6 +83,9 @@
 
         <profile>
             <id>staging</id>
+            <properties>
+                <profile.name>staging</profile.name>
+            </properties>
             <build>
                 <filters>
                     <filter>${project.rootdir}/build-config/filters/staging.properties</filter>
@@ -92,7 +98,7 @@
                             <configuration>
                                 <webResources>
                                     <resource>
-                                        <directory>src/main/app-server/${app-server.target}</directory>
+                                        <directory>${project.basedir}/src/main/app-server/${app-server.target}</directory>
                                         <filtering>true</filtering>
                                     </resource>
                                 </webResources>
@@ -123,13 +129,17 @@
     <build>
         <resources>
             <resource>
-                <directory>src/main/resources</directory>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>${project.basedir}/src/main/profile/${profile.name}/resources</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>
         <testResources>
             <testResource>
-                <directory>src/test/resources</directory>
+                <directory>${project.basedir}/src/test/resources</directory>
                 <filtering>true</filtering>
             </testResource>
         </testResources>

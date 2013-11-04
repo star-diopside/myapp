@@ -1,10 +1,11 @@
-package jp.myapp.webservice_client.controller.form;
+package jp.myapp.webservice_client.form.auth;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotBlank;
+import jp.myapp.validation.constraints.NotBlank;
 
 public class LoginForm implements Serializable {
 
@@ -22,6 +23,9 @@ public class LoginForm implements Serializable {
 
     /** エラー有無 */
     private boolean error = false;
+
+    /** メッセージ */
+    private List<String> messages;
 
     /**
      * ユーザ名を取得する。
@@ -75,5 +79,23 @@ public class LoginForm implements Serializable {
      */
     public void setError(boolean error) {
         this.error = error;
+    }
+
+    /**
+     * メッセージを取得する。
+     * 
+     * @return メッセージ
+     */
+    public List<String> getMessages() {
+        return messages;
+    }
+
+    /**
+     * メッセージを設定する。
+     * 
+     * @param messages メッセージ
+     */
+    public void setMessages(List<String> messages) {
+        this.messages = messages;
     }
 }

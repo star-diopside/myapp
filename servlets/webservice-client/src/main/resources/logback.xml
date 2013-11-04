@@ -51,6 +51,10 @@
         <appender-ref ref="traceLog" />
     </logger>
 
+    <logger name="org.springframework.aop.interceptor.CustomizableTraceInterceptor" level="TRACE">
+        <appender-ref ref="traceLog" />
+    </logger>
+
     <!-- Root Logger Setting -->
     <root level="ERROR">
         <appender-ref ref="errorLog" />
